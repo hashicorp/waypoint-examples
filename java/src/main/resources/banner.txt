@@ -1,0 +1,2 @@
+* Waypoint Demo Java App
+* Spring Boot Version: ${spring-boot.version}

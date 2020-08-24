@@ -6,7 +6,11 @@ app "example-ruby" {
     "env" = "dev"
   }
 
-  build "pack" {}
+  build {
+    use "pack" {}
+    }
 
-  deploy "docker" {}
+  deploy { 
+    use "docker" {}
+  }
 }

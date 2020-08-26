@@ -8,7 +8,7 @@ app "example-nextjs" {
 
   build {
     use "pack" {}
-    }
+  }
 
   deploy { 
     use "docker" {}

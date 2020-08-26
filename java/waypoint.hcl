@@ -8,7 +8,7 @@ app "example-java" {
 
   build {
     use "pack" {}
-    }
+  }
 
   deploy { 
     use "docker" {}

@@ -8,7 +8,7 @@ app "example-nodejs" {
 
   build {
     use "pack" {}
-    }
+  }
 
   deploy { 
     use "docker" {}

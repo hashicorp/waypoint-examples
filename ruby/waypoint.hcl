@@ -8,7 +8,7 @@ app "example-ruby" {
 
   build {
     use "pack" {}
-    }
+  }
 
   deploy { 
     use "docker" {}

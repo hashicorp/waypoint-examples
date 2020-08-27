@@ -10,7 +10,7 @@ app "example-nodejs" {
     use "pack" {}
     registry {
         use "docker" {
-          image = "harbor.humblelab.com/library/nodejs-example"
+          image = "waypoint-example.local/nodejs-example"
           tag = "latest"
           //local = true
           //encoded_auth

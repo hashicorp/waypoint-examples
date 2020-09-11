@@ -12,32 +12,20 @@ app "example-nodejs" {
         use "docker" {
           image = "waypoint-example.local/nodejs-example"
           tag = "latest"
-          //local = true
-          //encoded_auth
         }
     }
  }
 
   deploy { 
     use "kubernetes" {
-    // kubeconfig =
-    // context = 
-    // count = 
     probe_path = "/"
-    // scratch_path =
-    // image_secret
-    // static_environment
     }
   }
 
   release {
     use "kubernetes" {
-      // kubeconfig =
-      // context =
       load_balancer = true
       port = 80
-      // node_port =
-
     }
   }
 }

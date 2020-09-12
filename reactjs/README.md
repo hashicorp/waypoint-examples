@@ -4,6 +4,8 @@
 
 In this getting started guide we will go through using waypoint to deploy a ReactJS application on Docker for Destkop. We will demonstrate leveraging both the `pack` builder to automatically detect the type of user code being built and deploy it, as well as demonstrate using the `docker` builder with a Dockerfile.
 
+This repo uses a barebones ReactJS application. You can clone this repo locally and leverage the structure here, or create your own ReactJS application locally using the `npx create-react-app <app name>` command. Note that if you create the application on your own locally, you'll also need to create the necessary files for the steps below (`waypoint.hcl`, `nginx/default.conf`, and the `Dockerfile`). If you use this directory - all the files you need are here.
+
 ## Requirements
 
 This walkthrough assumes the following...

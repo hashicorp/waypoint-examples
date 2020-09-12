@@ -68,7 +68,7 @@ Save your file, and re-run the `waypoint up` command
 
 Upon completion, you'll note that you're provided the same URL as above. The waypoint server has handled automatically swithching the URL to use the most recent version of your deployment.
 
-### "waypoint up" part 3 - Pivoting to Docker Builds
+### "waypoint up" part 3 - Pivoting to Docker builds
 
 In Waypoint we have 2 builder types, the `pack` builder and the `docker` builder. For users who already have a Dockerfile configured to run their application, the Docker builder provides some great flexibility.
 

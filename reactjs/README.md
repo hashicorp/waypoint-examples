@@ -19,7 +19,7 @@ This walkthrough assumes the following...
 We will start by installing the Waypoint server on Docker for Desktop. This installation is done by executing the following command locally on your workstation -
 
 ```bash
-waypoint install --platfomr=docker
+waypoint install --platform=docker
 ```
 
 In a few moments you should receive a message that the configuration was successful. We're now ready to get started with deploying the application
@@ -81,7 +81,7 @@ build {
 
 deploy {
       use "docker" {
-          container_port=80
+          container_port = 80
       }
     }
 ```

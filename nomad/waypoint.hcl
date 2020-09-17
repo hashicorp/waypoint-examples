@@ -14,7 +14,7 @@ app "example-nodejs" {
 
   deploy { 
     use "nomad" {
-      datacetner = "dc1"
+      datacenter = "dc1"
     }
   }
 

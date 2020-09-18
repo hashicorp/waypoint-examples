@@ -1,13 +1,15 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
-RUN apt update -y && apt install python3-pip -y && pip3 install --no-cache-dir pipenv
+RUN apt-get update -y && apt-get install python3-pip -y
 
-ADD /app/ /app/
+ADD requirements.txt /app/
 WORKDIR /app
 RUN /bin/bash -c "pip3 install --no-cache-dir -r requirements.txt"
+
+ADD /app/ /app/
 
 EXPOSE 3000
 

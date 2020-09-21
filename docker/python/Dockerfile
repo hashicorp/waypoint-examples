@@ -11,6 +11,6 @@ RUN /bin/bash -c "pip3 install --no-cache-dir -r requirements.txt"
 
 ADD /app/ /app/
 
-EXPOSE 3000
+EXPOSE 8080
 
-CMD ["gunicorn", "-b", "0.0.0.0:3000", "wsgi", "-k", "gevent"]
+CMD ["gunicorn", "-b", "0.0.0.0:8080", "wsgi", "-k", "gevent"]

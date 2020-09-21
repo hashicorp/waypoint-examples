@@ -11,6 +11,8 @@ app "example-python" {
   }
 
   deploy { 
-    use "docker" {}
+    use "docker" {
+        service_port = 8080
+    }
   }
 }

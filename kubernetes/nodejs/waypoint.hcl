@@ -10,7 +10,7 @@ app "example-nodejs" {
     use "pack" {}
     registry {
         use "docker" {
-          image = "waypoint-example.local/nodejs-example"
+          image = "nodejs-example"
           tag = "latest"
         }
     }

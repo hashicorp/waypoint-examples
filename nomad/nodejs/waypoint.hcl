@@ -7,7 +7,8 @@ app "example-nodejs" {
     registry {
         use "docker" {
           image = "nodejs-example"
-          tag = "latest"
+          tag = "1"
+          local = true
         }
     }
  }

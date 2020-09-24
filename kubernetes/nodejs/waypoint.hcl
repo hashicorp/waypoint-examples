@@ -1,13 +1,18 @@
 project = "example-nodejs"
 
 app "example-nodejs" {
+  labels = {
+      "service" = "example-nodejs",
+      "env" = "dev"
+  }
 
   build {
     use "pack" {}
     registry {
         use "docker" {
           image = "nodejs-example"
-          tag = "latest"
+          tag = "1"
+          local = true
         }
     }
  }

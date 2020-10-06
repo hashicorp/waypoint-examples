@@ -28,7 +28,7 @@ app "example-reactjs" {
     deploy {
         use "docker" {
             #Waypoint defaults inbound requests to port 3000
-            #This reactjs example app listens on port 80, so we need to tell Waypoint the right port
+            #This reactjs example app image listens on port 80, so we need to tell Waypoint to use the right port
             service_port=80
         }
     }

@@ -16,7 +16,7 @@ export default function Home() {
       </header>
       <section className={styles.content}>
         <div className={styles.language}>
-          <img src="/language.svg" alt="React Icon" />
+          <img src="/language.svg" alt="Next.js Icon" />
         </div>
         <h1>This Next.js app was deployed with Waypoint.</h1>
         <p>

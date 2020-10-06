@@ -1,9 +1,7 @@
-:root {
-  --text: #E4E5E7;
-  --background: #000;
-  --brand: 4, 198, 194;
-  --headline: #FFF;
-}
+$text: #E4E5E7;
+$background: #000;
+$brand: #04C6C2;
+$headline: #FFF;
 
 * {
   margin: 0;
@@ -18,12 +16,12 @@ body {
   font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   font-size: 15px;
   line-height: 24px;
-  color: var(--text);
+  color: $text;
   text-align: center;
   background-image: url(pattern-tl.svg), url(pattern-br.svg);
   background-position: top left, bottom right;
   background-repeat: no-repeat;
-  background-color: var(--background);
+  background-color: $background;
 }
 
 .container {
@@ -49,12 +47,12 @@ section .language-icon {
   width: 80px;
   height: 80px;
   border-radius: 100%;
-  border: 1px solid rgba(var(--brand), .5);
-  background: rgba(var(--brand), .15);
+  border: 1px solid rgba($brand, .5);
+  background: rgba($brand, .15);
 }
 
 section h1 {
-  color: var(--headline);
+  color: $headline;
   font-size: 18px;
   font-weight: 600;
   padding: 40px 0 8px;
@@ -74,5 +72,5 @@ section code {
 }
 
 section a {
-  color: rgb(var(--brand));
+  color: $brand;
 }

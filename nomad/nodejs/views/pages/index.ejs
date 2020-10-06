@@ -5,27 +5,29 @@
   </head>
 
   <body>
-    <% include ../partials/nav.ejs %>
-
-    <div class="jumbotron text-center">
-      <div class="container">
-        <a href="/" class="lang-logo">
-          <img src="/lang-logo.png" />
+    <div class="container">
+      <header>
+        <a href="https://waypointproject.io" class="logo">
+          <img src="/logo.svg" alt="Logo" />
         </a>
-        <h1>Welcome to Waypoint</h1>
+      </header>
+      <section class="content">
+        <div class="language-icon">
+          <img src="/language.svg" alt="Node.js Icon" />
+        </div>
+        <h1>This Node.js app was deployed with Waypoint.</h1>
         <p>
-          Congrats on deploying a node.js app to Nomad with Waypoint. From here
-          you can edit this project and continue to use it to develop your app,
-          if you so wish.
+          Try making a change to this text locally and run <code>waypoint up</code> again to see it.
         </p>
-        <a
-          type="button"
-          class="btn btn-lg btn-primary"
-          href="https://github.com/hashicorp/waypoint-examples"
-          ><span class="glyphicon glyphicon-download"></span> Waypoint
-          Examples</a
-        >
-      </div>
+        <p>
+          Read the <a href="https://waypointproject.io/docs">documentation</a> for more about Waypoint.
+        </p>
+      </section>
+      <footer>
+        <a href="https://hashicorp.com" class="hashi">
+          <img src="/hashi.svg" alt="HashiCorp" />
+        </a>
+      </footer>
     </div>
   </body>
 </html>

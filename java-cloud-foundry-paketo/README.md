@@ -1,5 +1,5 @@
 # Cloud Foundry Java Spring Getting Started
-Waypoint defaults to using Heroku buildpacks if you do not specify a [builder variable](https://waypointproject.io/plugins/pack#builder) in the  `waypoint.hcl` configuration section for `pack` within the `build` section.  This example  [Cloud Foundry Paketo Buildpacks](https://paketo.io/docs/) with Waypoint. This example defaults Cloud Foundry.
+Waypoint defaults to using Heroku buildpacks if you do not specify a [builder variable](https://waypointproject.io/plugins/pack#builder) in the  `waypoint.hcl` configuration section for `pack` within the `build` section.  This example uses [Cloud Foundry Paketo Buildpacks](https://paketo.io/docs/) with Waypoint. This example defaults Cloud Foundry.
 
 # Deploying the example application.
 

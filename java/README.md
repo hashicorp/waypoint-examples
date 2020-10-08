@@ -14,7 +14,7 @@ This example also supports using [Cloud Foundry Paketo Buildpacks](https://paket
 
 ## Configuring Waypoint for Cloud Foundry Paketo Buildpacks.
 
-Copy the contents of `waypoint.hcl.paketo` file into `waypoint.hcl` or run a command like `cp waypoint.hcl.paketo waypoint.hcl` from the base directory. Then run the Deployment sequence specified in [eploying the example application.]
+Copy the contents of `waypoint.hcl.paketo` file into `waypoint.hcl` or run a command like `cp waypoint.hcl.paketo waypoint.hcl` from the base directory. Then you can run the `waypoint` commands as described above.
 
 There are several `waypoint.hcl` adjustments to enable Cloud Foundry Paketo Buildpacks.
 1. The `builder` variable of the `pack` build plugin should specify the a Paketo buildpacks builder image like `paketobuildpacks/builder:base`. If no builder image is specified, Waypoint uses the Heroku builder image `heroku/buildpacks:18` by default. 

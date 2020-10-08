@@ -1,12 +1,17 @@
 # waypoint-examples
 
-These are example applications for use with [Waypoint](https://waypointproject.io/).
+You can use these example applications to quickly try out and learn how to use [Waypoint](https://waypointproject.io/).
 
 ## Getting Started
 
-If you're new to Waypoint, following the [Getting Started](https://waypointproject.io/docs/getting-started) tutorial. That tutorial utilizes applications in this repository.
+If you're new to Waypoint, start by reviewing the [Get Started](https://waypointproject.io/docs/getting-started) page, which includes guided tutorials and quickstart installation and deployment instructions. 
+
+The guided tutorials all use applications in this repository.
+
+## How the Examples are Organized
+
+All of the examples in this repository are organized first by deployment platform and then by programming language or web platform. For example: **Docker/nodejs**.
 
 ## Deploying Examples
 
-You can experiment with the different examples by entering
-each directory and running `waypoint init` followed by `waypoint up`.
+You can experiment with the different examples by entering each directory and running `waypoint init` followed by `waypoint up`.

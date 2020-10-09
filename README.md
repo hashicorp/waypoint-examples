@@ -6,7 +6,7 @@ You can use these example applications to quickly try out and learn how to use [
 
 If you're new to Waypoint, start by reviewing the [Get Started](https://waypointproject.io/docs/getting-started) page, which includes guided tutorials and quickstart installation and deployment instructions. 
 
-The guided tutorials all use applications in this repository.
+All guided tutorials use applications in this repository.
 
 ## How the Examples are Organized
 

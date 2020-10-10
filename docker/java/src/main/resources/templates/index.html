@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <% include ../partials/header.ejs %>
-  </head>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'index')}">
 
-  <body>
-    <div class="container">
+<body>
+
+  <div class="container">
       <header>
         <a href="https://waypointproject.io" class="logo">
           <img src="/logo.svg" alt="Logo" />
@@ -13,9 +11,9 @@
       </header>
       <section class="content">
         <div class="language-icon">
-          <img src="/language.svg" alt="Node.js Icon" />
+          <img src="/language.svg" alt="Java Icon" />
         </div>
-        <h1>This Node.js app was deployed with Waypoint.</h1>
+        <h1>This Java app was deployed with Waypoint.</h1>
         <p>
           Try making a change to this text locally and run <code>waypoint up</code> again to see it.
         </p>
@@ -29,5 +27,6 @@
         </a>
       </footer>
     </div>
-  </body>
+
+</body>
 </html>

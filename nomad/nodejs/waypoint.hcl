@@ -1,32 +1,22 @@
 project = "example-nodejs"
 
 app "example-nodejs" {
-  labels = {
-    "service" = "example-nodejs",
-    "env" = "dev"
-  }
 
   build {
     use "pack" {}
     registry {
         use "docker" {
           image = "nodejs-example"
-          tag = "1"
+          tag = "latest"
           local = true
         }
     }
  }
 
   deploy { 
-    use "kubernetes" {
-    probe_path = "/"
+    use "nomad" {
+      datacenter = "dc1"
     }
   }
 
-  release {
-    use "kubernetes" {
-      load_balancer = true
-      port = 80
-    }
-  }
 }

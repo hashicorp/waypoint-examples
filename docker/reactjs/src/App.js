@@ -1,21 +1,22 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <% include ../partials/header.ejs %>
-  </head>
+import React from 'react';
+import logo from './logo.svg';
+import language from './language.svg';
+import hashi from './hashi.svg';
+import './App.css';
 
-  <body>
+function App() {
+  return ( 
     <div class="container">
       <header>
         <a href="https://waypointproject.io" class="logo">
-          <img src="/logo.svg" alt="Logo" />
+          <img src={logo} />
         </a>
       </header>
       <section class="content">
         <div class="language-icon">
-          <img src="/language.svg" alt="Node.js Icon" />
+          <img src={language} />
         </div>
-        <h1>This Node.js app was deployed with Waypoint.</h1>
+        <h1>This React app was deployed with Waypoint.</h1>
         <p>
           Try making a change to this text locally and run <code>waypoint up</code> again to see it.
         </p>
@@ -25,9 +26,11 @@
       </section>
       <footer>
         <a href="https://hashicorp.com" class="hashi">
-          <img src="/hashi.svg" alt="HashiCorp" />
+          <img src={hashi} />
         </a>
       </footer>
     </div>
-  </body>
-</html>
+  );
+}
+
+export default App;

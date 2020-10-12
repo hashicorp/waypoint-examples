@@ -53,6 +53,11 @@ section .language-icon {
   background: rgba(var(--brand), .15);
 }
 
+.language-image {
+  width: 60px;
+  height: 60px;
+}
+
 section h1 {
   color: var(--headline);
   font-size: 18px;

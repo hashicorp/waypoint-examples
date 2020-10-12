@@ -7,7 +7,7 @@
       </header>
       <section class="content">
         <div class="language-icon">
-          <img src="/language.svg" alt="Svelte Icon" />
+          <img class="language-image" src="/language.svg" alt="Svelte Icon" />
         </div>
         <h1>This Svelte app was deployed with Waypoint.</h1>
         <p>

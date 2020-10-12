@@ -2,8 +2,8 @@ project = "example-nodejs"
 
 app "example-nodejs" {
   labels = {
-    "service" = "example-nodejs",
-    "env" = "dev"
+      "service" = "example-nodejs",
+      "env" = "dev"
   }
 
   build {
@@ -25,8 +25,6 @@ app "example-nodejs" {
 
   release {
     use "kubernetes" {
-      load_balancer = true
-      port = 80
     }
   }
 }

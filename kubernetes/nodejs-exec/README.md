@@ -2,15 +2,21 @@
 
 A Node.js app packaged with Buildpacks and deployed with Kubernetes.
 
-Rather than using the standard Waypoint `kubernetes` plugin, this example uses
-the [`exec` plugin](https://www.waypointproject.io/plugins/exec#examples) to
-execute `kubectl apply -f` with a templated file. This approach is very
-flexible, yet does have some downsides such as not actually implementing the
-`waypoint destroy` command, which means resources must be cleaned up separately. 
+Rather than using the standard Waypoint `kubernetes` plugin that creates a
+Deployment and Service with a single port, this example uses the [`exec`
+plugin](https://www.waypointproject.io/plugins/exec#examples) to execute
+`kubectl apply -f` with a templated file. This approach may be helpful when you
+want to control precisely which Kubernetes resources are created such as a
+StatefulSet, an app with multiple ports, or similar levels of Kubernetes
+customizations.
 
-See the `waypoint.hcl` and `example-nodejs-exec.yml`
-to see how it works. Note the `{{.Input.DockerImageFull}}` and the loop for
-passing through the Environment Variables to the Kubernetes Deployment:
+This approach is very flexible, yet does have some downsides such as not
+actually implementing the `waypoint destroy` command, which means resources must
+be cleaned up separately. 
+
+Reference `waypoint.hcl` and `example-nodejs-exec.yml` to see how it works. Note
+the `{{.Input.DockerImageFull}}` and the loop for passing through the
+Environment Variables to the Kubernetes Deployment:
 
 ```
 {{range $key, $value := .Env}}
@@ -18,15 +24,31 @@ passing through the Environment Variables to the Kubernetes Deployment:
             value: "{{$value}}"{{end}}
 ```
 
+An alternative access syntax for .Env if you know the keys is:
+```
+{{index .Env "WAYPOINT_CEB_INVITE_TOKEN"}}
+{{index .Env "WAYPOINT_DEPLOYMENT_ID"}}
+{{index .Env "WAYPOINT_SERVER_ADDR"}}
+{{index .Env "WAYPOINT_SERVER_TLS"}}
+{{index .Env "WAYPOINT_SERVER_TLS_SKIP_VERIFY"}}
+```
+
+Note that the Waypoint workspace name will be used to create a Kubernetes
+namespace of the same name.
+
 ## Deployment steps
 1. `waypoint init`
 1. `waypoint up`
 1. Validate that the app is available at the Deployment URL
-1. Validate that k8s resources were deployed: `kubectl get deployment.apps/example-nodejs-exec service/example-nodejs-exec`
+1. Validate that k8s resources were deployed: `kubectl get deployment.apps/example-nodejs-exec service/example-nodejs-exec -n YOUR_NAMESPACE`
 
 ## Cleanup
 1. `waypoint destroy`
-1. Run `kubectl delete deployment.apps/example-nodejs-exec service/example-nodejs-exec`
+1. Run `kubectl delete deployment.apps/example-nodejs-exec service/example-nodejs-exec -n YOUR_NAMESPACE`
+
+If you used a non-default Workspace, then you may want to also delete the
+workspace.
+1. Run `kubectl delete namespaces YOUR_NAMESPACE`
 
 ## Example output
 ```

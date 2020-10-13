@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-nodejs-exec
+spec:
+  selector:
+    matchLabels:
+      app: example-nodejs-exec
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: example-nodejs-exec
+    spec:
+      containers:
+      - name: example-nodejs-exec
+        image: {{.Input.DockerImageFull}}
+        ports:
+        - containerPort: 5000
+        env:
+          - name: foo
+            value: "bar"{{range $key, $value := .Env}}
+          - name: {{$key}}
+            value: "{{$value}}"{{end}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-nodejs-exec
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: http
+    port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: example-nodejs-exec
+  sessionAffinity: None
+  type: LoadBalancer

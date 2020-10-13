@@ -20,7 +20,8 @@ Install the Waypoint server to a local Docker instance.
 waypoint install --platform=docker -accept-tos
 ```
 
-Authenticate to Google Cloud (or `export GOOGLE_APPLICATION_CREDENTIALS="~/google-credentials.json"`)
+Authenticate to Google Cloud (or
+ `export GOOGLE_APPLICATION_CREDENTIALS="~/google-credentials.json"`)
 
 ```
 gcloud auth login
@@ -38,4 +39,5 @@ Set your project id.
 gcloud config set project PROJECT_ID
 ```
 
-See also `waypoint.hcl` where you must edit a few instances of `my-project-id` to match your Google Cloud Project ID.
+See also `waypoint.hcl` where you must edit a few instances of `my-project-id` 
+to match your Google Cloud Project ID.

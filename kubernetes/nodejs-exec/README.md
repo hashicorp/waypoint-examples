@@ -1,4 +1,4 @@
-# node-js-getting-started
+# Exec Plugin Example with kubectl apply
 
 A Node.js app packaged with Buildpacks and deployed with Kubernetes.
 
@@ -34,7 +34,8 @@ An alternative access syntax for .Env if you know the keys is:
 ```
 
 Note that the Waypoint workspace name will be used to create a Kubernetes
-namespace of the same name.
+namespace of the same name with `{{.Workspace}}` syntax to retrieve the 
+name in the template.
 
 ## Deployment steps
 1. `waypoint init`

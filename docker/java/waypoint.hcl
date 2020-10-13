@@ -1,17 +1,14 @@
 project = "example-java"
 
 app "example-java" {
-  labels = {
-    "service" = "example-java",
-    "env" = "dev"
-  }
-
-  build {
-    use "pack" {}
-  }
-
-  deploy { 
-    use "docker" {}
-  }
-  
+    build {
+        use "pack" {
+            builder="gcr.io/buildpacks/builder:v1"
+        }
+    }
+    deploy {
+        use "docker" {
+          service_port=8080
+        }
+    }
 }

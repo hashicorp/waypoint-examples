@@ -1,10 +1,31 @@
 target/
 .env
-.idea/
-*.iml
+.waypoint/
+
+### STS ###
+.apt_generated
 .classpath
+.factorypath
 .project
-.settings/
-docs/tmp/
-docs/java-getting-started/
-docs/deploying-spring-boot-apps/
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/

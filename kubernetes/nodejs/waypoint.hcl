@@ -10,7 +10,7 @@ app "example-nodejs" {
     use "pack" {}
     registry {
         use "docker" {
-          image = "nodejs-example"
+          image = "example-nodejs"
           tag = "1"
           local = true
         }

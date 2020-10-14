@@ -1,27 +1,24 @@
-# Angular
+# Angular Waypoint Demo Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
+[Angular Waypoint](angular-waypoint.png)
 
-## Development server
+This application deploys an Angular based application, built in Waypoint using the [pack builder](), with a [Procfile]() to control the hosting server process.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+During Waypoint's `build` phase the Buildpack detects the language type and generates the
+static files using the `build` command located in the `package.json` file. In this case,
+the Buildpack also detects the presence of the Procfile, and uses the command contained
+within to launch the server process. In the case of this deployment, it uses NodeJS (the
+`node` command) to launch an ExpressJS server to host the static files.
 
-## Code scaffolding
+## Customization of the Angular Application
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To change aspects of the application, you can edit the `src/app/app.component.html`
+component file. SCSS files can be customized by either applying them to the component's
+SCSS file at `src/app/app.component.scss` or at the global SCSS file (`styles.scss`) in
+the root directory.
 
-## Build
+## Deploying the Application
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+To deploy this application, initialize against against a Waypoint server by issuing a
+`waypoint init` command. Once registered against a server, and execute the `waypoint up`
+command.

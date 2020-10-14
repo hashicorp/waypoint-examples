@@ -1,6 +1,6 @@
 # Angular Waypoint Demo Application
 
-[Angular Waypoint](angular-waypoint.png)
+![Angular Waypoint](angular-waypoint.png)
 
 This application deploys an Angular based application, built in Waypoint using the
 [pack builder](https://www.waypointproject.io/docs/lifecycle/build#cloud-native-buildpacks)

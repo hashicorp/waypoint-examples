@@ -2,7 +2,10 @@
 
 [Angular Waypoint](angular-waypoint.png)
 
-This application deploys an Angular based application, built in Waypoint using the [pack builder](), with a [Procfile]() to control the hosting server process.
+This application deploys an Angular based application, built in Waypoint using the
+[pack builder](https://www.waypointproject.io/docs/lifecycle/build#cloud-native-buildpacks)
+, with a [Procfile](https://www.waypointproject.io/docs/lifecycle/build#customizing-the-buildpack-launch-command)
+to control the hosting server process.
 
 During Waypoint's `build` phase the Buildpack detects the language type and generates the
 static files using the `build` command located in the `package.json` file. In this case,

@@ -1,3 +1,0 @@
-source "https://rubygems.org"
-
-gem "rundoc", github: "jkutner/rundoc", branch: "go-to-sleep-a-little-baby"

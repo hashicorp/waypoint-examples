@@ -1,5 +1,9 @@
-# Getting Started with Waypoint and ReactJS
+# Waypoint React.js Example
 
-1. Run `waypoint init` in this example directory with `waypoint.hcl` 
-(note the custom port in this example in the deploy with docker section).
-1. Run `waypoint up` to build and deploy the application.
+|Title|Description|
+|---|---|
+|Pack|Cloud Native Buildpack|
+|Cloud|Local|
+|Language|JavaScript|
+|Docs|[Docker](https://www.waypointproject.io/plugins/docker)|
+|Tutorial|[HashiCorp Learn](https://learn.hashicorp.com/tutorials/waypoint/get-started-docker)|

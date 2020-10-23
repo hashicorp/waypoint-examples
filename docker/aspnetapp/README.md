@@ -2,7 +2,7 @@
 
 |Title|Description|
 |---|---|
-|Pack|Docker|
+|Pack|Cloud Native Buildpack|
 |Cloud|Local|
 |Language|ASP.NET|
 |Docs|[Docker](https://www.waypointproject.io/plugins/docker)|
@@ -12,4 +12,4 @@ A barebones ASP.NET app (via [Microsoft docs](https://dotnet.microsoft.com/learn
 
 Under `Properties/launchSettings.json`, you must set `"applicationUrl": "http://+:80"` so it is accessible outside the container.
 
-Waypoint defaults to port 3000, so you must set `service_port = 80` in the `deploy` stanza (as shown in `waypoint.hcl`).
+The buildpack defaults to port `8080`, so you must set `service_port = 8080` in the `deploy` stanza (as shown in `waypoint.hcl`).

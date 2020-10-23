@@ -6,13 +6,15 @@ app "web" {
     "env"     = "dev"
   }
   build {
-    use "docker" {}
+    use "pack" {
+      builder = "paketobuildpacks/builder:full"
+    }
   }
 
   # Deploy to Docker
   deploy {
     use "docker" {
-      service_port = 80
+      service_port = 8080
     }
   }
 }

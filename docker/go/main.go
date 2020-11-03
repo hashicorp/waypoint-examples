@@ -2,13 +2,16 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 )
 
 func main() {
-	http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(rw, "Hello World")
-	})
+	fileServer := http.FileServer(http.Dir("./static"))
+	http.Handle("/", fileServer)
 
-	http.ListenAndServe(":3000", nil)
+	fmt.Printf("Starting server at: http://localhost:3000\n")
+	if err := http.ListenAndServe(":3000", nil); err != nil {
+		log.Fatal(err)
+	}
 }

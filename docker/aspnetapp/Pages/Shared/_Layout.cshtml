@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>@ViewData["Title"] - Waypoint</title>
+    <link rel="stylesheet" type="text/css" href="/static/stylesheets/main.css" />
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="https://waypointproject.io" class="logo">
+                <img src="/static/images/logo.svg" alt="Logo" />
+            </a>
+        </header>
+        <section class="content">
+            <div class="language-icon">
+                <img class="language-image" src="/static/images/language.svg" alt="Flask Icon" />
+            </div>
+            @RenderBody()
+        </section>
+        <footer>
+            <a href="https://hashicorp.com" class="hashi">
+                <img src="/static/images/hashi.svg" alt="HashiCorp" />
+            </a>
+        </footer>
+    </div>
+</body>
+
+</html>

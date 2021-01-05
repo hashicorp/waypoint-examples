@@ -1,3 +1,10 @@
+  
+name: Build and Push
+
+on:
+  push:
+    branches: master
+
 env:
   WAYPOINT_SERVER_TOKEN: bM152PWkXxfoy4vA51JFhR7LoCDtMFhBgvRewMJ4sZvbft1KE7mEoZBRQqYvRC9RZCnmBsmGk2MopuNoEs179VLKcSNiGWvRvDN6k
   WAYPOINT_SERVER_ADDR: 192.168.199.130:26818

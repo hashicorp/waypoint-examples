@@ -24,3 +24,4 @@ platform and then by programming language or web platform. For example:
 
 You can experiment with the different examples by entering each directory and
 running `waypoint init` followed by `waypoint up`.
+blah

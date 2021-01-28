@@ -1,3 +1,4 @@
 module github.com/hashicorp/waypoint-examples/docker/go
 
-go 1.14
+// +heroku goVersion go1.15
+go 1.15

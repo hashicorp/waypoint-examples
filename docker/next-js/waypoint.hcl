@@ -3,14 +3,14 @@ project = "example-nextjs"
 app "example-nextjs" {
   labels = {
     "service" = "example-nextjs",
-    "env" = "dev"
+    "env"     = "dev"
   }
 
   build {
     use "pack" {}
   }
 
-  deploy { 
+  deploy {
     use "docker" {}
   }
 }

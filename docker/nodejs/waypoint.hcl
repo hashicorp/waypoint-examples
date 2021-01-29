@@ -3,14 +3,14 @@ project = "example-nodejs"
 app "example-nodejs" {
   labels = {
     "service" = "example-nodejs",
-    "env" = "dev"
+    "env"     = "dev"
   }
 
   build {
     use "pack" {}
   }
 
-  deploy { 
+  deploy {
     use "docker" {}
   }
 }

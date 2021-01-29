@@ -4,13 +4,13 @@ project = "nginx-project"
 # labels = { "foo" = "bar" }
 
 app "web" {
-    build {
-        use "docker" {
-        }
+  build {
+    use "docker" {
     }
+  }
 
-    deploy {
-        use "docker" {
-        }
+  deploy {
+    use "docker" {
     }
+  }
 }

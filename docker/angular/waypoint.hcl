@@ -1,12 +1,12 @@
 project = "angular-example"
 
 app "angular" {
-    build {
-        use "pack" {}
-    }
+  build {
+    use "pack" {}
+  }
 
-    deploy {
-        use "docker" {
-        }
+  deploy {
+    use "docker" {
     }
+  }
 }

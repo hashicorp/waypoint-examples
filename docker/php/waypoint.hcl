@@ -3,7 +3,7 @@ project = "example-php"
 app "example-php" {
   labels = {
     "service" = "example-php",
-    "env" = "dev"
+    "env"     = "dev"
   }
 
   build {

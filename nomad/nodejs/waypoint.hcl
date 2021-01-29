@@ -5,15 +5,15 @@ app "example-nodejs" {
   build {
     use "pack" {}
     registry {
-        use "docker" {
-          image = "nodejs-example"
-          tag = "1"
-          local = true
-        }
+      use "docker" {
+        image = "nodejs-example"
+        tag   = "1"
+        local = true
+      }
     }
- }
+  }
 
-  deploy { 
+  deploy {
     use "nomad" {
       datacenter = "dc1"
     }

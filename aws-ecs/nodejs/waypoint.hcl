@@ -3,16 +3,16 @@ project = "example-nodejs"
 app "example-nodejs" {
   labels = {
     "service" = "example-nodejs",
-    "env" = "dev"
+    "env"     = "dev"
   }
 
   build {
     use "pack" {}
     registry {
       use "aws-ecr" {
-        region = "us-east-1"
+        region     = "us-east-1"
         repository = "waypoint-example"
-        tag = "latest"
+        tag        = "latest"
       }
     }
   }

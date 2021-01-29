@@ -8,7 +8,7 @@ app "example-go" {
 
   config {
     env = {
-       SALE_PERCENT = "50%"
+      SALE_PERCENT = "50%"
     }
   }
 

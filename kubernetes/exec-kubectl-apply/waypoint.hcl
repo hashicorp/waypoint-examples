@@ -3,17 +3,17 @@ project = "example-nodejs-exec"
 app "example-nodejs-exec" {
   labels = {
     "service" = "example-nodejs-exec",
-    "env" = "dev"
+    "env"     = "dev"
   }
 
   build {
     use "pack" {}
     registry {
-        use "docker" {
-          image = "example-nodejs-exec"
-          tag = "1"
-          local = true
-        }
+      use "docker" {
+        image = "example-nodejs-exec"
+        tag   = "1"
+        local = true
+      }
     }
   }
 

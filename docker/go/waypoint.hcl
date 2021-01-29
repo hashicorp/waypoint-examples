@@ -3,14 +3,14 @@ project = "example-go"
 app "example-go" {
   labels = {
     "service" = "example-go",
-    "env" = "dev"
+    "env"     = "dev"
   }
 
   build {
     use "pack" {}
   }
 
-  deploy { 
+  deploy {
     use "docker" {}
   }
 }

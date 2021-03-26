@@ -20,6 +20,8 @@ All of the examples in this repository are organized first by deployment
 platform and then by programming language or web platform. For example:
 **Docker/nodejs**.
 
+Cloud-specific examples are in subdirectories for platform, such as **aws/aws-ecs**.
+
 ## Deploying Examples
 
 You can experiment with the different examples by entering each directory and

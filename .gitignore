@@ -1,2 +1,5 @@
 .DS_Store
 data.db
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/*

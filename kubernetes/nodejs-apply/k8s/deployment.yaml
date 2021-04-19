@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+  labels:
+    app: myapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp
+        image: ${artifact.image}:${artifact.tag}
+        env:
+          %{ for k,v in entrypoint.env }
+          - name: ${k}
+            value: "${v}"
+          %{ endfor }
+          # Ensure we set PORT for the URL service. This is only necessary
+          # if we want the URL service to function.
+          - name: PORT
+            value: "3000"

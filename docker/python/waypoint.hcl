@@ -13,6 +13,8 @@ app "example-python" {
   deploy {
     use "docker" {
       service_port = 8080
+
+      extra_ports = [8081]
     }
   }
 }

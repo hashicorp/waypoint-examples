@@ -40,7 +40,7 @@ app "example-nodejs" {
       }
       
       vpc_access {
-        connector = "waypoint-project-connector"
+        connector = "<my-connector-name>"
         egress = "all"
       }
     }

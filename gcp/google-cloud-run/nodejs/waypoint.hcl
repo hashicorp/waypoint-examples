@@ -38,11 +38,6 @@ app "example-nodejs" {
       auto_scaling {
         max = 2
       }
-      
-      vpc_access {
-        connector = "<my-connector-name>"
-        egress = "all"
-      }
     }
   }
 

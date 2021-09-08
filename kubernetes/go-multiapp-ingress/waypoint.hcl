@@ -22,7 +22,7 @@ app "one" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "localhost:5000/one"
+        image = "one"
         tag   = "1"
         local = false
       }
@@ -66,7 +66,7 @@ app "two" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "localhost:5000/two"
+        image = "two"
         tag   = "1"
         local = false
       }
@@ -102,7 +102,7 @@ app "default" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "localhost:5000/default"
+        image = "default"
         tag   = "1"
         local = false
       }

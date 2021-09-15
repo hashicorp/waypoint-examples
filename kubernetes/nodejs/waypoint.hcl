@@ -25,6 +25,9 @@ app "example-nodejs" {
 
   release {
     use "kubernetes" {
+      // Sets up a load balancer to access released application
+      load_balancer = true
+      port          = 3000
     }
   }
 }

@@ -8,7 +8,7 @@ app "example-java" {
     registry {
       use "docker" {
         image = "example-java"
-        tag   = "latest"
+        tag   = "1"
         local = true
       }
     }

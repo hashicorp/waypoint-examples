@@ -8,6 +8,7 @@ app "example-java" {
     registry {
       use "aws-ecr" {
         region = "us-east-1"
+        repository = "hashiconf-2021"
         tag = "latest"
       }
     }  

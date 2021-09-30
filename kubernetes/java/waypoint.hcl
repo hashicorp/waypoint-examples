@@ -1,29 +1,29 @@
 project = "example-java"
 
 app "example-java" {
-    build {
-        use "pack" {
-            builder="gcr.io/buildpacks/builder:v1"
-        }
-        registry {
-              use "docker" {
-                image = "example-java"
-                tag   = "latest"
-              }
-            }
+  build {
+    use "pack" {
+      builder="gcr.io/buildpacks/builder:v1"
     }
-
-    deploy {
-      use "kubernetes" {
-        namespace = "default"
-        probe_path = "/"
-        service_port = 8080
+    registry {
+      use "docker" {
+        image = "example-java"
+        tag   = "latest"
       }
     }
+  }
 
-    release {
-      use "kubernetes" {
-        node_port = 32000
-      }
+  deploy {
+    use "kubernetes" {
+      namespace = "default"
+      probe_path = "/"
+      service_port = 8080
     }
+  }
+
+  release {
+    use "kubernetes" {
+      node_port = 32000
+    }
+  }
 }

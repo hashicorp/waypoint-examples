@@ -1,0 +1,31 @@
+project = "example-nodejs-helm"
+
+app "example-nodejs" {
+  labels = {
+    "service" = "example-nodejs",
+    "env"     = "dev"
+  }
+
+  build {
+    use "pack" {}
+    registry {
+      use "docker" {
+        image = "example-nodejs"
+        tag   = "1"
+        local = true
+      }
+    }
+  }
+
+  deploy {
+    use "helm" {
+      name  = "my-deployment"
+      chart = "${path.app}/chart"
+
+      set {
+        name  = "deployment.image"
+        value = artifact.name
+      }
+    }
+  }
+}

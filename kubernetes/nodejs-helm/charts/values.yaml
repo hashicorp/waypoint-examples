@@ -5,10 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: nginx
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  repository: "localhost:5000/example-nodejs"
+  pullPolicy: Always
 
 imagePullSecrets: []
 nameOverride: ""
@@ -37,8 +35,8 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
-  port: 80
+  type: NodePort
+  port: 32000
 
 ingress:
   enabled: false

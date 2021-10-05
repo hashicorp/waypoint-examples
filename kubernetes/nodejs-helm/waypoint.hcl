@@ -1,5 +1,17 @@
 project = "example-nodejs-helm"
 
+variable "image" {
+  default     = "example-nodejs"
+  type        = string
+  description = "Image name for the built image in the Docker registry."
+}
+
+variable "registry_local" {
+  default     = true
+  type        = bool
+  description = "Whether or not to push the built container to a remote registry"
+}
+
 app "example-nodejs" {
   labels = {
     "service" = "example-nodejs",
@@ -10,9 +22,9 @@ app "example-nodejs" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "example-nodejs"
+        image = var.image
         tag   = "1"
-        local = true
+        local = var.registry_local
       }
     }
   }
@@ -20,11 +32,16 @@ app "example-nodejs" {
   deploy {
     use "helm" {
       name  = "my-deployment"
-      chart = "${path.app}/chart"
+      chart = "${path.app}/charts"
 
       set {
-        name  = "deployment.image"
-        value = artifact.name
+        name  = "deployment.image.name"
+        value = artifact.image
+      }
+
+      set {
+        name  = "deployment.image.tag"
+        value = artifact.tag
       }
     }
   }

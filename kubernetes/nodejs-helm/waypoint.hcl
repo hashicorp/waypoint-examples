@@ -35,13 +35,18 @@ app "example-nodejs" {
       chart = "${path.app}/charts"
 
       set {
-        name  = "deployment.image.name"
+        name  = "image.name"
         value = artifact.image
       }
 
       set {
-        name  = "deployment.image.tag"
+        name  = "image.tag"
         value = artifact.tag
+      }
+
+      set {
+        name  = "image.repository"
+        value = var.image
       }
     }
   }

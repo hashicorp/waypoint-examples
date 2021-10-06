@@ -5,6 +5,7 @@
 replicaCount: 1
 
 image:
+  # TODO(briancain): This should probably be configurable through the waypoint hcl?
   repository: "localhost:5000/example-nodejs"
   pullPolicy: Always
 

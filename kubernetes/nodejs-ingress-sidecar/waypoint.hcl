@@ -1,14 +1,14 @@
-project = "example-nodejs-sc"
-app "example-nodejs-sc-sidecar" {
+project = "example-nodejs-sidecar"
+app "example-nodejs-ingress-sidecar" {
  labels = {
-   "service" = "example-nodejs-sc",
+   "service" = "example-nodejs-sidecar",
    "env"   = "dev"
  }
  build {
   use "pack" {}
    registry {
    use "docker" {
-    image = "example-nodejs-sc"
+    image = "example-nodejs-sidecar"
      tag  = "1"
      local = true
    }

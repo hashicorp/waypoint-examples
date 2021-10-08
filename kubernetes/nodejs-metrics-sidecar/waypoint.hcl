@@ -1,7 +1,7 @@
 project = "example-nodejs-sidecar"
 app "example-nodejs-metrics-sidecar" {
   labels = {
-    "service" = "example-nodejs-sc",
+    "service" = "example-nodejs-sidecar",
     "env"   = "dev"
   }
   build {

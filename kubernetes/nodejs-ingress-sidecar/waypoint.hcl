@@ -40,7 +40,7 @@ app "example-nodejs-ingress-sidecar" {
        port = 80
       }
       command = ["/bin/sh"]
-      args = ["-c", "until [ -f /shared-config/nginx.conf ]; do sleep 1; echo 'starting...'; done; cp /shared-config/nginx.conf /etc/nginx/nginx.conf; nginx -g 'daemon off;'"]
+      args = ["-c", "until [ -f /shared-config/nginx.conf ]; do sleep 1; echo 'waiting for waypoint app container to inject config at /shared-config/nginx.conf...'; done; cp /shared-config/nginx.conf /etc/nginx/nginx.conf; nginx -g 'daemon off;'"]
      }
    }
   }

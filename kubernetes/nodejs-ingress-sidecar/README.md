@@ -8,7 +8,7 @@
 |Docs|[Kubernetes](https://www.waypointproject.io/plugins/kubernetes)|
 |Tutorial|[HashiCorp Learn](https://learn.hashicorp.com/tutorials/waypoint/get-started-kubernetes)|
 
-This example shows ingress to an app being proxied by an nginx sidecar container. 
+This example shows ingress to an app being proxied by an Nginx sidecar container. 
 
 ## Config
 

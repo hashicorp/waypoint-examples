@@ -12,7 +12,7 @@ This example shows ingress to an app being proxied by an Nginx sidecar container
 
 ## Config
 
-Nginx config is stored in vault, and is delivered by the CEB to a shared memory volume at container startup, and the nginx container entrypoint override moves it to `/etc/nginx` before starting nginx itself.
+Nginx config is stored in Vault, and is delivered by the CEB to a shared memory volume at container startup, and the Nginx container entrypoint override moves it to `/etc/nginx` before starting Nginx itself.
 
 ## Prerequisites
 

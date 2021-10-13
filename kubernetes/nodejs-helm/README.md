@@ -1,4 +1,4 @@
-# Waypoint Kubernetes Example (using `kubernetes-apply`)
+# Waypoint Kubernetes Example (using Helm)
 
 |Title|Description|
 |---|---|
@@ -8,5 +8,4 @@
 |Docs|[Kubernetes](https://www.waypointproject.io/plugins/kubernetes)|
 
 This example shows how to deploy an application built with buildpacks
-to Kubernetes using templated Kubernetes YAML files. This would also work
-with JSON or Jsonnet files.
+to Kubernetes using a local Helm chart.

@@ -11,8 +11,8 @@ app "example-nodejs" {
     registry {
       use "docker" {
         image = "example-nodejs"
-        tag   = "1"
-        local = true
+        tag   = gitrefpretty()
+        local = 1
       }
     }
   }
@@ -21,6 +21,12 @@ app "example-nodejs" {
     use "helm" {
       name  = app.name
       chart = "${path.app}/helm"
+
+      // We use a values file so we can set the entrypoint environment
+      // variables into a rich YAML structure. This is easier than --set
+      values = [
+        file(templatefile("${path.app}/values.yaml.tpl")),
+      ]
 
       set {
         name  = "image.repository"

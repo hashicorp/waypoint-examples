@@ -25,6 +25,12 @@ spec:
           ports:
             - name: http
               containerPort: 3000
-              protocol: HTTP
+              protocol: TCP
+          env:
+            - name: PORT
+              value: "3000"
+          {{- with .Values.env }}
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

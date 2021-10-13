@@ -1,4 +1,4 @@
-# Waypoint Kubernetes Example
+# Waypoint Kubernetes Example (using Helm)
 
 |Title|Description|
 |---|---|
@@ -6,6 +6,6 @@
 |Cloud|Any|
 |Language|NodeJS|
 |Docs|[Kubernetes](https://www.waypointproject.io/plugins/kubernetes)|
-|Tutorial|[HashiCorp Learn](https://learn.hashicorp.com/tutorials/waypoint/get-started-kubernetes)|
 
-Waypoint can deploy to a local Kubernetes server or a cloud-hosted cluster. See the tutorial for details.
+This example shows how to deploy an application built with buildpacks
+to Kubernetes using a local Helm chart.

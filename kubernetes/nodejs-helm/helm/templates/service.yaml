@@ -7,17 +7,9 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - port: 25
-      targetPort: tcp
+    - port: 80
+      targetPort: http
       protocol: TCP
-      name: tcp
-    - port: 587
-      targetPort: tls
-      protocol: TCP
-      name: tls
-    - port: 2525
-      targetPort: tcp
-      protocol: TCP
-      name: tcpalt
+      name: http
   selector:
     {{- include "app.selectorLabels" . | nindent 4 }}

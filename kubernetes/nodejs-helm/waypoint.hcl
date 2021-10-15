@@ -12,7 +12,7 @@ app "example-nodejs" {
       use "docker" {
         image = "example-nodejs"
         tag   = gitrefpretty()
-        local = 1
+        local = true
       }
     }
   }

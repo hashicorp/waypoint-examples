@@ -18,7 +18,7 @@ Waypoint will need to be installed in such a way that it can access the dev and 
 
 ### Vault setup
 
-A vault cluster is required. It's api address must be reachable from pods in your dev and prod namespaces. The best way to set this up is by configuring the [vault kubernetes auth method](https://www.vaultproject.io/docs/auth/kubernetes), and the Waypoint vault config sourcer using [kubernetes auth](https://www.Waypointproject.io/plugins/vault#kubernetes_role).
+A vault cluster is required. Its api address must be reachable from pods in your dev and prod namespaces. The best way to set this up is by configuring the [vault kubernetes auth method](https://www.vaultproject.io/docs/auth/kubernetes), and the Waypoint vault config sourcer using [kubernetes auth](https://www.Waypointproject.io/plugins/vault#kubernetes_role).
 
 This also presumes that dev and prod exist in vault under a KV secrets engine named `config`, with the path `gomultiapp/{dev,prod}/config.yml`
 

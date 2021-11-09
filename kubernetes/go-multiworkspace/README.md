@@ -26,7 +26,7 @@ This has been tested with an [HCP Vault](https://cloud.hashicorp.com/#vault) clu
 
 ### AWS setup
 
-This project uses the AWS ECR container registry, AWS loadbalancers, and has been tested on EKS. To support gitops workflows, Waypoint runners need push access to ECR - this can be accomplished by adding the AmazonEc2ContainerRegistryFullAccess policy to the eks node group role, but more granuar access is also possible.
+This project uses the AWS ECR container registry, AWS loadbalancers, and has been tested on EKS. To support gitops workflows, Waypoint runners need push access to ECR - this can be accomplished by adding the `AmazonEc2ContainerRegistryFullAccess` policy to the EKS node group role, but more granular access is also possible.
 
 
 ## Dev and Prod Environments

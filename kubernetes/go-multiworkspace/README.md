@@ -43,6 +43,6 @@ To interact with the prod environment, add the `-workspace=prod` flag to any Way
 they can be deployed to prod with:
 
 ```shell-session
-$ Waypoint up -workspace=prod
+$ waypoint up -workspace=prod
 ```
 

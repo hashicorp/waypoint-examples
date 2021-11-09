@@ -33,7 +33,7 @@ This project uses the AWS ECR container registry, AWS loadbalancers, and has bee
 
 In this example, the dev environment is represented by the "default" Waypoint workspace, and prod by the "prod" workspace.
 
-Deploying in dev is as easy as 
+To deploy to dev:
 
 ```shell-session
 $ Waypoint up

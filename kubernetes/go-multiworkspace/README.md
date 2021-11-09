@@ -11,6 +11,9 @@ This is a complex example showing how workspaces can be used to model dev and pr
 
 
 ## Prerequisites
+### Kubernetes namespaces
+
+You should have namespaces in your k8s cluster named `dev` and `prod`. These names are used in the waypoint.hcl.
 
 ### Waypoint installation
 

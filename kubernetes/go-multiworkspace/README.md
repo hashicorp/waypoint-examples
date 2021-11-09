@@ -36,7 +36,7 @@ In this example, the dev environment is represented by the "default" Waypoint wo
 To deploy to dev:
 
 ```shell-session
-$ Waypoint up
+$ waypoint up
 ```
 
 To interact with the prod environment, add the `-workspace=prod` flag to any Waypoint command. After verifying changes in dev,

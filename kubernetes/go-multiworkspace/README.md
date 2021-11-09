@@ -14,7 +14,7 @@ This is a complex example showing how workspaces can be used to model dev and pr
 
 ### Waypoint installation
 
-Waypoint will need to be installed in such a way that it can access the dev and prod k8s namespaces. This is most easily accomplished by installing Waypoint with the [helm](https://www.Waypointproject.io/docs/kubernetes/helm-deploy)
+Waypoint will need to be installed in such a way that it can access the dev and prod k8s namespaces. This is most easily accomplished by installing Waypoint with the [helm chart](https://www.Waypointproject.io/docs/kubernetes/helm-deploy).
 
 ### Vault setup
 

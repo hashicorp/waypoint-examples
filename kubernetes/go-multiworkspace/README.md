@@ -40,7 +40,7 @@ $ waypoint up
 ```
 
 To interact with the prod environment, add the `-workspace=prod` flag to any Waypoint command. After verifying changes in dev,
-they can be deployed to prod with
+they can be deployed to prod with:
 
 ```shell-session
 $ Waypoint up -workspace=prod

@@ -22,7 +22,7 @@ A vault cluster is required. Its api address must be reachable from pods in your
 
 This also presumes that dev and prod exist in vault under a KV secrets engine named `config`, with the path `gomultiapp/{dev,prod}/config.yml`
 
-This has been tested with an [HCP Vault](https://cloud.hashicorp.com/#vault) cluster peered to the AWS VPC that contiains the EKS cluster.
+This has been tested with an [HCP Vault](https://cloud.hashicorp.com/#vault) cluster peered to the AWS VPC that contains the EKS cluster.
 
 ### AWS setup
 

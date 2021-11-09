@@ -7,7 +7,7 @@
 | Language | Go                                                                                   |
 | Tutorial | coming soon                                                                          |
 
-This is a complex example showing how workspaces can be used to model dev and prod environments, where dev and prod have different namespaces, different config (sourced from vault), and different load balancers, with only the prod loadbanalcer public.
+This is a complex example showing how workspaces can be used to model dev and prod environments, where dev and prod have different namespaces, different config (sourced from vault), and different load balancers, with only the prod load balancer public.
 
 
 ## Prerequisites

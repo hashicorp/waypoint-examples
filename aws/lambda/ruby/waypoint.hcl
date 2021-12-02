@@ -6,7 +6,7 @@ app "learn-waypoint-lambda" {
 
     registry {
       use "aws-ecr" {
-        region = "us-west-2"
+        region = "us-east-1"
         repository = "learn-waypoint-lambda"
         tag = "howdy-waypoint-lambda"
       }
@@ -15,7 +15,7 @@ app "learn-waypoint-lambda" {
 
   deploy { 
     use "aws-lambda" {
-      region = "us-west-2"
+      region = "us-east-1"
     }
   }
 

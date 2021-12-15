@@ -1,16 +1,27 @@
 project = "example-nodejs"
 
+runner {
+  enabled = true
+
+  data_source "git" {
+    url  = "https://github.com/catsby/waypoint-examples.git"
+    path = "aws/aws-ecs/nodejs"
+    ref  = "ecs-remote-nodejs"
+  }
+}
+
 app "example-nodejs" {
   labels = {
-    "service" = "example-nodejs",
+    "service" = "example-nodejs"
     "env"     = "dev"
   }
 
   build {
     use "pack" {}
+
     registry {
       use "aws-ecr" {
-        region     = "us-east-1"
+        region     = "us-west-2"
         repository = "waypoint-example"
         tag        = "latest"
       }
@@ -19,7 +30,7 @@ app "example-nodejs" {
 
   deploy {
     use "aws-ecs" {
-      region = "us-east-1"
+      region = "us-west-2"
       memory = "512"
     }
   }

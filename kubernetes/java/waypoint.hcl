@@ -2,17 +2,17 @@ project = "example-java"
 
 app "example-java" {
   runner {
-    profile = "dev"
+    profile = "prod"
   }
   build {
     use "pack" {
       builder="gcr.io/buildpacks/builder:v1"
     }
     registry {
-      use "aws-ecr" {
-        region = "us-east-1"
-        repository = "hashiconf-2021"
-        tag = "latest"
+      use "docker" {
+        image = "example-java"
+        tag   = "1"
+        local = true
       }
     }  
   }

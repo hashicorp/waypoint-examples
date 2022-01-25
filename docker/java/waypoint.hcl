@@ -1,12 +1,9 @@
 project = "example-java"
-runner {
-  profile="dev"
-}
 
 app "example-java" {
-  runner {
-    profile="dev"
-  } 
+runner {
+  profile="prod"
+}
   build {
     use "pack" {
       builder = "gcr.io/buildpacks/builder:v1"

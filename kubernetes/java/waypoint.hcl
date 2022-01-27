@@ -30,17 +30,19 @@ app "example-java" {
       builder="gcr.io/buildpacks/builder:latest"
     }
     registry {
-      use "docker" {
-  	image = "example-java"
-  	tag = "1"
-  	username = var.registry_username
-  	password = var.registry_password
-    }
-#      use "aws-ecr" {
-#        repository = "xx/tester"
-#        tag   = "1"
-#        region = "us-east-1"
-#      }
+    #use "docker" {
+  #	image = "example-java"
+  #	tag = "1"
+ # 	username = var.registry_username
+ # 	password = var.registry_password
+ #   }
+      use "aws-ecr" {
+        repository = "xx/tester"
+        tag   = "1"
+        region = "us-east-1"
+	username = var.registry_username
+ 	password = var.registry_password
+      }
       #use "docker" {
       #  image = "example-java"
       #  tag   = "1"

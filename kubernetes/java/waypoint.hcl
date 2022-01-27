@@ -40,8 +40,8 @@ app "example-java" {
         repository = "xx/tester"
         tag   = "1"
         region = "us-east-1"
-	username = var.registry_username
- 	password = var.registry_password
+#	username = var.registry_username
+#	password = var.registry_password
       }
       #use "docker" {
       #  image = "example-java"

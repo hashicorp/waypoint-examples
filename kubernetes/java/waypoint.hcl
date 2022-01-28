@@ -52,12 +52,13 @@ app "example-java" {
 
   deploy {
     use "kubernetes" {
-      context = {
-        "default" = "arn:aws:eks:us-east-2:797645259670:cluster/xx-test-dev"
-        "prod"    = "arn:aws:eks:us-east-1:797645259670:cluster/xx-test-prod"
-      }[workspace.name]
+       context = "arn:aws:eks:us-east-1:797645259670:cluster/xx-test-prod"
+#      context = {
+#        "default" = "arn:aws:eks:us-east-2:797645259670:cluster/xx-test-dev"
+#        "prod"    = "arn:aws:eks:us-east-1:797645259670:cluster/xx-test-prod"
+#      }[workspace.name]
 
-      namespace = "waypoint"
+      namespace = "default"
       probe_path = "/"
       service_port = 8080
       image_secret = var.regcred_secret

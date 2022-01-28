@@ -1,7 +1,7 @@
 project = "example-java"
-runner {
-  profile = "prod"
-}
+#runner {
+#  profile = "prod"
+#}
 
 variable "regcred_secret" {
   default     = "regcred"
@@ -22,9 +22,9 @@ variable "regcred_secret" {
 #}
 
 app "example-java" {
-#  runner {
-#    profile = "prod"
-#  }
+  runner {
+    profile = "prod"
+  }
   build {
     use "pack" {
       builder="gcr.io/buildpacks/builder:latest"

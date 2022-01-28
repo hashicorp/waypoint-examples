@@ -23,7 +23,7 @@ variable "regcred_secret" {
 
 app "example-java" {
   runner {
-    profile = "prod"
+    profile = "dev"
   }
   build {
     use "pack" {

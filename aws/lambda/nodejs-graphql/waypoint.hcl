@@ -24,8 +24,6 @@ app "waypoint-apollo-lambda" {
   }
 
   release {
-    use "aws-alb" {
-
-    }
+    use "aws-alb" {}
   }
 }

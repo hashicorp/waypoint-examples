@@ -9,8 +9,8 @@ app "waypoint-apollo-lambda" {
 
     registry {
       use "aws-ecr" {
-        region     = "us-east-1"
-        repository = "waypoint-apollo-lambda"
+        region     = var.region
+        repository = var.aws_ecr_repository
         tag        = gitrefpretty()
       }
     }
@@ -18,7 +18,7 @@ app "waypoint-apollo-lambda" {
 
   deploy {
     use "aws-lambda" {
-      region = "us-east-1"
+      region = var.region
       memory = 256
     }
   }
@@ -26,4 +26,16 @@ app "waypoint-apollo-lambda" {
   release {
     use "aws-alb" {}
   }
+}
+
+variable "aws_ecr_repository" {
+  default     = "waypoint-apollo-lambda"
+  type        = string
+  description = "AWS ECR repository name"
+}
+
+variable "region" {
+  default     = "us-east-1"
+  type        = string
+  description = "AWS region"
 }

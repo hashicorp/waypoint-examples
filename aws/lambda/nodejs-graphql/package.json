@@ -1,0 +1,18 @@
+{
+  "name": "waypoint-apollo-lambda",
+  "version": "0.1.0",
+  "description": "An Apollo GraphQL server intended to run on AWS Lambda",
+  "main": "index.js",
+  "dependencies": {
+    "apollo-server-core": "^3.6.3",
+    "apollo-server-lambda": "^3.6.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "graphql"
+  ],
+  "license": "MIT"
+}

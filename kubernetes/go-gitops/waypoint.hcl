@@ -12,16 +12,18 @@ variable "tag" {
   description = "Image tag for the image"
 }
 
+// set your registry username through the UI or on the CLI!
 variable "registry_username" {
   default     = ""
   type        = string
   description = "username for container registry"
 }
 
+// set your registry password through the UI or on the CLI!
 variable "registry_password" {
   default     = ""
   type        = string
-  description = "password for registry" // DO NOT COMMIT YOUR PASSWORD THIS TO GIT
+  description = "password for registry" // DO NOT COMMIT YOUR PASSWORD TO GIT
 }
 
 variable "regcred_secret" {

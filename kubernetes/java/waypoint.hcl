@@ -9,6 +9,21 @@ variable "regcred_secret" {
   description = "The existing secret name inside Kubernetes for authenticating to the container registry"
 }
 
+runner {
+  enabled = true
+
+#  target_labels = {
+#    "env" = {
+#      "default" = "test"
+#      "prod" = "prod"
+#    }[workspace.name]
+#  }
+  data_source "git" {
+    url              = "https://github.com/example/example.git"
+    username = "git"
+    password = var.github_token
+  }
+}
 #variable "registry_username" {
 #  default     = ""
 #  type        = string
@@ -22,9 +37,15 @@ variable "regcred_secret" {
 #}
 
 app "example-java" {
-  runner {
-    profile = "dev"
-  }
+#  runner {
+#    profile = "dev"
+#    target_labels = {
+#    "env" = {
+#        "default"  = "test"
+#        "prod" = "prod"
+#      }[workspace.name], 
+#  }
+#  }
   build {
     use "pack" {
       builder="gcr.io/buildpacks/builder:latest"

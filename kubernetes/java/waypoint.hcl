@@ -24,7 +24,8 @@ app "example-java" {
 
   release {
     use "kubernetes" {
-      node_port = 32000
+      load_balancer = true
+      port = 8080
     }
   }
 }

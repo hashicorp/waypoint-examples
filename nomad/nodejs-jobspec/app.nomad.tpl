@@ -1,14 +1,20 @@
 job "web" {
   datacenters = ["dc1"]
   group "app" {
+    update {
+      max_parallel = 1
+      canary       = 1
+      auto_revert  = true
+      auto_promote = false
+      health_check = "task_states"
+    }
+
     task "app" {
       driver = "docker"
       config {
         image = "${artifact.image}:${artifact.tag}"
-
-        // For local Nomad, you prob don't need this on a real deploy
-        network_mode = "host"
       }
+
       env {
         %{ for k,v in entrypoint.env ~}
         ${k} = "${v}"

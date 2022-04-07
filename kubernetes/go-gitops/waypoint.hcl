@@ -12,17 +12,23 @@ variable "tag" {
   description = "Image tag for the image"
 }
 
-// set your registry username through the UI or on the CLI!
 variable "registry_username" {
-  default     = ""
+  default = dynamic("vault", {
+    path = "config/data/secret/registry"
+    key  = "data/registry_username"
+  })
   type        = string
+  sensitive   = true
   description = "username for container registry"
 }
 
-// set your registry password through the UI or on the CLI!
 variable "registry_password" {
-  default     = ""
+  default = dynamic("vault", {
+    path = "config/data/secret/registry"
+    key  = "data/registry_password"
+  })
   type        = string
+  sensitive   = true
   description = "password for registry" // DO NOT COMMIT YOUR PASSWORD TO GIT
 }
 

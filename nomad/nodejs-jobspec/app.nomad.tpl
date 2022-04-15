@@ -9,6 +9,14 @@ job "web" {
       health_check = "task_states"
     }
 
+    service {
+      name = "app"
+    }
+
+    vault {
+      policies = ["waypoint"]
+    }
+
     task "app" {
       driver = "docker"
       config {

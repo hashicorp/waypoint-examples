@@ -3,7 +3,10 @@ project = "example-nodejs"
 app "example-nodejs" {
 
   build {
-    use "pack" {}
+    use "docker-pull" {
+      image = "node"
+      tag   = "latest"
+    }
     registry {
       use "docker" {
         image = "nodejs-example"

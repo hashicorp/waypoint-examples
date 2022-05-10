@@ -1,5 +1,9 @@
 project = "example-nodejs"
 
+runner {
+  profile = "test"
+}
+
 app "example-nodejs" {
   labels = {
     "service" = "example-nodejs",

@@ -19,4 +19,13 @@ app "example-nodejs" {
       jobspec = templatefile("${path.app}/app.nomad.tpl")
     }
   }
+
+  release {
+    use "nomad-jobspec-canary" {
+      groups = [
+        "app"
+      ]
+      fail_deployment = false
+    }
+  }
 }

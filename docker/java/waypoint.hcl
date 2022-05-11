@@ -1,9 +1,9 @@
 project = "example-java"
 
 app "example-java" {
-#  runner {
-#      profile = "test"
-#  }
+  runner {
+      profile = "test"
+  }
 
   build {
     use "pack" {

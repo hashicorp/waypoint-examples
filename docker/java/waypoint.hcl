@@ -1,23 +1,3 @@
-variable "registry_username" {
-  type = string
-  default = ""
-  env = ["REGISTRY_USERNAME"]
-}
-
-variable "registry_password" {
-  type = string
-  sensitive = true
-  default = ""
-  env = ["REGISTRY_PASSWORD"]
-}
-
-variable "registry_imagename" {
-  type = string
-  default = ""
-  env = ["REGISTRY_IMAGENAME"]
-}
-
-
 project = "example-java"
 
 app "example-java" {
@@ -33,11 +13,9 @@ app "example-java" {
   
     registry {
       use "docker" {
-        image = "${var.registry_username}/${var.registry_imagename}"
-        tag   = "${gitrefpretty()}"
-        username = var.registry_username
-        password = var.registry_password
-        local = false
+        image = "example-java"
+        tag   = "1"
+        local = true
       }
     }
   }

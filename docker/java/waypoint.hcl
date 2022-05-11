@@ -2,7 +2,7 @@ project = "example-java"
 
 app "example-java" {
   runner {
-         profile = "dev"
+      profile = "test"
   }
 
   build {

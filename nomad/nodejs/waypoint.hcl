@@ -4,9 +4,13 @@ app "example-nodejs" {
 
   build {
     use "docker-pull" {
-      image = "node"
-      tag   = "latest"
+      image              = "node"
+      tag                = "latest"
       disable_entrypoint = true
+      auth {
+        username = var.user
+        password = var.pass
+      }
     }
     registry {
       use "docker" {
@@ -24,5 +28,14 @@ app "example-nodejs" {
       namespace  = "default"
     }
   }
+}
 
+variable "user" {
+  type      = string
+  sensitive = true
+}
+
+variable "pass" {
+  type      = string
+  sensitive = true
 }

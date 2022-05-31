@@ -10,8 +10,8 @@ app "example-nodejs" {
     }
     registry {
       use "docker" {
-        image = "nodejs-example"
-        tag   = "1"
+        image = "devopspaladin/nodejs-example"
+        tag   = "latest"
       }
     }
   }

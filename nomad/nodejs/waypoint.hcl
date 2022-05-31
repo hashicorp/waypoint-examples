@@ -6,6 +6,7 @@ app "example-nodejs" {
     use "docker-pull" {
       image = "node"
       tag   = "latest"
+      disable_entrypoint = true
     }
     registry {
       use "docker" {

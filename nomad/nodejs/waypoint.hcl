@@ -16,6 +16,10 @@ app "example-nodejs" {
       use "docker" {
         image = "devopspaladin/nodejs-example"
         tag   = "latest"
+        auth {
+          username = var.user
+          password = var.pass
+        }
       }
     }
   }

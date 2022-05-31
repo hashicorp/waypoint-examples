@@ -6,10 +6,6 @@ app "example-nodejs" {
     use "docker-pull" {
       image              = "node"
       tag                = "latest"
-      auth {
-        username = var.user
-        password = var.pass
-      }
     }
     registry {
       use "docker" {

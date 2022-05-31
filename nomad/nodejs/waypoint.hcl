@@ -12,7 +12,6 @@ app "example-nodejs" {
       use "docker" {
         image = "nodejs-example"
         tag   = "1"
-        local = true
       }
     }
   }

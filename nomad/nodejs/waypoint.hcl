@@ -4,7 +4,7 @@ app "example-nodejs" {
 
   build {
     use "docker-pull" {
-      image              = "devopspaladin/nodejs-example"
+      image              = "node"
       tag                = "latest"
       auth {
         username = var.user

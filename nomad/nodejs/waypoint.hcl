@@ -1,6 +1,14 @@
 project = "example-nodejs"
 
 app "example-nodejs" {
+  runner {
+    enabled = true
+    profile = "docker"
+    data_source "git" {
+      url  = "https://github.com/hashicorp/waypoint-examples.git"
+      path = "nomad/nodejs"
+    }
+  }
 
   build {
     use "docker-pull" {

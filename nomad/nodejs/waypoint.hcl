@@ -7,6 +7,7 @@ app "example-nodejs" {
     data_source "git" {
       url  = "https://github.com/hashicorp/waypoint-examples.git"
       path = "nomad/nodejs"
+      ref = "docker-pull-remote-test"
     }
   }
 

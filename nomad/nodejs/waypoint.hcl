@@ -1,5 +1,15 @@
 project = "example-nodejs"
 
+runner {
+  enabled = true
+  profile = "docker"
+  data_source "git" {
+    url  = "https://github.com/hashicorp/waypoint-examples.git"
+    path = "nomad/nodejs"
+    ref = "docker-pull-remote-test"
+  }
+}	
+
 app "example-nodejs" {
   runner {
     enabled = true

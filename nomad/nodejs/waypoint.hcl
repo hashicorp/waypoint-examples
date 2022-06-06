@@ -29,7 +29,7 @@ app "example-nodejs" {
     registry {
       use "docker" {
         image = "devopspaladin/nodejs-example"
-        tag   = "latest"
+        tag   = "very-latest"
         auth {
           username = var.user
           password = var.pass

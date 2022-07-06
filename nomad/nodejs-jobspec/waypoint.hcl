@@ -22,6 +22,11 @@ app "example-nodejs" {
       jobspec = templatefile("${path.app}/app.nomad.tpl")
     }
   }
+
+  release {
+    use "nomad-jobspec-canary" {
+    }
+  }
 }
 
 variable "username" {

@@ -2,7 +2,7 @@ project = "example-nodejs"
 
 runner {
   enabled = true
-  profile = "docker"
+  profile = "nomad-bootstrap-profile"
   data_source "git" {
     url  = "https://github.com/hashicorp/waypoint-examples.git"
     path = "nomad/nodejs"
@@ -13,7 +13,7 @@ runner {
 app "example-nodejs" {
   runner {
     enabled = true
-    profile = "docker"
+    profile = "nomad-bootstrap-profile"
     data_source "git" {
       url  = "https://github.com/hashicorp/waypoint-examples.git"
       path = "nomad/nodejs"

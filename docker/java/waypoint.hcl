@@ -1,5 +1,13 @@
 project = "example-java"
 
+pipeline "test" {
+  step "build" {
+    use "build" {
+      disable_push = true
+    }
+  }
+}
+
 app "example-java" {
   runner {
       profile = "test"

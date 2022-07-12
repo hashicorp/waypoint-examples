@@ -23,10 +23,10 @@ app "example-nodejs" {
     }
   }
 
-  release {
-    use "nomad-jobspec-canary" {
-    }
-  }
+//  release {
+//    use "nomad-jobspec-canary" {
+//    }
+//  }
 }
 
 variable "username" {

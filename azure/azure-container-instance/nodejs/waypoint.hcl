@@ -1,8 +1,8 @@
-project = "example-nodejs"
+project = "azure-container-nodejs"
 
-app "example-nodejs" {
+app "container-nodejs-web" {
   labels = {
-    "service" = "example-nodejs",
+    "service" = "nodejs-web",
     "env"     = "dev"
   }
 

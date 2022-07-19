@@ -1,11 +1,19 @@
 project = "example-nodejs"
 
 pipeline "example-nodejs" {
+  step "build-example-nodejs" {
+    use "build" {}
+  }
+
+  step "deploy-example-nodejs" {
+    use "deploy" {}
+  }
+
   step "test" {
     image_url = "waypoint-odr:dev"
 
     use "exec" {
-      command = "echo"
+      command = "echo done!"
     }
   }
 }

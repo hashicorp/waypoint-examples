@@ -9,10 +9,6 @@ pipeline "test" {
 }
 
 app "example-java" {
-  runner {
-      profile = "test"
-  }
-
   build {
     use "pack" {
       builder = "gcr.io/buildpacks/builder:v1"

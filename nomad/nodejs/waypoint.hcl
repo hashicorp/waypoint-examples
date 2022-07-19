@@ -1,12 +1,12 @@
-project = "example-nodejs"
+project = "nomad-nodejs"
 
-app "example-nodejs" {
+app "nomad-nodejs-web" {
 
   build {
     use "pack" {}
     registry {
       use "docker" {
-        image = "nodejs-example"
+        image = "nomad-nodejs-web"
         tag   = "1"
         local = true
       }

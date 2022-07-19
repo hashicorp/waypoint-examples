@@ -1,6 +1,6 @@
 project = "waypoint-apollo-lambda"
 
-app "waypoint-apollo-lambda" {
+app "waypoint-apollo-lambda-function" {
   build {
     use "docker" {
       buildkit = true

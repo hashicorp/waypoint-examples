@@ -6,6 +6,10 @@ pipeline "test" {
       disable_push = true
     }
   }
+
+  step "deploy" {
+    use "deploy" {}
+  }
 }
 
 app "example-java" {

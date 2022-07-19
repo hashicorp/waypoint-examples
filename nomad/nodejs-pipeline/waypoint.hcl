@@ -29,9 +29,12 @@ app "example-nodejs" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "nodejs-example"
+        image = "devopspaladin/nodejs-example"
         tag   = "1"
-        local = true
+        auth {
+          username = var.username
+          password = var.password
+        }
       }
     }
   }
@@ -44,4 +47,14 @@ app "example-nodejs" {
       namespace  = "default"
     }
   }
+}
+
+variable "username" {
+  type      = string
+  sensitive = true
+}
+
+variable "password" {
+  type      = string
+  sensitive = true
 }

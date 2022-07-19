@@ -1,8 +1,8 @@
-project = "example-nodejs"
+project = "gcp-nodejs"
 
-app "example-nodejs" {
+app "gcp-nodejs-web" {
   labels = {
-    "service" = "example-nodejs",
+    "service" = "gcp-nodejs-web",
     "env"     = "dev"
   }
 

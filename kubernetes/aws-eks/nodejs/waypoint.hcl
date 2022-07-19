@@ -1,8 +1,8 @@
-project = "example-nodejs"
+project = "kubernetes-eks-nodejs"
 
-app "example-nodejs" {
+app "eks-nodejs-web" {
   labels = {
-    "service" = "example-nodejs",
+    "service" = "eks-nodejs-web",
     "env"     = "dev"
   }
 
@@ -11,7 +11,7 @@ app "example-nodejs" {
     registry {
       use "aws-ecr" {
         region     = "us-east-1"
-        repository = "waypoint-example"
+        repository = "eks-nodejs-web"
         tag        = "latest"
       }
     }

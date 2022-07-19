@@ -1,8 +1,8 @@
-project = "example-nodejs-ingress"
+project = "kubernetes-nodejs-ingress"
 
-app "example-nodejs-ingress" {
+app "nodejs-ingress-app" {
   labels = {
-    "service" = "example-nodejs-ingress",
+    "service" = "nodejs-ingress-app",
     "env"     = "dev"
   }
 
@@ -10,7 +10,7 @@ app "example-nodejs-ingress" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "example-nodejs-ingress"
+        image = "nodejs-ingress-app"
         tag   = "1"
         local = true
       }

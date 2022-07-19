@@ -1,8 +1,8 @@
-project = "example-nodejs"
+project = "kubernetes-nodejs-helm"
 
-app "example-nodejs" {
+app "nodejs-helm-web" {
   labels = {
-    "service" = "example-nodejs",
+    "service" = "nodejs-helm-web",
     "env"     = "dev"
   }
 
@@ -10,7 +10,7 @@ app "example-nodejs" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "example-nodejs"
+        image = "nodejs-helm-web"
         tag   = gitrefpretty()
         local = true
       }

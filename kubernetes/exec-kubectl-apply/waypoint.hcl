@@ -1,8 +1,8 @@
-project = "example-nodejs-exec"
+project = "kubernetes-nodejs-exec"
 
-app "example-nodejs-exec" {
+app "nodejs-exec" {
   labels = {
-    "service" = "example-nodejs-exec",
+    "service" = "nodejs-exec",
     "env"     = "dev"
   }
 
@@ -10,7 +10,7 @@ app "example-nodejs-exec" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "example-nodejs-exec"
+        image = "nodejs-exec"
         tag   = "1"
         local = true
       }

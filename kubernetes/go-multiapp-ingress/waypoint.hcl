@@ -1,4 +1,4 @@
-project = "example-go-multiapp-k8s-ingress"
+project = "kubernetes-go-multiapp-k8s-ingress"
 
 variable "namespace" {
   default     = "ingress-nginx"
@@ -6,9 +6,9 @@ variable "namespace" {
   description = "The namespace to deploy and release to in your Kubernetes cluster."
 }
 
-app "one" {
+app "go-multiapp-one" {
   labels = {
-    "service" = "one",
+    "service" = "go-multiapp-one",
     "env"     = "dev"
   }
 
@@ -22,7 +22,7 @@ app "one" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "one"
+        image = "go-multiapp-one"
         tag   = "1"
         local = false
       }
@@ -50,9 +50,9 @@ app "one" {
 }
 
 
-app "two" {
+app "go-multiapp-two" {
   labels = {
-    "service" = "two",
+    "service" = "go-multiapp-two",
     "env"     = "dev"
   }
 
@@ -66,7 +66,7 @@ app "two" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "two"
+        image = "go-multiapp-two"
         tag   = "1"
         local = false
       }
@@ -92,9 +92,9 @@ app "two" {
   }
 }
 
-app "default" {
+app "default-app" {
   labels = {
-    "service" = "default",
+    "service" = "default-app",
     "env"     = "dev"
   }
 
@@ -102,7 +102,7 @@ app "default" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "default"
+        image = "default-app"
         tag   = "1"
         local = false
       }

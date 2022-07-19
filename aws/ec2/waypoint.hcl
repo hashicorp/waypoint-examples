@@ -1,8 +1,8 @@
-project = "example-nginx-ami"
+project = "aws-ec2-nginx-ami"
 
-app "nginx-example" {
+app "ec2-nginx" {
   labels = {
-    "service" = "nginx-example"
+    "service" = "ec2-nginx"
     "env"     = "dev"
   }
 

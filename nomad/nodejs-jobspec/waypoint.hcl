@@ -1,11 +1,11 @@
-project = "example-nodejs"
+project = "nomad-jobspec-nodejs"
 
-app "example-nodejs" {
+app "nodejs-jobspec-web" {
   build {
     use "pack" {}
     registry {
       use "docker" {
-        image = "nodejs-example"
+        image = "nodejs-jobspec-web"
         tag   = "1"
         local = true
       }

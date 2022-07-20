@@ -1,8 +1,8 @@
-project = "example-nodejs"
+project = "aws-ecs-nodejs"
 
-app "example-nodejs" {
+app "ecs-nodejs-web" {
   labels = {
-    "service" = "example-nodejs",
+    "service" = "ecs-nodejs-web",
     "env"     = "dev"
   }
 

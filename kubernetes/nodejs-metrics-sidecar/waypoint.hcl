@@ -1,14 +1,15 @@
-project = "example-nodejs-sidecar"
-app "example-nodejs-metrics-sidecar" {
+project = "kubernetes-nodejs-metrics-sidecar"
+
+app "nodejs-metrics-sidecar" {
   labels = {
-    "service" = "example-nodejs-sidecar",
+    "service" = "nodejs-metrics-sidecar",
     "env"     = "dev"
   }
   build {
     use "pack" {}
     registry {
       use "docker" {
-        image = "example-nodejs-sidecar"
+        image = "nodejs-metrics-sidecar"
         tag   = "1"
         local = true
       }

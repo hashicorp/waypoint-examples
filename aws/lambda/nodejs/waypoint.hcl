@@ -1,10 +1,10 @@
-project = "example-nodejs"
+project = "aws-lambda-nodejs"
 
-app "example-nodejs" {
+app "lambda-nodejs-function" {
   build {
    use "aws-ecr-pull" {
      region     = var.region
-     repository = "example-nodejs"
+     repository = "lambda-nodejs"
      tag        = var.tag
    }
   }

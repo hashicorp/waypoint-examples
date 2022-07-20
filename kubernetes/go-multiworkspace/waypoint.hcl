@@ -1,4 +1,4 @@
-project = "go-multiworkspace"
+project = "kubernetes-go-multiworkspace"
 
 app "backend" {
 

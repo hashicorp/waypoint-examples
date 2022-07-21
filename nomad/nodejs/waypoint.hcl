@@ -6,9 +6,9 @@ runner {
   data_source "git" {
     url  = "https://github.com/hashicorp/waypoint-examples.git"
     path = "nomad/nodejs"
-    ref = "docker-pull-remote-test"
+    ref  = "docker-pull-remote-test"
   }
-}	
+}
 
 app "example-nodejs" {
   runner {
@@ -17,14 +17,18 @@ app "example-nodejs" {
     data_source "git" {
       url  = "https://github.com/hashicorp/waypoint-examples.git"
       path = "nomad/nodejs"
-      ref = "docker-pull-remote-test"
+      ref  = "docker-pull-remote-test"
     }
   }
 
   build {
     use "docker-pull" {
-      image              = "node"
-      tag                = "latest"
+      image = "devopspaladin/nodejs-example"
+      tag   = "latest"
+      auth {
+        username = var.user
+        password = var.pass
+      }
     }
     registry {
       use "docker" {

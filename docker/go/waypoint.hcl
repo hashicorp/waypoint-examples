@@ -8,6 +8,12 @@ app "example-go" {
 
   build {
     use "pack" {}
+    registry {
+      use "docker" {
+        image = "ttl.sh/teresa-example-go"
+        tag   = "1h"
+      }
+    }
   }
 
   deploy {

@@ -1,4 +1,4 @@
-module github.com/hashicorp/waypoint-examples/docker/go
+module github.com/hashicorp/waypoint-examples/docker/go-multiapp
 
-// +heroku goVersion go1.15
-go 1.15
+// +heroku goVersion go1.17
+go 1.17

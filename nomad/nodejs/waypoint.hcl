@@ -6,9 +6,8 @@ app "nomad-nodejs-web" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "nomad-nodejs-web"
+        image = "localhost:5000/nomad-nodejs-web"
         tag   = "1"
-        local = true
       }
     }
   }

@@ -6,8 +6,12 @@ app "nomad-nodejs-web" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "${var.registry_addr}/nomad-nodejs-web"
+        image = "devopspaladin/nodejs-example"
         tag   = "1"
+        auth {
+          username = var.username
+          password = var.password
+        }
       }
     }
   }
@@ -23,6 +27,9 @@ app "nomad-nodejs-web" {
 
 }
 
-variable "registry_addr" {
+variable "username" {
+  type = string
+}
+variable "password" {
   type = string
 }

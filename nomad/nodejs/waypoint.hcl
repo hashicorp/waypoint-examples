@@ -6,7 +6,7 @@ app "nomad-nodejs-web" {
     use "pack" {}
     registry {
       use "docker" {
-        image = var.registry_addr+"/nomad-nodejs-web"
+        image = "${var.registry_addr}/nomad-nodejs-web"
         tag   = "1"
       }
     }

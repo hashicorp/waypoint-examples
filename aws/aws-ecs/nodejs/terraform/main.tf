@@ -5,3 +5,13 @@ data "aws_vpc" "selected" {
 output "test" {
   value = data.aws_vpc.selected.id
 }
+
+
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.29"
+    }
+  }
+}

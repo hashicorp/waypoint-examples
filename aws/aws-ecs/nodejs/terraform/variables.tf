@@ -2,7 +2,7 @@
 variable "name" {
   type        = string
   description = "Name for infrastructure resources"
-  default     = "waypoint-hashiconf-demo"
+  default     = "tfcwaypoint"
 }
 
 # variable "tags" {

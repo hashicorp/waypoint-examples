@@ -5,11 +5,11 @@ variable "name" {
   default     = "waypoint-hashiconf-demo"
 }
 
-variable "tags" {
-  type        = map(string)
-  description = "Tags to add to infrastructure resources"
-  default     = {}
-}
+# variable "tags" {
+#   type        = map(string)
+#   description = "Tags to add to infrastructure resources"
+#   default     = {}
+# }
 
 variable "region" {
   type        = string

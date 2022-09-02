@@ -1,12 +1,12 @@
-project = "nodejs-on-tfc-cluster"
+project = "sampleapp"
 
-app "nodejs-on-tfc-cluster" {
+app "sampleapp" {
   build {
     use "pack" {}
     registry {
       use "aws-ecr" {
         region     = "us-west-2"
-        repository = "nodejs-on-tfc-cluster"
+        repository = "sampleapp"
         tag        = "latest"
       }
     }

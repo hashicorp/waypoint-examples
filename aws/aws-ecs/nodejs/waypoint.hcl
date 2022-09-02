@@ -1,17 +1,12 @@
-project = "aws-ecs-nodejs"
+project = "nodejs-on-tfc-cluster"
 
-app "ecs-nodejs-web" {
-  labels = {
-    "service" = "ecs-nodejs-web",
-    "env"     = "dev"
-  }
-
+app "nodejs-on-tfc-cluster" {
   build {
     use "pack" {}
     registry {
       use "aws-ecr" {
-        region     = "us-east-1"
-        repository = "waypoint-example"
+        region     = "us-west-2"
+        repository = "nodejs-on-tfc-cluster"
         tag        = "latest"
       }
     }
@@ -19,7 +14,7 @@ app "ecs-nodejs-web" {
 
   deploy {
     use "aws-ecs" {
-      region = "us-east-1"
+      region = "us-west-2"
       memory = "512"
     }
   }

@@ -19,11 +19,11 @@ pipeline "example-nodejs" {
 }
 
 app "example-nodejs" {
-  config {
-    env = {
-      static = "hello"
-    }
-  }
+  //config {
+  //  env = {
+  //    static = "hello"
+  //  }
+  //}
 
   build {
     use "pack" {}

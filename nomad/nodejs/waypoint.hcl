@@ -1,7 +1,10 @@
 project = "nomad-nodejs"
 
-app "nomad-nodejs-web" {
+runner {
+  profile = "nomad-task-launcher-test-profile"
+}
 
+app "nomad-nodejs-web" {
   build {
     use "pack" {}
     registry {

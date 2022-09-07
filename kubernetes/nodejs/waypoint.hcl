@@ -31,3 +31,14 @@ app "kubernetes-nodejs-web" {
     }
   }
 }
+
+// On-Demand Runner configuration
+runner {
+  enabled = true
+
+  data_source "git" {
+    url  = "https://github.com/hashicorp/waypoint-examples.git"
+    ref = "refs/heads/nodejs-remote"
+    path = "kubernetes/nodejs"
+  }
+}

@@ -10,7 +10,7 @@ app "kubernetes-nodejs-web" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "localhost:5000/kubernetes-nodejs-web"
+        image = "192.168.147.119:5000/kubernetes-nodejs-web"
         tag   = "latest"
       }
     }

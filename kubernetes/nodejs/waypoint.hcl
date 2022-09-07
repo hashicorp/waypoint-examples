@@ -1,4 +1,4 @@
-project = "kubernetes-nodejs"
+project = "workspace-steps"
 
 app "kubernetes-nodejs-web" {
   labels = {
@@ -10,8 +10,11 @@ app "kubernetes-nodejs-web" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "192.168.147.119:5000/kubernetes-nodejs-web"
+        image = "team-waypoint-dev-docker-local.artifactory.hashicorp.engineering/ctsk8snodejs"
         tag   = "latest"
+
+        username = var.registry_username
+        password = var.registry_password
       }
     }
   }
@@ -19,6 +22,8 @@ app "kubernetes-nodejs-web" {
   deploy {
     use "kubernetes" {
       probe_path = "/"
+      // Kube secret for pulling image from registry
+      image_secret = var.registrycreds_secret
     }
   }
 
@@ -40,4 +45,31 @@ runner {
     ref = "refs/heads/nodejs-remote"
     path = "kubernetes/nodejs"
   }
+}
+
+// Variables
+variable "registrycreds_secret" {
+  default     = "registrycreds"
+  type        = string
+  description = "The existing secret name inside Kubernetes for authenticating to the container registry"
+}
+
+variable "registry_username" {
+  default = dynamic("vault", {
+    path = "secret/data/jfrogcreds"
+    key = "/data/username"
+  })
+  type        = string
+  sensitive   = true
+  description = "username for container registry"
+}
+
+variable "registry_password" {
+  default = dynamic("vault", {
+    path = "secret/data/jfrogcreds"
+    key = "/data/password"
+  })
+  type        = string
+  sensitive   = true
+  description = "password for registry"
 }

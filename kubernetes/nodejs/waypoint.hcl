@@ -17,6 +17,17 @@ pipeline "nodes" {
   }
 }
 
+pipeline "ups" {
+  step "up-dev" {
+    use "up" {}
+  }
+
+  step "up-prod" {
+    workspace = "production"
+    use "up" {}
+  }
+}
+
 app "kubernetes-nodejs-web" {
   config {
     env = {

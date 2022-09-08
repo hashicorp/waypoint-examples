@@ -8,6 +8,7 @@ pipeline "nodes" {
   }
 
   step "do-it" {
+    image_url = "localhost:5000/waypoint-odr:dev"
     use "exec" {
       command = "echo"
       args    = ["this works!"]

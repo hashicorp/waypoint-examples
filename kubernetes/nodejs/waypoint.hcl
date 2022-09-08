@@ -71,7 +71,7 @@ app "kubernetes-nodejs-web" {
     use "kubernetes" {
       // Sets up a load balancer to access released application
       load_balancer = true
-      port          = 3000
+      port          = var.port
     }
   }
 }
@@ -113,3 +113,13 @@ variable "registry_password" {
   sensitive   = true
   description = "password for registry"
 }
+
+variable "port" {
+  type = number
+  # default = 1
+  default = {
+    "default"    = 3000
+    "dev" = 8080
+  }[workspace.name]
+}
+

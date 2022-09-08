@@ -1,31 +1,8 @@
-variable "registry_username" {
-  type = string
-  default = ""
-  env = ["REGISTRY_USERNAME"]
-}
+project = "kubernetes-nodejs"
 
-variable "registry_password" {
-  type = string
-  sensitive = true
-  default = ""
-  env = ["REGISTRY_PASSWORD"]
-}
-
-variable "registry_imagename" {
-  type = string
-  default = ""
-  env = ["REGISTRY_IMAGENAME"]
-}
-
-project = "nodejs-example"
-
-runner {
-  profile = "secondary-cluster-odr"
-}
-
-app "nodejs-example" {
+app "kubernetes-nodejs-web" {
   labels = {
-    "service" = "example-nodejs",
+    "service" = "kubernetes-nodejs-web",
     "env"     = "dev"
   }
 
@@ -33,11 +10,9 @@ app "nodejs-example" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "${var.registry_username}/${var.registry_imagename}"
-        tag   = "${gitrefpretty()}"
-        username = var.registry_username
-        password = var.registry_password
-        local = false
+        image = "kubernetes-nodejs-web"
+        tag   = "1"
+        local = true
       }
     }
   }

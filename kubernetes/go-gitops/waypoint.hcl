@@ -1,4 +1,4 @@
-project = "go-gitops-0"
+project = "kubernetes-go-gitops-0"
 
 variable "image" {
   default     = "your.own.container.registry.example.com/go"
@@ -38,7 +38,7 @@ variable "regcred_secret" {
   description = "The existing secret name inside Kubernetes for authenticating to the container registry"
 }
 
-app "go" {
+app "go-gitops" {
   build {
     use "pack" {}
 

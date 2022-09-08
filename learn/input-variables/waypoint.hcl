@@ -1,8 +1,8 @@
-project = "example/inputvars-go"
+project = "learn/inputvars-go"
 
-app "example-inputvars-go" {
+app "inputvars-go-app" {
   labels = {
-    "service" = "example-inputvars-go",
+    "service" = "inputvars-go-app",
     "env"     = "dev"
   }
 
@@ -23,7 +23,7 @@ app "example-inputvars-go" {
 }
 
 variable "image" {
-	default     = "waypoint-test/example-inputvars-go"
+	default     = "waypoint-test/learn-inputvars-go"
 	type        = string
 	description = "Image name for the built image in the Docker registry."
 }

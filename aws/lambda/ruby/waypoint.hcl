@@ -1,6 +1,6 @@
 project = "learn-waypoint-lambda"
 
-app "learn-waypoint-lambda" {
+app "learn-waypoint-lambda-function" {
   build {
     use "docker" {}
 

@@ -1,8 +1,8 @@
-project = "example-go"
+project = "learn-static-go"
 
-app "example-go" {
+app "static-go" {
   labels = {
-    "service" = "example-go",
+    "service" = "static-go",
     "env"     = "dev"
   }
 

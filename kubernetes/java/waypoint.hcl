@@ -1,13 +1,13 @@
-project = "example-java"
+project = "kubernetes-java"
 
-app "example-java" {
+app "kubernetes-java-app" {
   build {
     use "pack" {
       builder="gcr.io/buildpacks/builder:v1"
     }
     registry {
       use "docker" {
-        image = "example-java"
+        image = "kubernetes-java-app"
         tag   = "1"
         local = true
       }

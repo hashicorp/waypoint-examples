@@ -1,8 +1,8 @@
-project = "example-python"
+project = "aws-ecs-python"
 
-app "example-python" {
+app "ecs-python" {
   labels = {
-    "service" = "example-python",
+    "service" = "ecs-python",
     "env" = "dev"
   }
 

@@ -10,8 +10,8 @@ app "kubernetes-nodejs-web" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "kubernetes-nodejs-web"
-        tag   = "1"
+        image = "registry.services.demophoon.com/xxtest"
+        tag   = "latest"
         local = true
       }
     }

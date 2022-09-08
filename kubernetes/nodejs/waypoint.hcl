@@ -18,6 +18,18 @@ pipeline "nodes" {
 }
 
 app "kubernetes-nodejs-web" {
+  config {
+    env = {
+      "DB_URL" = "dev.example.com"
+    }
+
+    workspace "production" {
+      env = {
+        "DB_URL" = "prod.example.com"
+      }
+    }
+  }
+
   labels = {
     "service" = "kubernetes-nodejs-web",
     "env"     = "dev"

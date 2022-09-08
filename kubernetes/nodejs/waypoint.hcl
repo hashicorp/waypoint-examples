@@ -12,7 +12,6 @@ app "kubernetes-nodejs-web" {
       use "docker" {
         image = "registry.services.demophoon.com/xxtest"
         tag   = "latest"
-        local = true
       }
     }
   }

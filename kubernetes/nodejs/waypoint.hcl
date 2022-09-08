@@ -1,5 +1,29 @@
 project = "workspace-steps"
 
+pipeline "nodes" {
+  step "up" {
+    use "up" {
+      prune = true
+    }
+  }
+
+  step "do-it" {
+    use "exec" {
+      command = "echo"
+      args    = ["this works!"]
+    }
+  }
+
+  # step "nested" {
+  #   pipeline "exec" {
+  #     step "build-nested" {
+  #       use "build" {
+  #       }
+  #     }
+  #   }
+  # }
+}
+
 app "kubernetes-nodejs-web" {
   labels = {
     "service" = "kubernetes-nodejs-web",

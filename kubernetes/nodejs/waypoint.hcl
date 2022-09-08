@@ -22,8 +22,7 @@ pipeline "exe" {
     # image_url = "localhost:5000/waypoint-odr:dev"
     image_url = "alpine:3.16.2"
     use "exec" {
-      command = "echo"
-      args    = ["workspace:", "{{.Workspace}}"]
+      command = ["echo", "workspace: {{.Workspace}}"]
     }
   }
 }

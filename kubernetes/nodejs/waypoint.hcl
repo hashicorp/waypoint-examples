@@ -17,6 +17,17 @@ pipeline "nodes" {
   }
 }
 
+pipeline "exe" {
+  step "justexec" {
+    # image_url = "localhost:5000/waypoint-odr:dev"
+    image_url = "alpine:3.16.2"
+    use "exec" {
+      command = "echo"
+      args    = ["workspace:", "{{.Workspace}}"]
+    }
+  }
+}
+
 pipeline "ups" {
   step "up-dev" {
     use "up" {}

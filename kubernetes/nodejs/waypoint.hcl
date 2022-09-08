@@ -8,21 +8,13 @@ pipeline "nodes" {
   }
 
   step "do-it" {
-    image_url = "localhost:5000/waypoint-odr:dev"
+    # image_url = "localhost:5000/waypoint-odr:dev"
+    image_url = "alpine:3.16.2"
     use "exec" {
       command = "echo"
       args    = ["this works!"]
     }
   }
-
-  # step "nested" {
-  #   pipeline "exec" {
-  #     step "build-nested" {
-  #       use "build" {
-  #       }
-  #     }
-  #   }
-  # }
 }
 
 app "kubernetes-nodejs-web" {

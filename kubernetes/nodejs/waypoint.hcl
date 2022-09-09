@@ -7,7 +7,7 @@ pipeline "local" {
     use "exec" {
       # command = "./echodocker"
       command = "/bin/sh"
-      args = ["-c", "./echodocker ; sleep 90"]
+      args = ["-c", "./echodocker ; sleep 120"]
     }
   }
 }

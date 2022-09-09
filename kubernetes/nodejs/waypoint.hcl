@@ -1,5 +1,12 @@
 project = "workspace-steps"
 
+pipeline "local" {
+  step "one" {
+    image_url = "192.168.147.119:5000/echodocker"
+    use "exec" {}
+  }
+}
+
 pipeline "nodes" {
   step "up" {
     use "up" {

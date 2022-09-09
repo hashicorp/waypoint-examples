@@ -5,8 +5,8 @@ pipeline "local" {
     image_url = "catsby/echodocker:latest"
     # image_url = "http://192.168.147.119:5000/echodocker"
     use "exec" {
-      command = ["./waypoint-entrypoint", "./echodocker"]
-      # args = ["stuff"]
+      command = "./waypoint-entrypoint"
+      args = ["./echodocker"]
     }
   }
 }

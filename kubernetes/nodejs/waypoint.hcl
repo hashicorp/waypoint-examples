@@ -43,6 +43,7 @@ app "kubernetes-nodejs-web" {
   config {
     env = {
       "DB_URL" = "dev.example.com"
+      "WP_WORKSPACE" = var.wp_workspace
     }
 
     workspace "production" {
@@ -132,4 +133,9 @@ variable "port" {
     "default"    = 3000
     "production" = 8080
   }[workspace.name]
+}
+
+variable "wp_workspace" {
+  type = string
+  default = workspace.name
 }

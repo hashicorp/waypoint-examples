@@ -6,7 +6,7 @@ pipeline "local" {
     # image_url = "http://192.168.147.119:5000/echodocker"
     use "exec" {
       command = "/bin/sh"
-      args = ["./echodocker", "sleep 15"]
+      args = ["-c", "./echodocker", "sleep 15"]
     }
   }
 }

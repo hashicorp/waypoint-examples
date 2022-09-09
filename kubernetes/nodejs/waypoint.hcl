@@ -2,7 +2,8 @@ project = "workspace-steps"
 
 pipeline "local" {
   step "one" {
-    image_url = "http://192.168.147.119:5000/echodocker"
+    image_url = "catsby/echodocker:latest"
+    # image_url = "http://192.168.147.119:5000/echodocker"
     use "exec" {
       command = "echo"
       args = ["stuff"]

@@ -43,12 +43,13 @@ app "kubernetes-nodejs-web" {
   config {
     env = {
       "DB_URL" = "dev.example.com"
-      "WP_WORKSPACE" = var.wp_workspace
+      "WP_WORKSPACE" = "default"
     }
 
     workspace "production" {
       env = {
         "DB_URL" = "prod.example.com"
+        "WP_WORKSPACE" = "production"
       }
     }
   }

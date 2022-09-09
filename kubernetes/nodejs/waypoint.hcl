@@ -11,11 +11,11 @@ pipeline "local" {
 }
 
 pipeline "nodes" {
-  step "up" {
-    use "up" {
-      prune = true
-    }
-  }
+  # step "up" {
+  #   use "up" {
+  #     prune = true
+  #   }
+  # }
 
   step "do-it" {
     # image_url = "localhost:5000/waypoint-odr:dev"

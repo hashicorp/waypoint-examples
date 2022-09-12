@@ -16,6 +16,7 @@ pipeline "full-up" {
 
 app "my-app" {
   build {
+    use "docker" {}
     registry {
       use "docker" {
         image = "registry.services.demophoon.com/xxtest"

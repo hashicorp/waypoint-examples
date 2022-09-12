@@ -18,7 +18,7 @@ pipeline "nodes" {
 }
 
 pipeline "ups" {
-  step "up-dev" {
+  step "up-default" {
     use "up" {}
   }
 

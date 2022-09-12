@@ -1,32 +1,18 @@
 project = "workspace-steps"
 
-pipeline "local" {
-  step "one" {
-    image_url = "catsby/echodocker:latest"
-    # image_url = "http://192.168.147.119:5000/echodocker"
-    use "exec" {
-      # command = "./echodocker"
-      command = "/bin/sh"
-      args = ["-c", "./echodocker ; sleep 120"]
+pipeline "nodes" {
+  step "up" {
+    use "up" {
+      prune = true
     }
   }
-}
 
-pipeline "nodes" {
-  # step "up" {
-  #   use "up" {
-  #     prune = true
-  #   }
-  # }
-
-  step "do-it" {
+  step "echo-this" {
     # image_url = "localhost:5000/waypoint-odr:dev"
     image_url = "alpine:3.16.2"
     use "exec" {
-      command = "/bin/sh"
-      args = ["-c", "sleep 90"]
-      # command = "echo"
-      # args    = ["this works!"]
+      command = "echo"
+      args    = ["this works!"]
     }
   }
 }
@@ -46,13 +32,11 @@ app "kubernetes-nodejs-web" {
   config {
     env = {
       "DB_URL" = "dev.example.com"
-      "WP_WORKSPACE" = "default"
     }
 
     workspace "production" {
       env = {
         "DB_URL" = "prod.example.com"
-        "WP_WORKSPACE" = "production"
       }
     }
   }
@@ -137,9 +121,4 @@ variable "port" {
     "default"    = 3000
     "production" = 8080
   }[workspace.name]
-}
-
-variable "wp_workspace" {
-  type = string
-  default = workspace.name
 }

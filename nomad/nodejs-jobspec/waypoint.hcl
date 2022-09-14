@@ -5,9 +5,12 @@ app "nodejs-jobspec-web" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "nodejs-jobspec-web"
+        image = "devopspaladin/nodejs-example"
         tag   = "1"
-        local = true
+        auth {
+          username = var.username
+          password = var.password
+        }
       }
     }
   }

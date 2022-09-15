@@ -1,31 +1,31 @@
 project = "workspace-steps"
 
-pipeline "nodes" {
-  step "up" {
-    use "up" {
-      prune = true
-    }
-  }
+# pipeline "nodes" {
+#   step "up" {
+#     use "up" {
+#       prune = true
+#     }
+#   }
 
-  step "echo-this" {
-    image_url = "alpine:3.16.2"
-    use "exec" {
-      command = "echo"
-      args    = ["this works!"]
-    }
-  }
-}
+#   step "echo-this" {
+#     image_url = "alpine:3.16.2"
+#     use "exec" {
+#       command = "echo"
+#       args    = ["this works!"]
+#     }
+#   }
+# }
 
-pipeline "ups" {
-  step "up-default" {
-    use "up" {}
-  }
+# pipeline "ups" {
+#   step "up-default" {
+#     use "up" {}
+#   }
 
-  step "up-prod" {
-    workspace = "production"
-    use "up" {}
-  }
-}
+#   step "up-prod" {
+#     workspace = "production"
+#     use "up" {}
+#   }
+# }
 
 app "kubernetes-nodejs-web" {
   config {

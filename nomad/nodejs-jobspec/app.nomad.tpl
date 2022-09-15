@@ -1,4 +1,4 @@
-job "web" {
+job "web-app" {
   datacenters = ["dc1"]
   group "app" {
     update {

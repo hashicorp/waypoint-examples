@@ -1,5 +1,6 @@
 job "web-app" {
   datacenters = ["dc1"]
+  namespace   = "${env}"
   group "app" {
     update {
       max_parallel = 1

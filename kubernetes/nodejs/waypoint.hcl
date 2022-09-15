@@ -117,7 +117,7 @@ variable "port" {
   type = number
   # default = 1
   default = {
-    "default"    = 3000
+    "default"    = 3030
     "production" = 8080
   }[workspace.name]
 }

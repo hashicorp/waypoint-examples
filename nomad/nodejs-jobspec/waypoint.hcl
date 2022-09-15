@@ -32,3 +32,11 @@ app "nodejs-jobspec-web" {
     }
   }
 }
+
+variable "username" {
+  type = string
+}
+
+variable "password" {
+  type = string
+}

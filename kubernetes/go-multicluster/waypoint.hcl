@@ -4,6 +4,7 @@ app "backend" {
 
   runner {
     profile = {
+      "default" = "kubernetes-DEV"
       "dev" = "kubernetes-DEV"
       "prod" = "kubernetes-PROD"
     }[workspace.name]

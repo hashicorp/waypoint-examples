@@ -34,9 +34,11 @@ app "nodejs-jobspec-web" {
 }
 
 variable "username" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "password" {
-  type = string
+  type      = string
+  sensitive = true
 }

@@ -5,8 +5,8 @@ app "backend" {
   runner {
     profile = {
       "default" = "kubernetes-DEV"
-      "dev" = "kubernetes-DEV"
-      "prod" = "kubernetes-PROD"
+      "dev"     = "kubernetes-DEV"
+      "prod"    = "kubernetes-PROD"
     }[workspace.name]
   }
 
@@ -34,8 +34,9 @@ app "backend" {
       annotations = {
         # Assign an internal load balancer in dev, and external in prod
         "service.beta.kubernetes.io/aws-load-balancer-internal" = {
-          "default"  = "true"
-          "prod" = "false"
+          "default"  = "false"
+          "dev"      = "false"
+          "prod"     = "false"
         }[workspace.name]
       }
     }

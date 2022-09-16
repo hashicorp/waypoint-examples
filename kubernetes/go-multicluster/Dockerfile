@@ -13,7 +13,7 @@ RUN go mod download
 
 COPY . ./
 
-RUN go build -o /tmp/go-multiworkspace 
+RUN go build -o /tmp/go-multicluster 
 
 #--------------------------------------------------------------------
 # final image
@@ -24,6 +24,6 @@ FROM alpine:3.14
 # Config is expected to be delivered here at runtime
 RUN mkdir /opt/config
 
-COPY --from=builder /tmp/go-multiworkspace /go-multiworkspace
+COPY --from=builder /tmp/go-multicluster /go-multicluster
 
 CMD [ "/go-multicluster" ]

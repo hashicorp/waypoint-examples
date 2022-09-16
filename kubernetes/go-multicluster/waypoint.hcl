@@ -34,8 +34,8 @@ app "backend" {
       annotations = {
         # Assign an internal load balancer in dev, and external in prod
         "service.beta.kubernetes.io/aws-load-balancer-internal" = {
-          "default"  = "false"
-          "dev"      = "false"
+          "default"  = "true"
+          "dev"      = "true"
           "prod"     = "false"
         }[workspace.name]
       }

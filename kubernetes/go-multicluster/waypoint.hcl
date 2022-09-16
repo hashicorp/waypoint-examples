@@ -24,7 +24,7 @@ app "backend" {
   deploy {
     use "kubernetes" {
       probe_path = "/health"
-      service_port = 8080
+      service_port = 3000
     }
   }
 

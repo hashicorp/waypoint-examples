@@ -10,9 +10,11 @@ app "kubernetes-nodejs-web" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "kubernetes-nodejs-web"
+        image = "devopspaladin/kubernetes-nodejs-web"
         tag   = "1"
-        local = true
+        local = false
+	username = var.user
+	password = var.password
       }
     }
   }
@@ -30,4 +32,18 @@ app "kubernetes-nodejs-web" {
       port          = 3000
     }
   }
+}
+
+variable "user" {
+  type = string
+  default = "devopspaladin"
+}
+
+variable "password" {
+  default = dynamic("kubernetes", {
+      name   = "reg-pass" # Secret name
+      key    = "password"
+      secret = true
+  })
+ type = string
 }

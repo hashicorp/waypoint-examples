@@ -14,8 +14,8 @@ app "njs-ecs-tfc-demo" {
 
   deploy {
     use "aws-ecs" {
-      region = "us-west-2"
-      memory = "512"
+      region  = "us-west-2"
+      memory  = "512"
       cluster = var.ecs_cluster
     }
   }

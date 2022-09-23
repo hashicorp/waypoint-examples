@@ -1,6 +1,6 @@
-project = "njs-ecs-tfc"
+project = "njs-ecs-tfc-demo"
 
-app "njs-ecs-tfc" {
+app "njs-ecs-tfc-demo" {
   build {
     use "pack" {}
     registry {

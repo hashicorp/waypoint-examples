@@ -2,6 +2,7 @@ project = "kubernetes-nodejs"
 
 runner {
   enabled = true
+  profile = "kubernetes-task-launcher-test-profile"
   
   data_source "git" {
     url = "https://github.com/hashicorp/waypoint-examples"

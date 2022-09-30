@@ -20,9 +20,8 @@ app "kubernetes-nodejs-web" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "kubernetes-nodejs-web"
+        image = "localhost:5000/kubernetes-nodejs-web"
         tag   = "1"
-        local = true
       }
     }
   }

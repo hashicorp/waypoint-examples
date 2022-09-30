@@ -1,5 +1,15 @@
 project = "kubernetes-nodejs"
 
+runner {
+  enabled = true
+  
+  data_source "git" {
+    url = "https://github.com/hashicorp/waypoint-examples"
+    path = "kubernetes/nodejs"
+    ref = "nomad-remote-ops"
+  }
+}
+
 app "kubernetes-nodejs-web" {
   labels = {
     "service" = "kubernetes-nodejs-web",

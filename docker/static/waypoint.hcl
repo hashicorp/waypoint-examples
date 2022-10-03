@@ -9,8 +9,8 @@ app "web" {
     use "docker" {}
     registry {
       use "docker" {
-        image = format("ttl.sh/izaak-%s", lower(trim(base64encode(timestamp()), "=")))
-        tag   = "1h"
+        image = ttl.sh/izaak-test-docker-static
+        tag   = "5m"
       }
     }
   }

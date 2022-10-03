@@ -1,5 +1,16 @@
 project = "nomad-jobspec-nodejs"
 
+runner {
+  enabled = true
+  profile = "nomad-profile"
+
+  data_source "git" {
+    url = "https://github.com/hashicorp/waypoint-examples"
+    path = "nomad/nodejs-jobspec"
+    ref = "nomad-remote-ops"
+  }
+}
+
 app "nodejs-jobspec-web" {
   build {
     use "pack" {}

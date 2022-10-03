@@ -9,7 +9,7 @@ app "web" {
     use "docker" {}
     registry {
       use "docker" {
-        image = ttl.sh/izaak-test-docker-static
+        image = "ttl.sh/izaak-test-docker-static"
         tag   = "5m"
       }
     }

@@ -12,3 +12,10 @@ app "example-java" {
     }
   }
 }
+
+config {
+  env = {
+    DATABASE_URL = "postgresql://example.com:5432"
+  }
+}
+

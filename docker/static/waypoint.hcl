@@ -6,13 +6,12 @@ project = "nginx-project"
 
 app "web" {
   build {
-    use "docker" {
+    use "docker" {}
     registry {
       use "docker" {
         image = format("ttl.sh/izaak-%s", lower(trim(base64encode(timestamp()), "=")))
         tag   = "1h"
       }
-    } 
     }
   }
 

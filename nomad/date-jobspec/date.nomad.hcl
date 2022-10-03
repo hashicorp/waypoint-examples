@@ -1,7 +1,7 @@
 job "date-system" {
   datacenters = ["dc1"]
 
-  type = "batch"
+  type = "system"
 
   periodic {
     // Launch every 20 seconds

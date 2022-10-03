@@ -16,7 +16,7 @@ public class WaypointApplication {
 	@RequestMapping("/")
 	String index() {
 		String test = "testing git polling. does this work?";
-		String again = "testing polling with data source. Does this work?"
+		String again = "testing polling with data source. Does this work?";
 
 	  return test + "index";
 	}

@@ -16,7 +16,7 @@ app "web" {
   }
 
   deploy {
-    use "docker" {
+    use "kubernetes" {
     }
   }
 }

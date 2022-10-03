@@ -15,7 +15,10 @@ public class WaypointApplication {
 
 	@RequestMapping("/")
 	String index() {
-	  return "index";
+		String test = "test";
+
+	  return test + "index";
 	}
+	
 
 }

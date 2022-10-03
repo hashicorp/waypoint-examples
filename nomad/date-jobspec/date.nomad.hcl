@@ -3,14 +3,6 @@ job "date-system" {
 
   type = "system"
 
-  periodic {
-    // Launch every 20 seconds
-    cron = "*/20 * * * * * *"
-
-    // Do not allow overlapping runs.
-    prohibit_overlap = true
-  }
-
   group "date-group" {
     count = 1
     network {

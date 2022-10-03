@@ -24,6 +24,7 @@ app "date" {
         auth {
           username = var.username
           password = var.password
+        }
       }
     }
   }

@@ -19,8 +19,11 @@ app "date" {
     }
     registry {
       use "docker" {
-        image = "localhost:5000/date-busybox"
+        image = "devopspaladin/date-busybox"
         tag   = "latest"
+        auth {
+          username = var.username
+          password = var.password
       }
     }
   }
@@ -30,4 +33,14 @@ app "date" {
       jobspec = templatefile("${path.app}/date.nomad.hcl")
     }
   }
+}
+
+variable "username" {
+  type = string
+  sensitive = true
+}
+
+variable "password" {
+  type = string
+  sensitive = true
 }

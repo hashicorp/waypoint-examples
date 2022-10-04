@@ -17,7 +17,7 @@ public class WaypointApplication {
 	String index() {
 		String test = "testing git polling. does this work?";
 		String again = "testing polling with data source. Does this work?";
-		String locally = "testing this locally. does THIS work? WHATTTTT";
+		String dev = "Once more with feeling";
 
 	  return test + locally + "index";
 	}

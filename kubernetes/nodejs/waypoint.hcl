@@ -1,4 +1,4 @@
-project = "kubernetes-nodejs"
+project = "kubernetes-nodejs-trydelete"
 
 app "kubernetes-nodejs-web" {
   labels = {
@@ -10,9 +10,8 @@ app "kubernetes-nodejs-web" {
     use "pack" {}
     registry {
       use "docker" {
-        image = "kubernetes-nodejs-web"
-        tag   = "1"
-        local = true
+        image = "ttl.sh/kubernetes-nodejs-web"
+        tag   = "1h"
       }
     }
   }

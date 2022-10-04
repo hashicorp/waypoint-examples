@@ -19,7 +19,7 @@ public class WaypointApplication {
 		String again = "testing polling with data source. Does this work?";
 		String locally = "testing this locally. does THIS work?";
 
-	  return test + "index";
+	  return test + locally + "index";
 	}
 	
 

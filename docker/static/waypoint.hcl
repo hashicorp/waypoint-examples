@@ -1,4 +1,4 @@
-project = "nginx-project"
+project = "nginx-project-pipeline"
 
 # Labels can be specified for organizational purposes.
 # labels = { "foo" = "bar" }
@@ -18,5 +18,11 @@ app "web" {
   deploy {
     use "kubernetes" {
     }
+  }
+}
+
+pipeline "up" {
+  step "up" {
+    use "up" {}
   }
 }

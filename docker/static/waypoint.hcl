@@ -5,6 +5,10 @@ project = "nginx-project-pipeline"
 
 
 app "web" {
+
+  runner {
+    profile = "local-docker"
+  }
   build {
     use "docker" {}
     registry {
@@ -16,7 +20,7 @@ app "web" {
   }
 
   deploy {
-    use "kubernetes" {
+    use "docker" {
     }
   }
 }

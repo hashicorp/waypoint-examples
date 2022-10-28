@@ -98,14 +98,14 @@ Specifically note that:
 ### Example: Creating a production build
 
 Users can then use the dev image with the `docker-pull` plugin by using another
-wpvars file which adds the `pull_` variables and changes the `push_` variables.
-In this example, the values use for `push_` variables in `dev.wpvars` are now
-the values used for the `pull_` variable values, and new `push_` variables are
-used. Technically they could be the same values for both, as the `push_tag` and
-`pull_tag` are not overridden in either wpvar files and are coded in the
-`waypoint.hcl` file. This was done to ensure default workspace builds push with
-the `dev` tag and production workspace builds pull with the `dev` tag and push
-with the `latest` tag.
+wpvars file, `prod.wpvars`, which adds the `pull_` variables and changes the
+`push_` variables. In this example, the values use for `push_` variables in
+`dev.wpvars` are now the values used for the `pull_` variable values, and new
+`push_` values are added in the `prod.wpvars` file. Technically they could be
+the same values for both, as the `push_tag` and `pull_tag` are not overridden in
+either wpvar files and are coded in the `waypoint.hcl` file. This was done to
+ensure default workspace builds push with the `dev` tag and production workspace
+builds pull with the `dev` tag and push with the `latest` tag.
 
 ```
 # prod.wpvars 

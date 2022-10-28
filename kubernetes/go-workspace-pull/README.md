@@ -16,11 +16,14 @@ The included `waypoint.hcl` file contains several variables with defaults, but
 users will need to supply their own registry credentials. It is not recommended
 to include credentials in the `waypoint.hcl` file itself, instead an easy way to
 try this example would be to create a local `wpvars` files and use them when
-running `waypoint` commands. 
+running `waypoint` commands. Technically users could use the same registry,
+credentials, and image for this example, so long as the tag value changes
+between production and development to ensure `dev` and `prod` workspaces aren't
+pushing and pulling to the same image. 
 
 ### Example: Creating a development build
 
-Create the initial development build using the `ex.wpvars` file like so:
+Create the initial development build using the `dev.wpvars` file like so:
 
 ```
 # dev.wpvars 
@@ -170,3 +173,4 @@ Specifically note that:
  - The output from Kaniko demonstrates simply pulling the image 
  - the `SOURCE` for the `push_` and `pull_` variables are read from file
  - In `prod.wpvars` the `pull_` values should match the `push_` values from `dev.wpvars`
+

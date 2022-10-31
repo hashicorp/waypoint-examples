@@ -129,10 +129,8 @@ $ waypoint build -workspace=production -var-file=prod.wpvars
   Performing operation on "kubernetes" with runner profile "01GGACDWSQZ1BR3TNR8EW0KY1A"
 
 » Cloning data from Git
-  URL: https://github.com/hashicorp/waypoint-examples.git
-  Ref: go-workspace-pull
-
-» Downloading from Git
+         URL: https://github.com/hashicorp/waypoint-examples.git
+         Ref: go-workspace-pull
   Git Commit: a59c6a6a518bc22259db35cc0ba02b1dd56d4483
    Timestamp: 2022-10-28 17:19:00 +0000 UTC
      Message: more updates

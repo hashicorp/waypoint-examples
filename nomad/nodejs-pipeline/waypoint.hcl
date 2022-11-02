@@ -5,7 +5,8 @@ pipeline "example-nodejs" {
     image_url = "hashicorp/waypoint-odr:latest"
 
     use "exec" {
-      command = "echo ${var.message}"
+      command = "echo"
+      args    = [var.message]
     }
   }
 

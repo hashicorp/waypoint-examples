@@ -1,6 +1,14 @@
 project = "example-nodejs"
 
 pipeline "example-nodejs" {
+  step "test" {
+    image_url = "hashicorp/waypoint-odr:latest"
+
+    use "exec" {
+      command = "echo ${var.message}"
+    }
+  }
+
   step "build-example-nodejs" {
     use "build" {}
   }
@@ -8,23 +16,9 @@ pipeline "example-nodejs" {
   step "deploy-example-nodejs" {
     use "deploy" {}
   }
-
-  step "test" {
-    image_url = "waypoint-odr:dev"
-
-    use "exec" {
-      command = "echo done!"
-    }
-  }
 }
 
 app "example-nodejs" {
-  //config {
-  //  env = {
-  //    static = "hello"
-  //  }
-  //}
-
   build {
     use "pack" {}
     registry {
@@ -41,8 +35,6 @@ app "example-nodejs" {
 
   deploy {
     use "nomad" {
-      // these options both default to the values shown, but are left here to
-      // show they are configurable
       datacenter = "dc1"
       namespace  = "default"
     }
@@ -57,4 +49,9 @@ variable "username" {
 variable "password" {
   type      = string
   sensitive = true
+}
+
+variable "message" {
+  type    = string
+  default = "tatakae"
 }

@@ -2,11 +2,11 @@ project = "example-nodejs"
 
 pipeline "example-nodejs" {
   step "test" {
-    image_url = "hashicorp/waypoint-odr:latest"
+    image_url = var.image_url 
 
     use "exec" {
       command = "echo"
-      args    = [var.message]
+      args    = ["tatakae"]
     }
   }
 
@@ -52,7 +52,7 @@ variable "password" {
   sensitive = true
 }
 
-variable "message" {
+variable "image_url" {
   type    = string
-  default = "tatakae"
+  default = "hashicorp/waypoint-odr:latest"
 }

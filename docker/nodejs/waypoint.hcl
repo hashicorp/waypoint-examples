@@ -1,6 +1,6 @@
-project = "example-nodejs"
+project = "amy-example-nodejs"
 
-app "example-nodejs" {
+app "amy-example-nodejs" {
   labels = {
     "service" = "example-nodejs",
     "env"     = "dev"

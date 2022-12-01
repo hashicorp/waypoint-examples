@@ -16,10 +16,10 @@ runner {
 
 variable "image" {
   default = dynamic("packer", {
-    bucket         = "nginx"
-    channel        = "base"
-    region         = "docker"
-    cloud_provider = "docker"
+    bucket  = "nginx"
+    channel = "base"
+    region  = "docker"
+    cloud   = "docker"
   })
   type        = string
   description = "The name of the base image to use for building app Docker images."

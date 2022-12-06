@@ -1,6 +1,6 @@
 project = "example-java"
 
-pipeline "test" {
+pipeline "tester" {
   step "build" {
     use "build" {
       disable_push = true

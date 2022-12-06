@@ -1,15 +1,12 @@
 project = "kubernetes-java"
 
-pipeline "xx-test" {
-  step "fluff" {
-    use "exec" {
-      command = "echo"
-      args    = ["hello world!"]
-    }
-  }
-  step "build" {
+pipeline "nested" {
+ step "build" {
     use "build" {}
   }
+ step "deploy" {
+   use "deploy" {}
+ }
 }
 
 app "kubernetes-java-app" {

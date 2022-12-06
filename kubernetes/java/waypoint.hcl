@@ -1,6 +1,19 @@
 project = "kubernetes-java"
 
+pipeline "xx-test" {
+  step "fluff" {
+    use "exec" {
+      command = "echo"
+      args    = ["hello world!"]
+    }
+  }
+  step "build" {
+    use "build" {}
+  }
+}
+
 app "kubernetes-java-app" {
+  
   build {
     use "pack" {
       builder="gcr.io/buildpacks/builder:v1"

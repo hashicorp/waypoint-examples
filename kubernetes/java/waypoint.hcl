@@ -13,15 +13,15 @@ app "kubernetes-java-app" {
   
   build {
     use "pack" {
-      builder="gcr.io/buildpacks/builder:v1"
+      builder="gcr.io/buildpacks/builder:latest"
     }
     registry {
-      use "docker" {
-        image = "kubernetes-java-app"
+      use "aws-ecr" {
+        repository = "xx/tester"
         tag   = "1"
-        local = true
+        region = "us-east-1"
       }
-    }
+   }
   }
 
   deploy {

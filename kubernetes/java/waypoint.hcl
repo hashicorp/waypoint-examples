@@ -12,16 +12,13 @@ pipeline "nested" {
 app "kubernetes-java-app" {
   
   build {
-    use "pack" {
-      builder="gcr.io/buildpacks/builder:latest"
-    }
+    use "pack" {}
     registry {
-      use "aws-ecr" {
-        repository = "xx/tester"
-        tag   = "1"
-        region = "us-east-1"
-      }
-   }
+      use "docker" {
+        image = "registry.services.demophoon.com/xxtest"
+        tag   = "latest"
+      }  
+    }
   }
 
   deploy {

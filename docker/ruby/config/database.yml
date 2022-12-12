@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 # PostgreSQL. Versions 8.2 and up are supported.
 #
 # Install the pg driver:

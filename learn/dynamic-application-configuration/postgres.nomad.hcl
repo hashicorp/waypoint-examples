@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 job "postgres" {
   region      = "global"
   datacenters = ["dc1"]

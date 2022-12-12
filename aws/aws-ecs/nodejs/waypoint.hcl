@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 project = "aws-ecs-nodejs"
 
 app "ecs-nodejs-web" {

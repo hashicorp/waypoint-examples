@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 project = "kubernetes-nodejs-ingress"
 
 app "nodejs-ingress-app" {

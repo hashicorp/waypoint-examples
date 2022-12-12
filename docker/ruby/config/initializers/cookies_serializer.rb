@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 # Be sure to restart your server when you modify this file.
 
 # Specify a serializer for the signed and encrypted cookie jars.

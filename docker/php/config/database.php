@@ -1,4 +1,7 @@
 <?php
+// Copyright (c) HashiCorp, Inc.
+// SPDX-License-Identifier: MPL-2.0
+
 
 use Illuminate\Support\Str;
 

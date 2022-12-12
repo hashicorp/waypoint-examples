@@ -1,4 +1,7 @@
 <?php
+// Copyright (c) HashiCorp, Inc.
+// SPDX-License-Identifier: MPL-2.0
+
 
 /**
  * Laravel - A PHP Framework For Web Artisans

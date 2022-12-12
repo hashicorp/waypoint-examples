@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000

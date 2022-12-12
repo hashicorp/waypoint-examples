@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //

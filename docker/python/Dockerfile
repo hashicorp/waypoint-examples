@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 FROM ubuntu:20.04
 
 ENV LC_ALL=C.UTF-8

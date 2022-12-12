@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 project = "kubernetes-go-gitops-0"
 
 variable "image" {

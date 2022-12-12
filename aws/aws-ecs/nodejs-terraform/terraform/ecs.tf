@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 resource "aws_kms_key" "ecs" {
   description             = "${var.name}-ecs"
   deletion_window_in_days = 7

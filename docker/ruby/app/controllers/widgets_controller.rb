@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 class WidgetsController < ApplicationController
   before_action :set_widget, only: [:show, :edit, :update, :destroy]
 

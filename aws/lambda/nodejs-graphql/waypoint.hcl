@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 project = "waypoint-apollo-lambda"
 
 app "waypoint-apollo-lambda-function" {

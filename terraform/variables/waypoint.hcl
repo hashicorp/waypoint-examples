@@ -1,6 +1,6 @@
-project = "tfc-test"
+project = "waypoint_tfc_vars_example"
 
-app "tfc-test" {
+app "waypoint_tfc_vars_example" {
   build {
     use "docker" {
     }

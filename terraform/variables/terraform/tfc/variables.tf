@@ -4,7 +4,7 @@ variable "tfc_org_name" {
 }
 
 variable "tfc_token" {
-  description = "The token used to authenticate with Terraform Cloud"
+  description = "The token used to authenticate with Terraform Cloud."
   type        = string
   sensitive   = true
 }

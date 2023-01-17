@@ -164,7 +164,7 @@ using `waypoint runner agent` (and you have no other runners), add `-local=false
 remote execution on that runner. 
 
 ```shell
-$ wp up -local=false
+$ waypoint up -local=false
 
 ...
 

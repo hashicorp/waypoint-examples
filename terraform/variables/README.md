@@ -9,8 +9,8 @@
 
 This example demonstrates sourcing output variables from Terraform Cloud for use in a Waypoint config.
 
-For example, it's possible to create resources like aws VPCs, ecs clusters, and subnets in Terraform,
-define them as Terraform outputs, and then reference them directly in Waypoint config.
+For example, it's possible to create resources like AWS VPCs, AWS/ECS clusters, and subnets in Terraform,
+define them as Terraform outputs, and then reference them directly in a Waypoint config.
 
 This example is intended to be a minimalist demonstration of referencing Terraform outputs, not a full
 real-world use-case. It creates static Terraform output variables of various types (string, list, and map), and then references

@@ -111,7 +111,7 @@ runner will have access to docker on your laptop, which is where we'll be deploy
 
 #### Waypoint Terraform Configsourcer Config
 
-Waypoint needs to know how to talk to Terraform cloud at runtime to source the outputs. 
+Waypoint needs to know how to talk to Terraform Cloud at runtime to source the outputs. 
 To accomplish this, run:
 
 ```shell

@@ -7,7 +7,7 @@
 |Language| n/a                                                                                  |
 |Docs| [Terraform Cloud](https://developer.hashicorp.com/waypoint/plugins/terraform-cloud)                     |
 
-This example demonstrates sourcing output variables from Terraform cloud for use in Waypoint config.
+This example demonstrates sourcing output variables from Terraform Cloud for use in a Waypoint config.
 
 For example, it's possible to create resources like aws VPCs, ecs clusters, and subnets in Terraform,
 define them as Terraform outputs, and then reference them directly in Waypoint config.

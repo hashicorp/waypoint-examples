@@ -14,7 +14,7 @@ define them as Terraform outputs, and then reference them directly in a Waypoint
 
 This example is intended to be a minimalist demonstration of referencing Terraform outputs, not a full
 real-world use-case. It creates static Terraform output variables of various types (string, list, and map), and then references
-them in local docker deployment config.
+them in local Docker deployment config.
 
 ## Terraform Setup
 

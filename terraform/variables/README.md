@@ -107,7 +107,7 @@ pointing to this server.
 Waypoint remote runners are required to use variables with dynamic defaults. HCP Waypoint will 
 walk you through installing a remote runner into your infrastructure. If you don't have
 a runner already, you can run `waypoint runner agent` in a separate terminal window. This
-runner will have access to docker on your laptop, which is where we'll be deploying.
+runner will have access to Docker on your laptop, which is where we'll be deploying.
 
 #### Waypoint Terraform Configsourcer Config
 
@@ -159,7 +159,7 @@ $ waypoint project apply \
 
 ## Running the deployment
 
-Run `waypoint up` to build and deploy a docker container. If you're running a runner locally
+Run `waypoint up` to build and deploy a Docker container. If you're running a runner locally
 using `waypoint runner agent` (and you have no other runners), add `-local=false` to force
 remote execution on that runner. 
 
@@ -173,9 +173,9 @@ The deploy was successful!
 
 ## Inspecting the variable usage
 
-The variables were used to configure the docker container. 
+The variables were used to configure the Docker container. 
 
-Use docker inspect to find the deployed container:
+Use `docker inspect` to find the deployed container:
 
 ```shell
 $ docker ps
@@ -184,7 +184,7 @@ CONTAINER ID   IMAGE                                             COMMAND        
 
 ```
 
-And then inspect to see the tfc configvars. Only the environment and labels contain tfc config.
+And then inspect to see the TFC configvars. Only the environment and labels contain TFC config.
 
 ```shell
 $ docker inspect 589d62b07137 | jq '.[0].Config | with_entries(select([.key] | inside(["Env", "Labels"])))'
@@ -202,4 +202,4 @@ $ docker inspect 589d62b07137 | jq '.[0].Config | with_entries(select([.key] | i
 }
 ```
 
-Notice that the TFC variables have been injected into the docker deployment config!
+Notice that the TFC variables have been injected into the Docker deployment config!

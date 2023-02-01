@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 output "simple_string" {
   description = "a simple string output"
   value       = "tfc_output_string"

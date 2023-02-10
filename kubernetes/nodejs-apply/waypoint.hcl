@@ -29,6 +29,11 @@ app "apply-nodejs-web" {
       // This label determines what resources we own. Any that aren't present
       // in our folder that match this label will be deleted.
       prune_label = "app=myapp"
+
+      // This is a list of Kubernetes Objects that are allowed to be pruned.
+      // Specify them as group/version/kind (e.g: apps/v1/Deployment).
+      // See https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply --prune-allowlist
+      prune_whitelist = ["apps/v1/Deployment"]
     }
   }
 }

@@ -15,7 +15,7 @@ app "example-nodejs" {
       use "docker" {
         image    = "localhost:6000/alpha-node"
         tag      = "latest"
-        local    = true
+        local    = false
       }
     }
   }

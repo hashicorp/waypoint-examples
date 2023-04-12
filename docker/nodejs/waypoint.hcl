@@ -11,6 +11,13 @@ app "example-nodejs" {
 
   build {
     use "pack" {}
+    registry {
+      use "docker" {
+        image    = "alpha-node"
+        tag      = "latest"
+        local    = true
+      }
+    }
   }
 
   deploy {

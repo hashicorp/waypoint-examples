@@ -16,7 +16,7 @@ app "example-nodejs" {
         # image    = "localhost:6000/alpha-node"
         image    = "alpha-node"
         tag      = "latest"
-        local    = false
+        local    = true
       }
     }
   }

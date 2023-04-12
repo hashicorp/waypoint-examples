@@ -13,9 +13,9 @@ app "example-nodejs" {
     use "pack" {}
     registry {
       use "docker" {
-        image    = "alpha-node"
+        image    = "localhost:6000/alpha-node"
         tag      = "latest"
-        # local    = true
+        local    = true
       }
     }
   }

@@ -17,3 +17,13 @@ app "example-nodejs" {
     use "docker" {}
   }
 }
+
+runner {
+  enabled = true
+
+  data_source "git" {
+    url  = "https://github.com/hashicorp/waypoint-examples.git"
+    path = "docker/nodejs"
+    ref = "test-alpha"
+  }
+}

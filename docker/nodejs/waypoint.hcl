@@ -14,7 +14,7 @@ app "example-nodejs" {
     registry {
       use "docker" {
         # image    = "localhost:6000/alpha-node"
-        image    = "localhost:6000/alpha-node"
+        image    = "192.168.147.241:6000/alpha-node"
         tag      = "latest"
         local    = true
       }

@@ -83,8 +83,8 @@ variable "registry_password" {
 }
 
 variable "regcred_secret" {
-  # default     = "registrycreds"
-  default     = "regcreds"
+  default     = "registrycreds"
+  # default     = "regcreds"
   type        = string
   description = "The existing secret name inside Kubernetes for authenticating to the container registry"
 }

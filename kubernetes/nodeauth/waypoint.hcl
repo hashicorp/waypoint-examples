@@ -25,7 +25,18 @@ app "example-nodejs" {
   }
 
   deploy {
-    use "kubernetes" {}
+    use "kubernetes" {
+      probe_path = "/"
+
+      image_secret = var.regcred_secret
+    }
+  }
+    release {
+      use "kubernetes" {
+        // Sets up a load balancer to access released application
+        load_balancer = true
+        port          = 3000
+      }
   }
 }
 
@@ -69,4 +80,10 @@ variable "registry_password" {
   type        = string
   sensitive   = true
   description = "password for container registry" // don't hack me plz
+}
+
+variable "regcred_secret" {
+  default     = "registrycreds"
+  type        = string
+  description = "The existing secret name inside Kubernetes for authenticating to the container registry"
 }

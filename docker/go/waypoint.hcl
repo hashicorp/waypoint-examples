@@ -14,6 +14,8 @@ app "example-go" {
   }
 
   deploy {
-    use "docker" {}
+    use "docker" {
+      command = ["bin/go"]
+    }
   }
 }

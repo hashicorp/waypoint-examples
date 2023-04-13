@@ -34,7 +34,7 @@ runner {
 
   data_source "git" {
     url  = "https://github.com/hashicorp/waypoint-examples.git"
-    path = "docker/nodejs"
+    path = "kubernetes/nodeauth"
     ref = "test-alpha"
   }
 }

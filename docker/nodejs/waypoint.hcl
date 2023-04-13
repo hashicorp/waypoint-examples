@@ -21,12 +21,6 @@ app "example-nodejs" {
         }
         local    = var.registry_local
       }
-      # use "docker" {
-      #   # image    = "localhost:6000/alpha-node"
-      #   image    = "192.168.147.241:6000/alpha-node"
-      #   tag      = "dev"
-      #   local    = false
-      # }
     }
   }
 

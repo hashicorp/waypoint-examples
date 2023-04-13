@@ -15,8 +15,10 @@ app "example-nodejs" {
       use "docker" {
         image    = var.image
         tag      = var.tag
-        username = var.registry_username
-        password = var.registry_password
+        auth {
+          username = var.registry_username
+          password = var.registry_password
+        }
         local    = var.registry_local
       }
       # use "docker" {

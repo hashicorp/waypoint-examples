@@ -3,7 +3,7 @@ terraform {
     organization = "hcp_waypoint_integration"
 
     workspaces {
-      name    = "waypoint-templating-advanced-example-day-zero-infra"
+      name = "waypoint-templating-advanced-example-day-zero-infra"
     }
   }
   required_providers {
@@ -14,6 +14,13 @@ terraform {
 
     datadog = {
       source = "datadog/datadog"
+    }
+
+    # TODO: Update this to use the officially published provider when
+    # multi-org/project is supported
+    hcp = {
+      source  = "localhost/providers/hcp"
+      version = "0.0.1"
     }
   }
 }

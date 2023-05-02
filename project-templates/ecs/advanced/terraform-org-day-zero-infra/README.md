@@ -1,3 +1,9 @@
-# terraform-aws-example-network
+# terraform-org-day-zero-infra
 
-A terraform example module that defines what an environment look like from a networking perspective.
+This Terraform module creates resources using several providers to establish
+the foundation of the solution architecture for an organization. This includes:
+
+- AWS VPC
+- AWS ECS cluster
+- DataDog integration with AWS
+- HCP Vault clusters

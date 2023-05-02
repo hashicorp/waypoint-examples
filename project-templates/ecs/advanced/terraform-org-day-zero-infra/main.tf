@@ -69,8 +69,46 @@ resource "aws_iam_openid_connect_provider" "github_aws_oidc_auth_provider" {
 ### Telemetry resources ###
 # https://docs.datadoghq.com/integrations/guide/aws-terraform-setup/
 # TODO: Check telegraf and/or prometheus exporter
-# TODO: Move to day 0 code
 resource "datadog_integration_aws" "aws_integration" {
   account_id = var.aws_account_id
   role_name  = "DatadogAWSIntegrationRole"
 }
+
+### Secrets Resources ###
+resource "hcp_hvn" "hcp_waypoint_testing_hvn" {
+  hvn_id         = "hcp-waypoint-testing-hvn"
+  cloud_provider = "aws"
+  region         = "us-east-2"
+}
+
+resource "hcp_vault_cluster" "dev_vault_cluster" {
+  cluster_id      = "dev-vault-cluster"
+  hvn_id          = hcp_hvn.hcp_waypoint_testing_hvn.hvn_id
+  tier            = "standard_large"
+  public_endpoint = true
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+# NOTE: Expires after 6 hours
+resource "hcp_vault_cluster_admin_token" "dev_vault_cluster_admin_token" {
+  cluster_id = hcp_vault_cluster.dev_vault_cluster.cluster_id
+}
+
+resource "hcp_vault_cluster" "prod_vault_cluster" {
+  cluster_id      = "prod-vault-cluster"
+  hvn_id          = hcp_hvn.hcp_waypoint_testing_hvn.hvn_id
+  tier            = "standard_large"
+  public_endpoint = true
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+# NOTE: Expires after 6 hours
+resource "hcp_vault_cluster_admin_token" "prod_vault_cluster_admin_token" {
+  cluster_id = hcp_vault_cluster.prod_vault_cluster.cluster_id
+}
+
+# TODO: Use TFE provider to add tokens to variable set

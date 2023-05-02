@@ -1,5 +1,5 @@
 variable "project_name" {
-  type = string
+  type        = string
   description = "Name of the Waypoint project"
 }
 
@@ -22,6 +22,6 @@ variable "prod_vault_address" {
 }
 
 variable "aws_account_id" {
-  type = string
+  type      = string
   sensitive = true
 }

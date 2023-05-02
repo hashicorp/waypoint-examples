@@ -1,30 +1,31 @@
 # Creates the app code repo from a template with CI configured for GitHub
 # Actions
 module "ci" {
-  source = "./ci"
+  source    = "./ci"
   repo_name = var.project_name
 }
 
 # Creates dev and prod DBs, as well as a Vault mount for a database secrets
 # engine for just-in-time DB credentials
 module "database" {
-  source = "./database"
+  source   = "./database"
   app_name = var.project_name
 }
 
 # Creates dev and prod Vault resources, which will enable Waypoint to auth to
 # Vault via IAM to retrieve app secrets
 module "secrets" {
-  source = "./secrets"
-  app_name = var.project_name
-  dev_db_secrets_engine_path = module.database.dev_database_secrets_engine_path
-  prod_db_secrets_engine_path = module.database.prod_database_secrets_engine_path
+  source                             = "./secrets"
+  app_name                           = var.project_name
+  dev_db_secrets_engine_policy_name  = module.database.dev_db_secrets_engine_policy_name
+  prod_db_secrets_engine_policy_name = module.database.prod_db_secrets_engine_policy_name
+  aws_account_id                     = var.aws_account_id
 }
 
 # Creates dashboards and alerts
 module "telemetry" {
-  source = "./telemetry"
-  app_name = var.project_name
+  source         = "./telemetry"
+  app_name       = var.project_name
   aws_account_id = var.aws_account_id
 }
 
@@ -52,10 +53,10 @@ module "dev" {
   log_group_name   = data.terraform_remote_state.microservice-infra-dev-us-east-1.outputs.log_group_name
 
   tags = {
-    env       = "dev"
-    corp      = "acmecorp"
-    workload  = "microservice"
-    project   = var.project_name
+    env      = "dev"
+    corp     = "acmecorp"
+    workload = "microservice"
+    project  = var.project_name
   }
 }
 
@@ -83,9 +84,9 @@ module "prod" {
   log_group_name   = data.terraform_remote_state.microservice-infra-prod-us-east-1.outputs.log_group_name
 
   tags = {
-    env       = "prod"
-    corp      = "acmecorp"
-    workload  = "microservice"
-    project   = var.project_name
+    env      = "prod"
+    corp     = "acmecorp"
+    workload = "microservice"
+    project  = var.project_name
   }
 }

@@ -1,11 +1,11 @@
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
+      source = "hashicorp/aws"
     }
 
     github = {
-      source  = "integrations/github"
+      source = "integrations/github"
     }
 
     datadog = {

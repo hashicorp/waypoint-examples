@@ -1,30 +1,19 @@
 terraform {
   cloud {
-    workspaces {
-      organization = "hcp_waypoint_integration"
-      workspace    = "waypoint-templating-advanced-example-microservice-infra"
-    }
-  }
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.6"
-    }
-  }
-}
-
-terraform {
-  cloud {
     organization = "hcp_waypoint_integration"
 
     workspaces {
-      name = "waypoint-templating-advanced-example-network-infra"
+      name    = "waypoint-templating-advanced-example-day-zero-infra"
     }
   }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 4.6"
+    }
+
+    datadog = {
+      source = "datadog/datadog"
     }
   }
 }

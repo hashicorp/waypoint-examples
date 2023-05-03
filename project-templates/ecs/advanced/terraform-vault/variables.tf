@@ -15,7 +15,3 @@ variable "dev_vault_address" {
 variable "prod_vault_address" {
   type = string
 }
-
-variable "aws_account_id" {
-  type = string
-}

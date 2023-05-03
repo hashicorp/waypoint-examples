@@ -4,32 +4,44 @@ output "region" {
 }
 
 output "vpc_id" {
-  value       = module.vpc.vpc_id
+  value = {
+    for key, vpc in module.vpc : key => vpc.vpc_id
+  }
   description = "vpc id"
 }
 
 output "public_subnets" {
-  value       = module.vpc.public_subnets
+  value = {
+    for key, vpc in module.vpc : key => vpc.public_subnets
+  }
   description = "vpc public subnets"
 }
 
 output "private_subnets" {
-  value       = module.vpc.private_subnets
+  value = {
+    for key, vpc in module.vpc : key => vpc.private_subnets
+  }
   description = "vpc private subnets"
 }
 
 output "internal_security_group_id" {
-  value       = aws_security_group.internal.id
+  value = {
+    for key, sg in aws_security_group.internal : key => sg.name
+  }
   description = "vpc internal security group id"
 }
 
 output "ecs_cluster_name" {
-  value       = module.ecs.cluster_name
+  value = {
+    for key, ecs in module.ecs : key => ecs.cluster_name
+  }
   description = "ECS cluster name"
 }
 
 output "log_group_name" {
-  value       = aws_cloudwatch_log_group.services.name
+  value = {
+    for key, service in aws_cloudwatch_log_group.services : key => service.name
+  }
   description = "log group name for services running on this cluster"
 }
 

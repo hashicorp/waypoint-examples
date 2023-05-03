@@ -1,3 +1,11 @@
+variable "environments" {
+  type = set(string)
+  default = [
+    "dev",
+    "prod"
+  ]
+}
+
 variable "region" {
   type    = string
   default = "us-east-1"

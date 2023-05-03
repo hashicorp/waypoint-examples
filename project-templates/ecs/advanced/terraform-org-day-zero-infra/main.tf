@@ -1,9 +1,11 @@
 ### Networking resources ###
 module "vpc" {
+  for_each = var.environments
+
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.18.1"
 
-  name = var.vpc_name
+  name = "${var.vpc_name}-${each.key}"
   cidr = "172.31.0.0/16"
 
   azs             = ["us-east-1a", "us-east-1b", "us-east-1c", "us-east-1d", "us-east-1e", "us-east-1f"]
@@ -17,9 +19,11 @@ module "vpc" {
 }
 
 resource "aws_security_group" "internal" {
+  for_each = module.vpc
+
   name        = "internal"
   description = "Allow all internal traffic"
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = each.value.vpc_id
 
   # Allow egress to anything
   egress {
@@ -45,19 +49,24 @@ resource "aws_security_group" "internal" {
 
 ### Microservice resources ###
 module "ecs" {
+  for_each = var.environments
+
   source  = "terraform-aws-modules/ecs/aws"
   version = "4.1.2"
 
-  cluster_name = var.cluster_name
+  cluster_name = "${var.cluster_name}-${each.key}"
   tags         = var.ecs_tags
 }
 
 resource "aws_cloudwatch_log_group" "services" {
-  name              = "ecs_cluster_${var.cluster_name}"
+  for_each = module.ecs
+
+  name              = "ecs_cluster_${each.value.cluster_name}"
   tags              = var.ecs_tags
   retention_in_days = 7
 }
 
+# https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services#adding-the-identity-provider-to-aws
 resource "aws_iam_openid_connect_provider" "github_aws_oidc_auth_provider" {
   url            = "https://token.actions.githubusercontent.com"
   client_id_list = ["sts.amazonaws.com"]
@@ -86,9 +95,7 @@ resource "hcp_vault_cluster" "dev_vault_cluster" {
   hvn_id          = hcp_hvn.hcp_waypoint_testing_hvn.hvn_id
   tier            = "standard_large"
   public_endpoint = true
-  lifecycle {
-    prevent_destroy = true
-  }
+  #
 }
 
 # NOTE: Expires after 6 hours
@@ -101,9 +108,6 @@ resource "hcp_vault_cluster" "prod_vault_cluster" {
   hvn_id          = hcp_hvn.hcp_waypoint_testing_hvn.hvn_id
   tier            = "standard_large"
   public_endpoint = true
-  lifecycle {
-    prevent_destroy = true
-  }
 }
 
 # NOTE: Expires after 6 hours

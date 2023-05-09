@@ -8,13 +8,26 @@ module "ci" {
 # Creates dev and prod DBs, as well as a Vault mount for a database secrets
 # engine for just-in-time DB credentials
 module "database" {
-  source   = "./database"
-  app_name = var.project_name
+  providers = {
+    vault.dev  = vault.dev
+    vault.prod = vault.prod
+  }
+  source          = "./database"
+  app_name        = var.project_name
+  dev_db_subnets  = data.terraform_remote_state.org_day_zero_infra.outputs.database_subnets["dev"]
+  prod_db_subnets = data.terraform_remote_state.org_day_zero_infra.outputs.database_subnets["prod"]
+  dev_vpc_id      = data.terraform_remote_state.org_day_zero_infra.outputs.vpc_id["dev"]
+  prod_vpc_id     = data.terraform_remote_state.org_day_zero_infra.outputs.vpc_id["prod"]
+  vault_cidr      = data.terraform_remote_state.org_day_zero_infra.outputs.hvn_cidr_block
 }
 
 # Creates dev and prod Vault resources, which will enable Waypoint to auth to
 # Vault via IAM to retrieve app secrets
 module "secrets" {
+  providers = {
+    vault.dev  = vault.dev
+    vault.prod = vault.prod
+  }
   source                             = "./secrets"
   app_name                           = var.project_name
   dev_db_secrets_engine_policy_name  = module.database.dev_db_secrets_engine_policy_name
@@ -45,12 +58,12 @@ module "dev" {
   create_ecr   = false # Prod creates the ecr registry
 
   # Existing infrastructure
-  aws_region       = "us-east-1"
-  vpc_id           = data.terraform_remote_state.networking-dev-us-east-1.outputs.vpc_id
-  public_subnets   = data.terraform_remote_state.networking-dev-us-east-1.outputs.private_subnets
-  private_subnets  = data.terraform_remote_state.networking-dev-us-east-1.outputs.public_subnets
-  ecs_cluster_name = data.terraform_remote_state.microservice-infra-dev-us-east-1.outputs.ecs_cluster_name
-  log_group_name   = data.terraform_remote_state.microservice-infra-dev-us-east-1.outputs.log_group_name
+  aws_region       = var.aws_region
+  vpc_id           = data.aws_vpc.dev_vpc.id
+  public_subnets   = data.terraform_remote_state.org_day_zero_infra.outputs.private_subnets["dev"]
+  private_subnets  = data.terraform_remote_state.org_day_zero_infra.outputs.public_subnets["dev"]
+  ecs_cluster_name = data.terraform_remote_state.org_day_zero_infra.outputs.ecs_cluster_name["dev"]
+  log_group_name   = data.terraform_remote_state.org_day_zero_infra.outputs.log_group_name["dev"]
 
   tags = {
     env      = "dev"
@@ -76,12 +89,12 @@ module "prod" {
   create_ecr   = true
 
   # Existing infrastructure
-  aws_region       = "us-east-1"
-  vpc_id           = data.terraform_remote_state.networking-prod-us-east-1.outputs.vpc_id
-  public_subnets   = data.terraform_remote_state.networking-prod-us-east-1.outputs.private_subnets
-  private_subnets  = data.terraform_remote_state.networking-prod-us-east-1.outputs.public_subnets
-  ecs_cluster_name = data.terraform_remote_state.microservice-infra-prod-us-east-1.outputs.ecs_cluster_name
-  log_group_name   = data.terraform_remote_state.microservice-infra-prod-us-east-1.outputs.log_group_name
+  aws_region       = var.aws_region
+  vpc_id           = data.aws_vpc.prod_vpc.id
+  public_subnets   = data.terraform_remote_state.org_day_zero_infra.outputs.private_subnets["prod"]
+  private_subnets  = data.terraform_remote_state.org_day_zero_infra.outputs.public_subnets["prod"]
+  ecs_cluster_name = data.terraform_remote_state.org_day_zero_infra.outputs.ecs_cluster_name["prod"]
+  log_group_name   = data.terraform_remote_state.org_day_zero_infra.outputs.log_group_name["prod"]
 
   tags = {
     env      = "prod"

@@ -1,14 +1,15 @@
 provider "aws" {
   # Set env vars
+  region = var.aws_region
 }
 
 provider "github" {
-  # Set "GITHUB_TOKEN" env var
+  token = var.github_token
 }
-
-provider "datadog" {
-  # Set "DD_API_KEY" env var
-}
+#
+#provider "datadog" {
+#  # Set "DD_API_KEY" env var
+#}
 
 provider "vault" {
   alias   = "dev"

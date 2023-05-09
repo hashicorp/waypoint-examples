@@ -25,3 +25,13 @@ variable "aws_account_id" {
   type      = string
   sensitive = true
 }
+
+variable "github_token" {
+  type        = string
+  sensitive   = true
+  description = "The token used to copy a GitHub repo template for the new Waypoint project's repo."
+}
+
+variable "aws_region" {
+  default = "us-east-2"
+}

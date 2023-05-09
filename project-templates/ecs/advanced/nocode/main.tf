@@ -1,12 +1,12 @@
 # Creates the app code repo from a template with CI configured for GitHub
 # Actions
-#module "ci" {
-#  source             = "./ci"
-#  repo_name          = var.project_name
-#  template_repo_name = "waypoint-template-go-protobuf-api"
-#  github_org_name    = "HashiCorp-Sandbox"
-#  github_token       = var.github_token
-#}
+module "ci" {
+  source             = "./ci"
+  repo_name          = var.project_name
+  template_repo_name = "waypoint-template-go-protobuf-api"
+  github_org_name    = "HashiCorp-Sandbox"
+  github_token       = var.github_token
+}
 
 # Creates dev and prod DBs, as well as a Vault mount for a database secrets
 # engine for just-in-time DB credentials

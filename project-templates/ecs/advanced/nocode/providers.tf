@@ -4,6 +4,7 @@ provider "aws" {
 }
 
 provider "github" {
+  owner = var.github_repo_owner
   token = var.github_token
 }
 #

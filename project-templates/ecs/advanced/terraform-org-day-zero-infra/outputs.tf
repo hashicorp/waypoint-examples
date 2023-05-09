@@ -24,6 +24,13 @@ output "private_subnets" {
   description = "vpc private subnets"
 }
 
+output "database_subnets" {
+  value = {
+    for key, vpc in module.vpc : key => vpc.database_subnets
+  }
+  description = "vpc database subnets"
+}
+
 output "internal_security_group_id" {
   value = {
     for key, sg in aws_security_group.internal : key => sg.name
@@ -61,4 +68,8 @@ output "prod_vault_url" {
 output "prod_vault_admin_token" {
   value     = hcp_vault_cluster_admin_token.prod_vault_cluster_admin_token.token
   sensitive = true
+}
+
+output "hvn_cidr_block" {
+  value = hcp_hvn.hcp_waypoint_testing_hvn.cidr_block
 }

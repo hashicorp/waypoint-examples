@@ -6,16 +6,32 @@ module "vpc" {
   version = "3.18.1"
 
   name = "${var.vpc_name}-${each.key}"
-  cidr = "172.31.0.0/16"
 
-  azs             = ["us-east-1a", "us-east-1b", "us-east-1c", "us-east-1d", "us-east-1e", "us-east-1f"]
-  private_subnets = ["172.31.0.0/20", "172.31.16.0/20", "172.31.32.0/20", "172.31.48.0/20", "172.31.64.0/20"]
-  public_subnets  = ["172.31.80.0/20", "172.31.96.0/20", "172.31.112.0/20", "172.31.128.0/20", "172.31.144.0/20"]
+  # should dev and prod have the same CIDR block?
+  cidr = var.cidr[each.key]
+
+  azs                        = var.availability_zones
+  private_subnets            = [for k, v in var.availability_zones : cidrsubnet(var.cidr[each.key], 8, k)]
+  public_subnets             = [for k, v in var.availability_zones : cidrsubnet(var.cidr[each.key], 8, k + 4)]
+  database_subnet_group_name = "${each.key}-db"
+  database_subnets           = [for k, v in var.availability_zones : cidrsubnet(var.cidr[each.key], 8, k + 8)]
 
   enable_nat_gateway = true
   single_nat_gateway = true
 
   tags = var.vpc_tags
+}
+
+resource "aws_route" "dev_hcp_hvn_route" {
+  route_table_id = module.vpc["dev"].private_route_table_ids[0]
+  destination_cidr_block = hcp_hvn.hcp_waypoint_testing_hvn.cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection_accepter.dev_peer.id
+}
+
+resource "aws_route" "prod_hcp_hvn_route" {
+  route_table_id = module.vpc["prod"].private_route_table_ids[0]
+  destination_cidr_block = hcp_hvn.hcp_waypoint_testing_hvn.cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection_accepter.prod_peer.id
 }
 
 resource "aws_security_group" "internal" {
@@ -42,7 +58,6 @@ resource "aws_security_group" "internal" {
     protocol    = "-1"
     self        = true
   }
-
   tags = var.vpc_tags
 }
 
@@ -67,21 +82,21 @@ resource "aws_cloudwatch_log_group" "services" {
 }
 
 # https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services#adding-the-identity-provider-to-aws
-resource "aws_iam_openid_connect_provider" "github_aws_oidc_auth_provider" {
-  url            = "https://token.actions.githubusercontent.com"
-  client_id_list = ["sts.amazonaws.com"]
-
-  # Grabbed this from: https://github.blog/changelog/2022-01-13-github-actions-update-on-oidc-based-deployments-to-aws/
-  thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
-}
+#resource "aws_iam_openid_connect_provider" "github_aws_oidc_auth_provider" {
+#  url            = "https://token.actions.githubusercontent.com"
+#  client_id_list = ["sts.amazonaws.com"]
+#
+#  # Grabbed this from: https://github.blog/changelog/2022-01-13-github-actions-update-on-oidc-based-deployments-to-aws/
+#  thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
+#}
 
 ### Telemetry resources ###
 # https://docs.datadoghq.com/integrations/guide/aws-terraform-setup/
 # TODO: Check telegraf and/or prometheus exporter
-resource "datadog_integration_aws" "aws_integration" {
-  account_id = var.aws_account_id
-  role_name  = "DatadogAWSIntegrationRole"
-}
+#resource "datadog_integration_aws" "aws_integration" {
+#  account_id = var.aws_account_id
+#  role_name  = "DatadogAWSIntegrationRole"
+#}
 
 ### Secrets Resources ###
 resource "hcp_hvn" "hcp_waypoint_testing_hvn" {
@@ -90,12 +105,65 @@ resource "hcp_hvn" "hcp_waypoint_testing_hvn" {
   region         = "us-east-2"
 }
 
+resource "aws_security_group" "hcp_vault_sg" {
+  for_each = var.environments
+  name     = "${each.value}-hcp-vault"
+  vpc_id   = module.vpc[each.value].vpc_id
+
+  egress {
+    from_port   = 8200
+    to_port     = 8200
+    protocol    = "TCP"
+    cidr_blocks = [hcp_hvn.hcp_waypoint_testing_hvn.cidr_block]
+  }
+}
+
+# TODO: Use for_each for peering resources
+resource "hcp_aws_network_peering" "dev_vpc_peering" {
+  hvn_id          = hcp_hvn.hcp_waypoint_testing_hvn.hvn_id
+  peer_account_id = module.vpc["dev"].vpc_owner_id
+  peer_vpc_id     = module.vpc["dev"].vpc_id
+  peer_vpc_region = var.region
+  peering_id      = "dev-vault-vpc-peering"
+}
+
+resource "aws_vpc_peering_connection_accepter" "dev_peer" {
+  vpc_peering_connection_id = hcp_aws_network_peering.dev_vpc_peering.provider_peering_id
+  auto_accept               = true
+}
+
+resource "hcp_hvn_route" "dev_vault_peering_route" {
+  hvn_link         = hcp_hvn.hcp_waypoint_testing_hvn.self_link
+  hvn_route_id     = "dev-vault-peering-route"
+  destination_cidr = module.vpc["dev"].vpc_cidr_block
+  target_link      = hcp_aws_network_peering.dev_vpc_peering.self_link
+}
+
+resource "hcp_aws_network_peering" "prod_vpc_peering" {
+  hvn_id          = hcp_hvn.hcp_waypoint_testing_hvn.hvn_id
+  peer_account_id = module.vpc["prod"].vpc_owner_id
+  peer_vpc_id     = module.vpc["prod"].vpc_id
+  peer_vpc_region = var.region
+  peering_id      = "prod-vault-vpc-peering"
+}
+
+resource "aws_vpc_peering_connection_accepter" "prod_peer" {
+  vpc_peering_connection_id = hcp_aws_network_peering.prod_vpc_peering.provider_peering_id
+  auto_accept               = true
+}
+
+resource "hcp_hvn_route" "prod_vault_peering_route" {
+  hvn_link         = hcp_hvn.hcp_waypoint_testing_hvn.self_link
+  hvn_route_id     = "prod-vault-peering-route"
+  destination_cidr = module.vpc["prod"].vpc_cidr_block
+  target_link      = hcp_aws_network_peering.prod_vpc_peering.self_link
+}
+
 resource "hcp_vault_cluster" "dev_vault_cluster" {
   cluster_id      = "dev-vault-cluster"
   hvn_id          = hcp_hvn.hcp_waypoint_testing_hvn.hvn_id
   tier            = "standard_large"
   public_endpoint = true
-  #
 }
 
 # NOTE: Expires after 6 hours
@@ -114,5 +182,3 @@ resource "hcp_vault_cluster" "prod_vault_cluster" {
 resource "hcp_vault_cluster_admin_token" "prod_vault_cluster_admin_token" {
   cluster_id = hcp_vault_cluster.prod_vault_cluster.cluster_id
 }
-
-# TODO: Use TFE provider to add tokens to variable set

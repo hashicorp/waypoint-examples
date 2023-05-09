@@ -6,9 +6,26 @@ variable "environments" {
   ]
 }
 
+variable "availability_zones" {
+  type = list(string)
+  default = [
+    "us-east-2a",
+    "us-east-2b",
+    "us-east-2c"
+  ]
+}
+
+variable "cidr" {
+  type = map(string)
+  default = {
+    dev  = "172.31.0.0/16"
+    prod = "172.30.0.0/16"
+  }
+}
+
 variable "region" {
   type    = string
-  default = "us-east-1"
+  default = "us-east-2"
 }
 
 variable "vpc_name" {

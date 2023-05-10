@@ -7,11 +7,11 @@ Project Templates in HCP Waypoint allow platform engineers to define templates f
 
 In this example, we will configure a project template for AWS ECS microservices with dev and prod environments, and then use it to create and deploy a basic nodejs webapp.
 
-Pre-Requisites
+Pre-Requisites:
 
-AWS Account with Admin Permissions
+- AWS Account with Admin Permissions
 
-Terraform Enterprise Account with No Code Module Enabled.
+- Terraform Enterprise Account with No Code Module Enabled.
 
 ## Initial Setup
 

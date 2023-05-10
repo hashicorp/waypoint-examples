@@ -96,7 +96,7 @@ Next, you will test the application developer workflow by creating a new sample 
 ![img_3.png](../readme-images/waypoint_projects_list_ss.png)
 
    
-4. Select the template you would like to use for this project.
+4. Select the newly created <name> template
 ![img_4.png](../readme-images/waypoint_select_template_ss.png)
  
    

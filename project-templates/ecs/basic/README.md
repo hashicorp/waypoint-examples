@@ -1,6 +1,11 @@
 # HCP Waypoint Project Template Example
 
-This is an example of how to create and use project templating in HCP Waypoint.
+
+This is an example of how a platform engineer can create a project template in HCP Waypoint to allow application developers to quickly bootstrap new applications following organizational standards.
+
+Project Templates in HCP Waypoint allow platform engineers to define templates for waypoint projects. Templates contain a templated waypoint.hcl, which defines the app's deployment workflow, and a Terraform [no-code module](https://developer.hashicorp.com/terraform/tutorials/cloud/no-code-provisioning) which creates app-specific infrastructure. App developers can then create new applications using this template quickly and easily, without needing deep awareness of the underlying infrastructure.
+
+In this example, we will configure a project template for AWS ECS microservices with dev and prod environments, and then use it to create and deploy a basic nodejs webapp.
 
 Pre-Requisites
 

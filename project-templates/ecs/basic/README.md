@@ -57,7 +57,7 @@ If you already have this infrastructure configured, you can jump ahead to [Terra
 ![img_9.png](../readme-images/create_tfc_workspace_ss.png)
 
 
-2. Go to Settings for the created TFC workspaces, Under `Remote State Sharing` allow `Share with all workspaces in this organization`.
+2. Go to Settings for the created TFC workspaces, Under `Remote State Sharing` allow `Share with all workspaces in this organization`. This will allow the no-code module to consume base infrastructure details, like the VPC id and ECS Cluster name.
 ![img_10.png](../readme-images/tfc_remote_sharing_ss.png)
 
 

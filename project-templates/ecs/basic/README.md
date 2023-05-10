@@ -16,7 +16,13 @@ Pre-Requisites:
 ## Initial Setup
 
 ### Terraform Module Creation
+Now that we've created the base shared infrastructure, we can move on to app-specific infrastructure.
 
+Most applications need some long-lived infrastructure, like a container registry and a load balancer. This module gives platform engineers a space to define this app-specific infrastructure for their specific organization.
+
+This example extends Waypoint's [ecs module](https://registry.terraform.io/modules/hashicorp/waypoint-ecs/aws/latest) to create a single global container registry, and resources like an ALB, security group, and IAM role in the dev and prod environments.
+
+This module is an opportunity for platform engineers to get creative and define any other app-specific infrastructure, like  monitoring dashboards or tickets in a ticketing system. 
 TODO(Teresa): Make this repo public.
 
 1. Fork the `hashicorp/terraform-aws-example-microservice-ecs-all-envs` repository in Github [here](https://github.com/hashicorp/terraform-aws-example-microservice-ecs-allenvs)

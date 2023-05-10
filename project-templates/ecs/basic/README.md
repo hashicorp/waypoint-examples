@@ -86,7 +86,13 @@ TODO(Teresa): Replace figma images with proper screenshots once UI is ready.
 
 
 
-3. Return to your Projects List Page. In the top right corner, select `Create Project`. From the dropdown menu, select `Create Project with template`:
+3. Return to your Projects List Page, and notice your newly created template. Application developers can now use this template to bootstrap new applications!
+
+### Create a waypoint project from a template
+
+Next, you will test the application developer workflow by creating a new sample project from this template. 
+
+1: From the project template list view, in the top right corner, select `Create Project`. From the dropdown menu, select `Create Project with template`:
 ![img_3.png](../readme-images/waypoint_projects_list_ss.png)
 
    

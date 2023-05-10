@@ -126,7 +126,7 @@ curl --location --request PUT 'https:// api.hashicorp.cloud:443/waypoint/2022-02
 2. Create a Waypoint Project Template
 
 ```shell
-curl --location 'https:// api.hashicorp.cloud:443/waypoint/2022-02-03/namespace/{{NAMESPACE_ID}}/projecttemplate' \
+curl --location 'https:// api.hashicorp.cloud:443/waypoint/2022-02-03/namespace/{{NAMESPACE_ID}}/project-template' \
 --header 'Authorization: {{YOUR_HCP_Waypoint_AUTH_TOKEN}}' \
 --header 'Content-Type: application/json' \
 --data '{

@@ -163,6 +163,6 @@ curl --location 'https:// api.hashicorp.cloud:443/waypoint/2022-02-03/namespace/
 
 4. List all Project Templates
 ```shell
-curl --location 'https:// api.hashicorp.cloud:443/waypoint/2022-02-03/namespace/{{NAMESPACE_ID}}/projecttemplates' \
+curl --location 'https:// api.hashicorp.cloud:443/waypoint/2022-02-03/namespace/{{NAMESPACE_ID}}/project-templates' \
 --header 'Authorization: Bearer {{YOUR_HCP_Waypoint_AUTH_TOKEN}}'
 ```

@@ -155,7 +155,7 @@ curl --location 'https:// api.hashicorp.cloud:443/waypoint/2022-02-03/namespace/
 3. Initialize a Waypoint Project Using the Existing Project Template.
 
 ```shell
-curl --location 'https:// api.hashicorp.cloud:443/waypoint/2022-02-03/namespace/{{NAMESPACE_ID}}/project/fromtemplate' \
+curl --location 'https:// api.hashicorp.cloud:443/waypoint/2022-02-03/namespace/{{NAMESPACE_ID}}/project/from-template' \
 --header 'Authorization: Bearer {{YOUR_HCP_Waypoint_AUTH_TOKEN}}' \
 --header 'Content-Type: application/json' \
 --data '{

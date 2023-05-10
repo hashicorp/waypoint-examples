@@ -48,7 +48,9 @@ TODO(Teresa): Make this repo public.
 ![img_8.png](../readme-images/tfc_registry_ss.png)
 
 ### Terraform Cloud Workspaces
+Before you start working with Waypoint and creating a template, you need some foundational infrastructure. This example provides a few basic terraform modules for creating AWS VPCs and ECS clusters in dev and prod environments.
 
+If you already have this infrastructure configured, you can jump ahead to [Terraform Module Creation](### Terraform Module Creation) and modify the module to run on your own base infrastructure.
 1. Create terraform cloud [workspaces](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/creating) in the TFC User Interface based on the following terraform configurations provided in this example:
         `terraform-aws-example-microservice-infra`
         `terraform-aws-example-network`

@@ -1,4 +1,4 @@
-# Waypoint Project Template Example
+# HCP Waypoint Project Template Example
 
 This is an example of how to create and use project templating in HCP Waypoint.
 

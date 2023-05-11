@@ -79,7 +79,7 @@ Create the baseline infrastructure with the following steps in your CLI.
 
 
 ## Waypoint Template Steps 
-
+Now that you have the basic shared infrastructure set up and a no-code module published with app-specific infrastructure, you can configure HCP Waypoint to authorize to TFC and create a Waypoint project template.
 TODO(Teresa): Replace figma images with proper screenshots once UI is ready.
 
 

@@ -145,7 +145,7 @@ curl --location 'https:// api.hashicorp.cloud:443/waypoint/2022-02-03/namespace/
   "project_template": {
     "name": "{{SOME_TEMPLATE_NAME}}",
     "summary": "{{SOME_TEMPLATE_SUMMARY}}",
-    "readme_markdown_template": "{{SOME_TEMPLATE_README_TEXT}}",
+    "readme_markdown_template": "{{ENCODED_PROJECT_TEMPLATE_BYTES}}",
     "waypoint_project": {
       "waypoint_hcl_template": "{{ENCODED_PROJECT_TEMPLATE_BYTES}}"
     },

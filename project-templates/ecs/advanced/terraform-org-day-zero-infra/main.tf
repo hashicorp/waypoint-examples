@@ -23,14 +23,14 @@ module "vpc" {
 }
 
 resource "aws_route" "dev_hcp_hvn_route" {
-  route_table_id = module.vpc["dev"].private_route_table_ids[0]
-  destination_cidr_block = hcp_hvn.hcp_waypoint_testing_hvn.cidr_block
+  route_table_id            = module.vpc["dev"].private_route_table_ids[0]
+  destination_cidr_block    = hcp_hvn.hcp_waypoint_testing_hvn.cidr_block
   vpc_peering_connection_id = aws_vpc_peering_connection_accepter.dev_peer.id
 }
 
 resource "aws_route" "prod_hcp_hvn_route" {
-  route_table_id = module.vpc["prod"].private_route_table_ids[0]
-  destination_cidr_block = hcp_hvn.hcp_waypoint_testing_hvn.cidr_block
+  route_table_id            = module.vpc["prod"].private_route_table_ids[0]
+  destination_cidr_block    = hcp_hvn.hcp_waypoint_testing_hvn.cidr_block
   vpc_peering_connection_id = aws_vpc_peering_connection_accepter.prod_peer.id
 }
 
@@ -81,22 +81,150 @@ resource "aws_cloudwatch_log_group" "services" {
   retention_in_days = 7
 }
 
-# https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services#adding-the-identity-provider-to-aws
-#resource "aws_iam_openid_connect_provider" "github_aws_oidc_auth_provider" {
-#  url            = "https://token.actions.githubusercontent.com"
-#  client_id_list = ["sts.amazonaws.com"]
-#
-#  # Grabbed this from: https://github.blog/changelog/2022-01-13-github-actions-update-on-oidc-based-deployments-to-aws/
-#  thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
-#}
+// Create the IAM policy in the No Code module, conditions limiting it to the app
+// also the OIDC provider role
+
+// https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services#adding-the-identity-provider-to-aws
+resource "aws_iam_openid_connect_provider" "github_aws_oidc_auth_provider" {
+  url            = "https://token.actions.githubusercontent.com"
+  client_id_list = ["sts.amazonaws.com"]
+
+  # Grabbed this from: https://github.blog/changelog/2022-01-13-github-actions-update-on-oidc-based-deployments-to-aws/
+  thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
+
+}
 
 ### Telemetry resources ###
 # https://docs.datadoghq.com/integrations/guide/aws-terraform-setup/
 # TODO: Check telegraf and/or prometheus exporter
-#resource "datadog_integration_aws" "aws_integration" {
-#  account_id = var.aws_account_id
-#  role_name  = "DatadogAWSIntegrationRole"
-#}
+resource "datadog_integration_aws" "aws_integration" {
+  account_id = var.aws_account_id
+  role_name  = "DatadogAWSIntegrationRole"
+}
+
+data "aws_iam_policy_document" "datadog_aws_integration_assume_role" {
+  statement {
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "AWS"
+      identifiers = ["arn:aws:iam::${var.aws_account_id}:root"]
+    }
+    condition {
+      test     = "StringEquals"
+      variable = "sts:ExternalId"
+
+      values = [
+        "${datadog_integration_aws.datadog_integration.external_id}"
+      ]
+    }
+  }
+}
+
+data "aws_iam_policy_document" "datadog_aws_integration" {
+  statement {
+    // Required permissions documented here: https://docs.datadoghq.com/integrations/amazon_web_services/?tab=manual#aws-iam-permissions
+    actions = [
+      "apigateway:GET",
+      "autoscaling:Describe*",
+      "backup:List*",
+      "budgets:ViewBudget",
+      "cloudfront:GetDistributionConfig",
+      "cloudfront:ListDistributions",
+      "cloudtrail:DescribeTrails",
+      "cloudtrail:GetTrailStatus",
+      "cloudtrail:LookupEvents",
+      "cloudwatch:Describe*",
+      "cloudwatch:Get*",
+      "cloudwatch:List*",
+      "codedeploy:List*",
+      "codedeploy:BatchGet*",
+      "directconnect:Describe*",
+      "dynamodb:List*",
+      "dynamodb:Describe*",
+      "ec2:Describe*",
+      "ecs:Describe*",
+      "ecs:List*",
+      "elasticache:Describe*",
+      "elasticache:List*",
+      "elasticfilesystem:DescribeFileSystems",
+      "elasticfilesystem:DescribeTags",
+      "elasticfilesystem:DescribeAccessPoints",
+      "elasticloadbalancing:Describe*",
+      "elasticmapreduce:List*",
+      "elasticmapreduce:Describe*",
+      "es:ListTags",
+      "es:ListDomainNames",
+      "es:DescribeElasticsearchDomains",
+      "events:CreateEventBus",
+      "fsx:DescribeFileSystems",
+      "fsx:ListTagsForResource",
+      "health:DescribeEvents",
+      "health:DescribeEventDetails",
+      "health:DescribeAffectedEntities",
+      "kinesis:List*",
+      "kinesis:Describe*",
+      "lambda:GetPolicy",
+      "lambda:List*",
+      "logs:DeleteSubscriptionFilter",
+      "logs:DescribeLogGroups",
+      "logs:DescribeLogStreams",
+      "logs:DescribeSubscriptionFilters",
+      "logs:FilterLogEvents",
+      "logs:PutSubscriptionFilter",
+      "logs:TestMetricFilter",
+      "organizations:Describe*",
+      "organizations:List*",
+      "rds:Describe*",
+      "rds:List*",
+      "redshift:DescribeClusters",
+      "redshift:DescribeLoggingStatus",
+      "route53:List*",
+      "s3:GetBucketLogging",
+      "s3:GetBucketLocation",
+      "s3:GetBucketNotification",
+      "s3:GetBucketTagging",
+      "s3:ListAllMyBuckets",
+      "s3:PutBucketNotification",
+      "ses:Get*",
+      "sns:List*",
+      "sns:Publish",
+      "sqs:ListQueues",
+      "states:ListStateMachines",
+      "states:DescribeStateMachine",
+      "support:DescribeTrustedAdvisor*",
+      "support:RefreshTrustedAdvisorCheck",
+      "tag:GetResources",
+      "tag:GetTagKeys",
+      "tag:GetTagValues",
+      "xray:BatchGetTraces",
+      "xray:GetTraceSummaries"
+    ]
+
+    resources = ["*"]
+  }
+}
+
+resource "aws_iam_policy" "datadog_aws_integration" {
+  name   = "DatadogAWSIntegrationPolicy"
+  policy = data.aws_iam_policy_document.datadog_aws_integration.json
+}
+
+resource "aws_iam_role" "datadog_aws_integration" {
+  name               = "DatadogAWSIntegrationRole"
+  description        = "Role for Datadog AWS Integration"
+  assume_role_policy = data.aws_iam_policy_document.datadog_aws_integration_assume_role.json
+}
+
+resource "aws_iam_role_policy_attachment" "datadog_aws_integration" {
+  role       = aws_iam_role.datadog_aws_integration.name
+  policy_arn = aws_iam_policy.datadog_aws_integration.arn
+}
+
+resource "datadog_integration_aws" "datadog_integration" {
+  account_id = var.aws_account_id
+  role_name  = "DatadogAWSIntegrationRole"
+}
 
 ### Secrets Resources ###
 resource "hcp_hvn" "hcp_waypoint_testing_hvn" {

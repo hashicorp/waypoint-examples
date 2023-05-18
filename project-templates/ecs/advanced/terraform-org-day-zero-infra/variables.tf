@@ -72,3 +72,13 @@ variable "hcp_client_secret" {
 variable "hcp_project_id" {
   type = string
 }
+
+variable "datadog_api_key" {
+  type = string
+  sensitive = true
+}
+
+variable "datadog_app_key" {
+  type = string
+  sensitive = true
+}

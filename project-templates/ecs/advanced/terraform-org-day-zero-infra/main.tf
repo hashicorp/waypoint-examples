@@ -108,7 +108,8 @@ data "aws_iam_policy_document" "datadog_aws_integration_assume_role" {
 
     principals {
       type        = "AWS"
-      identifiers = ["arn:aws:iam::${var.aws_account_id}:root"]
+      # The account number here is the DataDog account, which needs permission to assume a role
+      identifiers = ["arn:aws:iam::464622532012:root"]
     }
     condition {
       test     = "StringEquals"

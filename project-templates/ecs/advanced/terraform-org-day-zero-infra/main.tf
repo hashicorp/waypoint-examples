@@ -107,7 +107,7 @@ data "aws_iam_policy_document" "datadog_aws_integration_assume_role" {
     actions = ["sts:AssumeRole"]
 
     principals {
-      type        = "AWS"
+      type = "AWS"
       # The account number here is the DataDog account, which needs permission to assume a role
       identifiers = ["arn:aws:iam::464622532012:root"]
     }
@@ -310,4 +310,36 @@ resource "hcp_vault_cluster" "prod_vault_cluster" {
 # NOTE: Expires after 6 hours
 resource "hcp_vault_cluster_admin_token" "prod_vault_cluster_admin_token" {
   cluster_id = hcp_vault_cluster.prod_vault_cluster.cluster_id
+}
+
+# The configuration below is required for the AWS auth method in Vault
+data "aws_iam_policy_document" "vault_auth_method_policy_document" {
+  statement {
+    actions = [
+      "ec2:DescribeInstances",
+      "iam:GetInstanceProfile",
+      "iam:GetUser",
+      "iam:ListRoles",
+      "iam:GetRole"
+    ]
+    resources = ["*"]
+  }
+}
+
+resource "aws_iam_policy" "vault_auth_method_policy" {
+  name   = "vault-aws-auth-method-policy"
+  policy = data.aws_iam_policy_document.vault_auth_method_policy_document.json
+}
+
+resource "aws_iam_user" "vault_aws_auth_method_iam_user" {
+  name = "vault_aws_auth_method_iam_user"
+}
+
+resource "aws_iam_user_policy_attachment" "vault_aws_auth_method_iam_user_policy_attachment" {
+  policy_arn = aws_iam_policy.vault_auth_method_policy.arn
+  user       = aws_iam_user.vault_aws_auth_method_iam_user.name
+}
+
+resource "aws_iam_access_key" "vault_aws_auth_method_iam_user_access_key" {
+  user = aws_iam_user.vault_aws_auth_method_iam_user.name
 }

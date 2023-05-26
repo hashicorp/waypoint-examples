@@ -9,3 +9,5 @@ provider "vault" {
   token   = var.prod_vault_token
   address = var.prod_vault_address
 }
+
+provider "tfe" {}

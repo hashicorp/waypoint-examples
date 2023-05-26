@@ -74,11 +74,11 @@ variable "hcp_project_id" {
 }
 
 variable "datadog_api_key" {
-  type = string
+  type      = string
   sensitive = true
 }
 
 variable "datadog_app_key" {
-  type = string
+  type      = string
   sensitive = true
 }

@@ -73,3 +73,13 @@ output "prod_vault_admin_token" {
 output "hvn_cidr_block" {
   value = hcp_hvn.hcp_waypoint_testing_hvn.cidr_block
 }
+
+output "vault_aws_auth_method_iam_user_access_key_id" {
+  value = aws_iam_access_key.vault_aws_auth_method_iam_user_access_key.id
+  sensitive = true
+}
+
+output "vault_aws_auth_method_iam_user_secret_access_key" {
+  value = aws_iam_access_key.vault_aws_auth_method_iam_user_access_key.secret
+  sensitive = true
+}

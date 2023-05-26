@@ -15,3 +15,12 @@ variable "dev_vault_address" {
 variable "prod_vault_address" {
   type = string
 }
+
+variable "tfc_organization_name" {
+  type = string
+  description = "The organization of the day zero infrastructure workspace."
+}
+
+variable "day_zero_infra_tfc_workspace_name" {
+  type = string
+}

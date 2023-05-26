@@ -1,4 +1,10 @@
 terraform {
+  cloud {
+    organization = "teresa-corp"
+    workspaces {
+      name = "aws-example-network"
+    }
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -8,7 +14,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = "us-west-1"
 }
 
 module "vpc" {
@@ -18,9 +24,9 @@ module "vpc" {
   name = var.vpc_name
   cidr = "172.31.0.0/16"
 
-  azs             = ["us-east-1a", "us-east-1b", "us-east-1c", "us-east-1d", "us-east-1e", "us-east-1f"]
-  private_subnets = ["172.31.0.0/20", "172.31.16.0/20", "172.31.32.0/20", "172.31.48.0/20", "172.31.64.0/20"]
-  public_subnets  = ["172.31.80.0/20", "172.31.96.0/20", "172.31.112.0/20", "172.31.128.0/20", "172.31.144.0/20"]
+  azs             = ["us-west-1a", "us-west-1b"]
+  private_subnets = ["172.31.0.0/20", "172.31.16.0/20"]
+  public_subnets  = ["172.31.80.0/20", "172.31.96.0/20"]
 
   enable_nat_gateway = true
   single_nat_gateway = true

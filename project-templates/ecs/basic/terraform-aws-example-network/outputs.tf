@@ -1,5 +1,5 @@
 output "region" {
-  value = "us-east-1"
+  value = "us-west-1"
   description = "region"
 }
 

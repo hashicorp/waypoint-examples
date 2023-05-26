@@ -3,6 +3,11 @@ variable "cluster_name" {
   type        = string
 }
 
+variable "tfc_org" {
+  description = "Name of the TFC Organization"
+  type        = string
+}
+
 variable "tags" {
   description = "Tags to apply to resources created by ecs module"
   type        = map(string)

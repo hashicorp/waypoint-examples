@@ -1,4 +1,10 @@
 terraform {
+   cloud {
+    organization = "{{YOUR_TERRAFORM_ORGANIZATION_NAME}}"
+    workspaces {
+      name = "aws-example-microservice-infra"
+    }
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -8,7 +14,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = "us-west-1"
 }
 
 module "ecs" {

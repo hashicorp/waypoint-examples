@@ -12,6 +12,15 @@ app "{{ .ProjectName }}" {
         path = "{{ .ProjectName }}-database/creds/{{ .ProjectName }}-role"
         key = "password"
       })
+
+      "DATABASE_NAME"     = var.tfc_infra.db.db_name
+      "DATABASE_PORT"     = var.tfc_infra.db.dev_db_port
+      "DATABASE_HOSTNAME" = var.tfc_infra.db.dev_db_hostname
+
+      workspace "prod" {
+        "DATABASE_PORT"     = var.tfc_infra.db.prod_db_port
+        "DATABASE_HOSTNAME" = var.tfc_infra.db.prod_db_hostname
+      }
     }
   }
 

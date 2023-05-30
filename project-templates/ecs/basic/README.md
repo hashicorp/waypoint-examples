@@ -43,7 +43,7 @@ TODO(Teresa): Make this repo public.
 
 ```shell
 git tag v.0.0.1
-go push --tags
+git push --tags
 ```
 
 #### Publish The Example Module

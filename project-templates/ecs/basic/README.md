@@ -42,7 +42,7 @@ TODO(Teresa): Make this repo public.
 2. Run the following git commands in the forked repository's working directory.
 
 ```shell
-go tag v.0.0.1
+git tag v.0.0.1
 go push --tags
 ```
 

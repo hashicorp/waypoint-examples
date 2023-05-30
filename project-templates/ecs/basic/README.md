@@ -46,7 +46,7 @@ git tag v.0.0.1
 go push --tags
 ```
 
-#### Publish The Example  Module
+#### Publish The Example Module
 1. Inside Terraform Cloud, Click Registry and Select `Publish a Module`
 ![img.png](../readme-images/tfc_publish_module_ss.png)
 

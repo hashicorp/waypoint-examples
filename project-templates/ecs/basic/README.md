@@ -1,4 +1,4 @@
-# Waypoint Project Template Example
+# HCP Waypoint Project Template Example
 
 
 This is an example of how a platform engineer can create a project template in HCP Waypoint to allow application developers to quickly bootstrap new applications following organizational standards.
@@ -42,7 +42,13 @@ Create the baseline infrastructure with the following steps in your CLI.
 Now that we've created the base shared infrastructure, we can move on to app-specific infrastructure.
 
 Most applications need some long-lived infrastructure, like a container registry and a load balancer. This module gives platform engineers a space to define this app-specific infrastructure for their specific organization.
+Now that we've created the base shared infrastructure, we can move on to app-specific infrastructure.
 
+Most applications need some long-lived infrastructure, like a container registry and a load balancer. This module gives platform engineers a space to define this app-specific infrastructure for their specific organization.
+
+This example extends Waypoint's [ecs module](https://registry.terraform.io/modules/hashicorp/waypoint-ecs/aws/latest) to create a single global container registry, and resources like an ALB, security group, and IAM role in the dev and prod environments.
+
+This module is an opportunity for platform engineers to get creative and define any other app-specific infrastructure, like  monitoring dashboards or tickets in a ticketing system. 
 This example extends Waypoint's [ecs module](https://registry.terraform.io/modules/hashicorp/waypoint-ecs/aws/latest) to create a single global container registry, and resources like an ALB, security group, and IAM role in the dev and prod environments.
 
 This module is an opportunity for platform engineers to get creative and define any other app-specific infrastructure, like  monitoring dashboards or tickets in a ticketing system. 
@@ -82,7 +88,9 @@ git push --tags
 
 ![img_8.png](../readme-images/tfc_registry_ss.png)
 
+Before you start working with Waypoint and creating a template, you need some foundational infrastructure. This example provides a few basic terraform modules for creating AWS VPCs and ECS clusters in dev and prod environments.
 
+If you already have this infrastructure configured, you can jump ahead to [Terraform Module Creation](### Terraform Module Creation) and modify the module to run on your own base infrastructure.
 ## Waypoint Template Steps 
 
 TODO(Teresa): Replace figma images with proper screenshots once UI is ready.
@@ -117,7 +125,7 @@ Now that you have the basic shared infrastructure set up and a no-code module pu
   }
 
   deploy {
-
+Now that you have the basic shared infrastructure set up and a no-code module published with app-specific infrastructure, you can configure HCP Waypoint to authorize to TFC and create a Waypoint project template.
     # Default workspace deploys to dev
     use "aws-ecs" {
       count = 1
@@ -229,6 +237,6 @@ curl --location 'https:// api.hashicorp.cloud:443/waypoint/2022-02-03/namespace/
 
 4. List all Project Templates
 ```shell
-curl --location 'https:// api.hashicorp.cloud:443/waypoint/2022-02-03/namespace/{{NAMESPACE_ID}}/projecttemplates' \
+curl --location 'https:// api.hashicorp.cloud:443/waypoint/2022-02-03/namespace/{{NAMESPACE_ID}}/project-templates' \
 --header 'Authorization: Bearer {{YOUR_HCP_Waypoint_AUTH_TOKEN}}'
 ```

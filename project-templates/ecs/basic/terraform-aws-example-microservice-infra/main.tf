@@ -1,5 +1,5 @@
 terraform {
-   cloud {
+  cloud {
     organization = "{{YOUR_TERRAFORM_ORGANIZATION_NAME}}"
     workspaces {
       name = "aws-example-microservice-infra"
@@ -26,8 +26,8 @@ module "ecs" {
 }
 
 resource "aws_cloudwatch_log_group" "services" {
-  name = "ecs_cluster_${var.cluster_name}"
-  tags = var.tags
+  name              = "ecs_cluster_${var.cluster_name}"
+  tags              = var.tags
   retention_in_days = 7
 }
 

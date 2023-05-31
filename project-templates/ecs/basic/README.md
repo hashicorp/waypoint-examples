@@ -117,9 +117,9 @@ Now that you have the basic shared infrastructure set up and a no-code module pu
 
     registry {
       use "aws-ecr" {
-        region     = var.tfc_infra.waypoint-ecs.region
-        repository = var.tfc_infra.waypoint-ecs.ecr_repository_name
-        tag        = "latest"
+        region     = var.tfc_infra.dev.region
+        repository = var.tfc_infra.dev.ecr_repository_name
+        tag        = gitrefpretty()
       }
     }
   }
@@ -132,9 +132,9 @@ Now that you have the basic shared infrastructure set up and a no-code module pu
       memory = 512
       cpu = 256
    
-      cluster             = var.tfc_infra.example-ecs.ecs_cluster_name
-      log_group           = var.tfc_infra.example-ecs.log_group_name
-      region              = var.tfc_infra.example-ecs.region
+      cluster             = var.tfc_infra.dev.ecs_cluster_name
+      log_group           = var.tfc_infra.dev.log_group_name
+      region              = var.tfc_infra.dev.region
     }
   }
 }
@@ -169,7 +169,10 @@ Next, you will test the application developer workflow by creating a new sample 
  
    
 
-5. Type `project-outstanding-panda` under `Project Name`. Then click `Create Project.
+5. Type `project-outstanding-panda` under `Project Name`. Then click `Create Project`.
+NOTE: Clicking the `Create Project` button will trigger a run on Terraform Cloud. Please note
+that this page wil
+
 ![img_6.png](../readme-images/waypoint_create_project_ss.png)
 
    
@@ -177,10 +180,37 @@ Next, you will test the application developer workflow by creating a new sample 
 ![img_7.png](../readme-images/waypoint_project_details_ss.png)
 
 
+## Deploying and Release an Application
+
+Pre-Requisites
+
+1. A HCP Waypoint Account with a runner installed.
+
+After the above steps have been completed, you are now ready to deploy your application.
+For the purposes of this example, we will be using the nodejs project that is included in this directory: `project-outstanding-panda`.
+
+1. In your CLI, navigate to the location of the `project-outstanding-panda`
+2. Perform the following waypoint command:
+```shell
+waypoint up -p project-outstanding-panda
+```
+3. You can now navigate back to HCP Waypoint in your browser and see that the project has been deployed.
+![img.png](../readme-images/waypoint_project_deployed_ss.png)
+
+4. You're All Done! Your project is now deployed.
+
+
+## Conclusion
+
+You've just completed the Waypoint Project Templating example! Congratulations! 
+You are now able to set up a project template for your application developers which will allow a seamless application deployment process. 
+
+
+
 ## Waypoint Template Steps via CURL commands
 
 Pre-Requisites
-1. Your NamespaceID
+1. Your Namespace ID
 2. HCP Waypoint Authentication Token
 3. TFC Authentication Token
 

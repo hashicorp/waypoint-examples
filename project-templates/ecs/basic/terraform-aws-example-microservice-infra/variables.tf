@@ -12,6 +12,6 @@ variable "tags" {
   description = "Tags to apply to resources created by ecs module"
   type        = map(string)
   default = {
-    terraform   = "true"
+    terraform = "true"
   }
 }

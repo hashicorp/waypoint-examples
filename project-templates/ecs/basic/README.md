@@ -1,12 +1,17 @@
 # Waypoint Project Template Example
 
-This is an example of how to create and use project templating in HCP Waypoint.
 
-Pre-Requisites
+This is an example of how a platform engineer can create a project template in HCP Waypoint to allow application developers to quickly bootstrap new applications following organizational standards.
 
-AWS Account with Admin Permissions
+Project Templates in HCP Waypoint allow platform engineers to define templates for waypoint projects. Templates contain a templated waypoint.hcl, which defines the app's deployment workflow, and a Terraform [no-code module](https://developer.hashicorp.com/terraform/tutorials/cloud/no-code-provisioning) which creates app-specific infrastructure. App developers can then create new applications using this template quickly and easily, without needing deep awareness of the underlying infrastructure.
 
-Terraform Enterprise Account with No Code Module Enabled.
+In this example, we will configure a project template for AWS ECS microservices with dev and prod environments, and then use it to create and deploy a basic nodejs webapp.
+
+Pre-Requisites:
+
+- AWS Account with Admin Permissions
+
+- Terraform Enterprise Account with No Code Module Enabled.
 
 ## Foundational Infrastructure Setup
 
@@ -34,7 +39,13 @@ Create the baseline infrastructure with the following steps in your CLI.
 
 
 ### Terraform Module Creation
+Now that we've created the base shared infrastructure, we can move on to app-specific infrastructure.
 
+Most applications need some long-lived infrastructure, like a container registry and a load balancer. This module gives platform engineers a space to define this app-specific infrastructure for their specific organization.
+
+This example extends Waypoint's [ecs module](https://registry.terraform.io/modules/hashicorp/waypoint-ecs/aws/latest) to create a single global container registry, and resources like an ALB, security group, and IAM role in the dev and prod environments.
+
+This module is an opportunity for platform engineers to get creative and define any other app-specific infrastructure, like  monitoring dashboards or tickets in a ticketing system. 
 TODO(Teresa): Make this repo public.
 
 1. Fork the `hashicorp/terraform-aws-example-microservice-ecs-all-envs` repository in Github [here](https://github.com/hashicorp/terraform-aws-example-microservice-ecs-allenvs) to your own Github organization.
@@ -83,7 +94,7 @@ TODO(Teresa): Replace figma images with proper screenshots once UI is ready.
 
 2. Create a Waypoint Project Template by filling in the fields in the Template Creation page:
 
-Your project template will be utilized to generate the waypoint hcl for developers to start off their projects with. This template will contain
+Your project template will be utilized to generate the `waypoint.hcl` for developers to start off their projects with. This template will contain
 Terraform details that will be used to spin up resources that will be used for application deployment. Please see the following example project
 template: 
 
@@ -92,7 +103,7 @@ template:
 project = "{{ .ProjectName }}"
 
 app "{{ .ProjectName }}" {
-
+Now that you have the basic shared infrastructure set up and a no-code module published with app-specific infrastructure, you can configure HCP Waypoint to authorize to TFC and create a Waypoint project template.
   build {
     use "pack" {}
 
@@ -135,11 +146,17 @@ variable "tfc_infra" {
 
 
 
-3. Return to your Projects List Page. In the top right corner, select `Create Project`. From the dropdown menu, select `Create Project with template`:
+3. Return to your Projects List Page, and notice your newly created template. Application developers can now use this template to bootstrap new applications!
+
+### Create a waypoint project from a template
+
+Next, you will test the application developer workflow by creating a new sample project from this template. 
+
+1: From the project template list view, in the top right corner, select `Create Project`. From the dropdown menu, select `Create Project with template`:
 ![img_3.png](../readme-images/waypoint_projects_list_ss.png)
 
    
-4. Select the template you would like to use for this project.
+4. Select the newly created <name> template
 ![img_4.png](../readme-images/waypoint_select_template_ss.png)
  
    
@@ -175,7 +192,7 @@ curl --location --request PUT 'https:// api.hashicorp.cloud:443/waypoint/2022-02
 2. Create a Waypoint Project Template
 
 ```shell
-curl --location 'https:// api.hashicorp.cloud:443/waypoint/2022-02-03/namespace/{{NAMESPACE_ID}}/projecttemplate' \
+curl --location 'https:// api.hashicorp.cloud:443/waypoint/2022-02-03/namespace/{{NAMESPACE_ID}}/project-template' \
 --header 'Authorization: {{YOUR_HCP_Waypoint_AUTH_TOKEN}}' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -198,7 +215,7 @@ curl --location 'https:// api.hashicorp.cloud:443/waypoint/2022-02-03/namespace/
 3. Initialize a Waypoint Project Using the Existing Project Template.
 
 ```shell
-curl --location 'https:// api.hashicorp.cloud:443/waypoint/2022-02-03/namespace/{{NAMESPACE_ID}}/project/fromtemplate' \
+curl --location 'https:// api.hashicorp.cloud:443/waypoint/2022-02-03/namespace/{{NAMESPACE_ID}}/project/from-template' \
 --header 'Authorization: Bearer {{YOUR_HCP_Waypoint_AUTH_TOKEN}}' \
 --header 'Content-Type: application/json' \
 --data '{

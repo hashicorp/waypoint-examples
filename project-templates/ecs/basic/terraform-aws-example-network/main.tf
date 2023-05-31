@@ -1,6 +1,6 @@
 terraform {
   cloud {
-    organization = "teresa-corp"
+    organization = "{{YOUR_TERRAFORM_ORGANIZATION_NAME}}"
     workspaces {
       name = "aws-example-network"
     }

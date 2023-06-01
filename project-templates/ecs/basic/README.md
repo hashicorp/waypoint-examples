@@ -33,10 +33,9 @@ Pre-Requisites:
 
 Create the baseline infrastructure with the following steps in your CLI.
 
-1. Navigate to the `terraform-aws-example-network` directory found in this example and run `terraform init` and the `terraform apply` command.
+1. Navigate to the `terraform-aws-example-microservice-infra` directory found in this example and run `terraform init` and the  `terraform apply -var=vpc_name=example-cluster` command.
 
-2. Navigate to the `terraform-aws-example-microservice-infra` directory found in this example and run `terraform init` and the  `terraform apply` command.
-
+2. Navigate to the `terraform-aws-example-network` directory found in this example and run `terraform init` and the `terraform apply -var=vpc_name=example-vpc` command.
 
 ### Terraform Module Creation
 Now that we've created the base shared infrastructure, we can move on to app-specific infrastructure.
@@ -113,7 +112,6 @@ Terraform details that will be used to spin up resources that will be used for a
 template: 
 
 ```shell
-// this is the simple example for now
 project = "{{ .ProjectName }}"
 
 app "{{ .ProjectName }}" {
@@ -162,7 +160,7 @@ variable "tfc_infra" {
 
 3. Return to your Projects List Page, and notice your newly created template. Application developers can now use this template to bootstrap new applications!
 
-### Create a waypoint project from a template
+### Create a Waypoint project from a template
 
 Next, you will test the application developer workflow by creating a new sample project from this template. 
 
@@ -177,7 +175,7 @@ Next, you will test the application developer workflow by creating a new sample 
 
 5. Type `project-outstanding-panda` under `Project Name`. Then click `Create Project`.
 NOTE: Clicking the `Create Project` button will trigger a run on Terraform Cloud. Please note
-that this page wil
+that this page will be updated once the Terraform Cloud Run has succeeded.
 
 ![img_6.png](../readme-images/waypoint_create_project_ss.png)
 
@@ -186,11 +184,33 @@ that this page wil
 ![img_7.png](../readme-images/waypoint_project_details_ss.png)
 
 
-## Deploying and Release an Application
+## Deploy and Release an Application
 
 Pre-Requisites
 
-1. A HCP Waypoint Account with a runner installed.
+1. A HCP Waypoint Account
+2. A Waypoint CLI installed and connected to your Waypoint server.
+
+We are now ready to setup our HCP Waypoint Account for application deployment. We will need an active waypoint runner
+on the AWS ECS Cluster that we created in the above step and then we can deploy applications to this cluster using 
+HCP Waypoint.
+
+### Setup a New Runner
+Now that you have set up your `example-cluster` it is time to deploy a waypoint runner to the AWS ECS cluster. 
+
+1. In your terminal, run the following command to install a waypoint runner to the `example-cluster`. 
+This will create a waypoint runner service in the `example-cluster` on AWS.
+```shell
+waypoint runner install \
+  -platform=ecs \
+  -server-addr=api.hashicorp.cloud:443 \
+  -ecs-runner-image=hashicorp/waypoint \
+  -ecs-cluster=example-cluster \
+  -ecs-region=us-west-1
+```
+
+
+### Deploy Your Application
 
 After the above steps have been completed, you are now ready to deploy your application.
 For the purposes of this example, we will be using the nodejs project that is included in this directory: `project-outstanding-panda`.

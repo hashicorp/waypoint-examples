@@ -5,19 +5,21 @@ app "{{ .ProjectName }}" {
     env = {
       "DATABASE_USERNAME" = dynamic("vault", {
         path = "{{ .ProjectName }}-database/creds/{{ .ProjectName }}-role"
-        key = "username"
+        key  = "username"
       })
 
       "DATABASE_PASSWORD" = dynamic("vault", {
         path = "{{ .ProjectName }}-database/creds/{{ .ProjectName }}-role"
-        key = "password"
+        key  = "password"
       })
 
       "DATABASE_NAME"     = var.tfc_infra.db.db_name
       "DATABASE_PORT"     = var.tfc_infra.db.dev_db_port
       "DATABASE_HOSTNAME" = var.tfc_infra.db.dev_db_hostname
+    }
 
-      workspace "prod" {
+    workspace "prod" {
+      env = {
         "DATABASE_PORT"     = var.tfc_infra.db.prod_db_port
         "DATABASE_HOSTNAME" = var.tfc_infra.db.prod_db_hostname
       }
@@ -57,12 +59,26 @@ app "{{ .ProjectName }}" {
       execution_role_name = var.tfc_infra.dev.execution_role_name
       task_role_name      = var.tfc_infra.dev.task_role_name
       region              = var.tfc_infra.dev.region
-      subnets             = var.tfc_infra.dev.public_subnets`
+      subnets             = var.tfc_infra.dev.public_subnets
       security_group_ids  = [var.tfc_infra.dev.security_group_id]
       alb {
         load_balancer_arn = var.tfc_infra.dev.alb_arn
         subnets           = var.tfc_infra.dev.public_subnets
         certificate       = var.tfc_infra.acm_cert_arn
+      }
+
+      sidecar {
+        name  = "datadog-agent"
+        image = "public.ecr.aws/datadog/agent:latest"
+        memory = 512
+
+        static_environment = {
+          ECS_FARGATE = "true"
+        }
+
+        secrets = {
+          DD_API_KEY = var.datadog_api_key
+        }
       }
     }
 
@@ -98,6 +114,20 @@ app "{{ .ProjectName }}" {
           subnets           = var.tfc_infra.prod.public_subnets
           certificate       = var.tfc_infra.acm_cert_arn
         }
+
+        sidecar {
+          name  = "datadog-agent"
+          image = "public.ecr.aws/datadog/agent:latest"
+          memory = 512
+
+          static_environment = {
+            ECS_FARGATE = "true"
+          }
+
+          secrets = {
+            DD_API_KEY = var.datadog_api_key
+          }
+        }
       }
     }
   }
@@ -111,4 +141,14 @@ variable "tfc_infra" {
   type        = any
   sensitive   = false
   description = "all outputs from this app's tfc workspace"
+}
+
+variable "datadog_api_key" {
+  default = dynamic("vault", {
+    path = "{{ .ProjectName }}-kv/data/datadog"
+    key = "/data/api_key"
+  })
+  sensitive   = true
+  type        = string
+  description = "The API key for DataDog to send application metrics"
 }

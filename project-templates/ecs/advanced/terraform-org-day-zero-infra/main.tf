@@ -330,16 +330,3 @@ resource "aws_iam_policy" "vault_auth_method_policy" {
   name   = "vault-aws-auth-method-policy"
   policy = data.aws_iam_policy_document.vault_auth_method_policy_document.json
 }
-
-resource "aws_iam_user" "vault_aws_auth_method_iam_user" {
-  name = "vault_aws_auth_method_iam_user"
-}
-
-resource "aws_iam_user_policy_attachment" "vault_aws_auth_method_iam_user_policy_attachment" {
-  policy_arn = aws_iam_policy.vault_auth_method_policy.arn
-  user       = aws_iam_user.vault_aws_auth_method_iam_user.name
-}
-
-resource "aws_iam_access_key" "vault_aws_auth_method_iam_user_access_key" {
-  user = aws_iam_user.vault_aws_auth_method_iam_user.name
-}

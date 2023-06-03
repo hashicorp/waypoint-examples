@@ -15,12 +15,5 @@ terraform {
     datadog = {
       source = "datadog/datadog"
     }
-
-    # TODO: Update this to use the officially published provider when
-    # multi-org/project is supported
-    hcp = {
-      source  = "localhost/providers/hcp"
-      version = "0.0.1"
-    }
   }
 }

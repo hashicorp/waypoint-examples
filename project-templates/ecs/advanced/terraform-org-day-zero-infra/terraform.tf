@@ -1,6 +1,6 @@
 terraform {
   cloud {
-    organization = "hcp_waypoint_integration"
+    organization = "{{YOUR_TERRAFORM_ORGANIZATION_NAME}}"
 
     workspaces {
       name = "waypoint-templating-advanced-example-day-zero-infra"

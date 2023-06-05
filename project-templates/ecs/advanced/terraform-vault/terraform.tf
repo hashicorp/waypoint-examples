@@ -1,6 +1,6 @@
 terraform {
   cloud {
-    organization = "hcp_waypoint_integration"
+    organization = "{{YOUR_TERRAFORM_ORGANIZATION_NAME}}"
     workspaces {
       name = "terraform-vault"
     }

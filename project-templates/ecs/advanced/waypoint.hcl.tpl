@@ -37,9 +37,9 @@ app "{{ .ProjectName }}" {
     # By default, use the AWS ECS plugin to deploy to the dev environment
     use "aws-ecs" {
       count = 1
-      memory = 512
-      cpu = 256
-      service_port = 8080
+      memory           = 512
+      cpu              = 256
+      service_port     = 8080
       assign_public_ip = true
       logging {
         create_group = false
@@ -52,6 +52,8 @@ app "{{ .ProjectName }}" {
         grpc_code = "0,12"
         path      = "/grpc.health.v1.Health/Check"
         protocol  = "HTTP"
+        timeout   = 5
+        interval  = 30
       }
 
       cluster             = var.tfc_infra.dev.ecs_cluster_name
@@ -68,15 +70,13 @@ app "{{ .ProjectName }}" {
       }
 
       sidecar {
-        name  = "datadog-agent"
-        image = "public.ecr.aws/datadog/agent:latest"
-        memory = 512
+        name           = "datadog-agent"
+        image          = "public.ecr.aws/datadog/agent:latest"
+        memory         = 512
+        container_port = 8125
 
         static_environment = {
           ECS_FARGATE = "true"
-        }
-
-        secrets = {
           DD_API_KEY = var.datadog_api_key
         }
       }
@@ -84,10 +84,10 @@ app "{{ .ProjectName }}" {
 
     workspace "prod" {
       use "aws-ecs" {
-        count = 1
-        memory = 512
-        cpu = 256
-        service_port = 8080
+        count            = 1
+        memory           = 512
+        cpu              = 256
+        service_port     = 8080
         assign_public_ip = true
         logging {
           create_group = false
@@ -98,8 +98,10 @@ app "{{ .ProjectName }}" {
 
         health_check {
           grpc_code = "0,12"
-          path      = "grpc.health.v1.Health/Check"
+          path      = "/grpc.health.v1.Health/Check"
           protocol  = "HTTP"
+          timeout   = 5
+          interval  = 30
         }
 
         cluster             = var.tfc_infra.prod.ecs_cluster_name
@@ -116,16 +118,14 @@ app "{{ .ProjectName }}" {
         }
 
         sidecar {
-          name  = "datadog-agent"
-          image = "public.ecr.aws/datadog/agent:latest"
-          memory = 512
+          name           = "datadog-agent"
+          image          = "public.ecr.aws/datadog/agent:latest"
+          memory         = 512
+          container_port = 8125
+          host_port      = 8125
 
           static_environment = {
             ECS_FARGATE = "true"
-          }
-
-          secrets = {
-            DD_API_KEY = var.datadog_api_key
           }
         }
       }
@@ -140,7 +140,7 @@ variable "tfc_infra" {
   })
   type        = any
   sensitive   = false
-  description = "all outputs from this app's tfc workspace"
+  description = "All outputs from this app's TFC workspace."
 }
 
 variable "datadog_api_key" {
@@ -150,5 +150,5 @@ variable "datadog_api_key" {
   })
   sensitive   = true
   type        = string
-  description = "The API key for DataDog to send application metrics"
+  description = "The API key for DataDog to send application metrics."
 }

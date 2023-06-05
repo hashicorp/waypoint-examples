@@ -89,22 +89,26 @@ Waypoint, and then starts developing!
 
 ### Platform Engineer
 
-1. In the file `./terraform-org-day-zero-infra/terraform.tf`, update the `cloud`
-block inside the `terraform` block to be your Terraform Cloud organization name.
-2. Apply the Terraform configuration in the `terraform-org-day-zero-infra` path
+1. Fork the [Go template app repository](https://github.com/hashicorp/waypoint-template-go-protobuf-api) into your GitHub organization.
+2. Fork the [Terraform No Code module](https://github.com/hashicorp/terraform-aws-ecs-advanced-microservice) into your GitHub organization.
+3. In the following two files, update the `organization` field inside the `cloud`
+block of the `terraform` block to be your Terraform Cloud organization name.
+   - `./terraform-org-day-zero-infra/terraform.tf`
+   - `./terraform-vault/terraform.tf`
+4. Apply the Terraform configuration in the `terraform-org-day-zero-infra` path
 of this example.
     - `terraform init` and then `terraform apply`
-    - You will need to provide input to the non-default 
-3. Install a Waypoint runner to the "prod" ECS cluster created in step 1
+    - You will need to provide input to the variables without default values.
+5. Install a Waypoint runner to the "prod" ECS cluster created in step 4.
     - `waypoint runner install -platform=ecs -ecs-region=us-east-2 -ecs-cluster=$(terraform output -json ecs_cluster_name | jq -r .prod)`
-    - Note: Your terminal should be authenticated to AWS with the necessary permissions to create runner resources
-4. Apply the Terraform configuration in the `terraform-vault` path
+    - Note: Your terminal should be authenticated to AWS with the necessary permissions to create runner resources.
+6. Apply the Terraform configuration in the `terraform-vault` path.
     - `terraform init` and then `terraform apply`
     - The org-level resources in Vault are created in a separate workspace 
-    because the Vault clusters are created during the `apply` in step 2, and 
+    because the Vault clusters are created during the `apply` in step 4, and 
     the Vault provider cannot be supplied configuration/credentials before the
     clusters are up and running.
-5. Set the following credentials in a Terraform Cloud (TFC) global or project-scoped 
+7. Set the following credentials in a Terraform Cloud (TFC) global or project-scoped 
 variable set in TFC:
    - Environment variables:
      - AWS_ACCESS_KEY_ID
@@ -128,25 +132,87 @@ variable set in TFC:
      - prod_vault_address
      - prod_vault_token
      - vault_tfc_workspace_name
-6. Create a Waypoint template
-   - `waypoint template create`
-   <!--- TODO: Add flags for `template create`, link to CLI docs here --->
-7. Create a [TFC config source](https://developer.hashicorp.com/waypoint/integrations/hashicorp/terraform-cloud/latest/components/config-sourcer/terraform-cloud-config-sourcer)
-    - The token must have permissions to READ outputs from the No Code workspaces
-    - ```shell
-      waypoint config source-set -type=terraform-cloud \
-      -config=token=<TFC_TOKEN>
-      ```
-8. Create a [Vault config source](
-https://developer.hashicorp.com/waypoint/integrations/hashicorp/vault/latest/components/config-sourcer/vault-config-sourcer
-) for the dev and prod workspaces
+8. Publish the Terraform No Code module in your private TFC module registry.
+   - [Instructions on publishing a No Code module](https://developer.hashicorp.com/terraform/tutorials/cloud/no-code-provisioning#publish-no-code-ready-module)
+   - Publish one git tag of the module, `v1.0.0`
+9. Create a Waypoint project template, using the:
+   - No Code module
+     - ![template-1.png](readme-images%2Ftemplate-1.png)
+   - Waypoint configuration template `waypoint.hcl.tpl`
+   - README markdown template `README.md.tpl`
+   - Short summary
+      ```text
+     A project template for Go microservices which creates dev and prod 
+     environments. These environments run on AWS ECS.
+     ```
+   - Long summary
+      ```text
+     A project template for Go gRPC server microservices. Projects created from
+     this template will have GitHub repository with Go code and protocol buffers
+     generated. The app in the repo will also have an RPC written to connect to
+     a Postgres database. The repo will also contain GitHub Actions workflow
+     configuration to build the app and run tests, build the app in a Docker 
+     container, and push the container to ECR. On merges to main, a workflow
+     runs to deploy to the dev environment.
+     ```
+   - ![template-2.png](readme-images%2Ftemplate-2.png)
+10. Set TFC configs in the HCP Waypoint UI. This configuration enables HCP 
+Waypoint to provision a No Code workspace when a project is created from a
+template.
+     - ![tfc-config.png](readme-images%2Ftfc-config.png)
+11. Create a [TFC config source](https://developer.hashicorp.com/waypoint/integrations/hashicorp/terraform-cloud/latest/components/config-sourcer/terraform-cloud-config-sourcer).
+     - The token must have permissions to READ outputs from the No Code workspaces
+     in your default TFC project
+     - ```shell
+       waypoint config source-set -type=terraform-cloud \
+       -config=token=<TFC_TOKEN> \
+       -scope=global
+       ```
+
+With all the base organization infrastructure created and the project 
+template configured, it's time for the app developer to render their project!
+
+### App Developer
+1. In the HCP Waypoint UI, click New Project.
+2. Select `Create Project With Template` option.
+3. Select `go_grpc_postgres_micro`.
+    - ![template-select.png](readme-images%2Ftemplate-select.png)
+4. Name your app, click create.
+    - ![project-create.png](readme-images%2Fproject-create.png)
+    - Monitor the project detail page to check Terraform run status
+5. Update project settings with GitHub repo information
+    - This informs Waypoint about from where to get the app source code at 
+    build/deploy time
+6. Create a [Vault config source](
+   https://developer.hashicorp.com/waypoint/integrations/hashicorp/vault/latest/components/config-sourcer/vault-config-sourcer) 
+   for the dev and prod workspaces:
+   - ```shell
+     waypoint config source-set -type=vault
+     -workspace=dev \ 
+     -config=addr=<DEV_VAULT_URL> \
+     -config=token=<VAULT_TOKEN> \
+     -config=namespace=admin
+     ```
+   - ```shell
+     waypoint config source-set -type=vault
+     -workspace=prod \ 
+     -config=addr=<PROD_VAULT_URL> \
+     -config=token=<VAULT_TOKEN> \
+     -config=namespace=admin
+     ```
+    - Note: The Vault token must have permissions to read from the KV secrets
+      engine, and create dynamic secrets in the DB secrets engine
+
+    <!--- TODO: Use AWS auth method since the app will run in AWS ECS. 
+    Ideally, this is in the No Code module, and not done here at all.
    - ```shell
      waypoint config source-set -type=vault \
      -workspace=dev \
      -config=addr=<DEV_VAULT_URL> \
      -config=auth_method=aws \
      -config=aws_type=iam \
-     -config=aws_role=app`
+     -config=aws_role=app \
+     -config=namespace=admin
      ```
    - ```shell
      waypoint config source-set -type=vault
@@ -154,38 +220,28 @@ https://developer.hashicorp.com/waypoint/integrations/hashicorp/vault/latest/com
      -config=addr=<PROD_VAULT_URL> \
      -config=auth_method=aws \
      -config=aws_type=iam \
-     -config=aws_role=app`
+     -config=aws_role=app \
+     -config=namespace=admin
      ```
+    --->
+
    <!--- TODO: Problem here - Vault config source setup should be done via the 
    Waypoint Terraform provider - it's easy to miss, but these config sources
    actually rely on app-scoped resources; we don't want the dev to have to set
    this up after their project is rendered, and the platform engineer doesn't 
    actually know the aws_role name til the project is rendered, so we're making
    an assumption here --->
-
-With all of the base organization infrastructure created and the project 
-template configured, it's time for the app developer to render their project!
-
-### App Developer
-1. In the HCP Waypoint UI, click New Project.
-2. Select `Create Project With Template` option.
-3. Select Go Postgres template.
-4. Name your app, click create.
-    - Monitor the project detail page to check Terraform run status
-5. Update project settings with GitHub repo information
-    - This informs Waypoint about from where to get the app source code at 
-    build/deploy time
-6. Go to the newly created GitHub repository, and create a new branch.
-7. Monitor the GHA workflow that ran to see:
+7. Go to the newly created GitHub repository, and create a new branch.
+8. Monitor the GHA workflow that ran to see:
     - `go build` and `go test` running against the new app
     - `docker build` running to build a container image for the app, and push
     to AWS ECR
     - `waypoint` build running for `dev` and `prod` workspaces, which sets up
     Waypoint to deploy the just-build images pushed to ECR at deploy time
-8. Check project in HCP UI to see build details.
-9. Make some changes to the new branch. When satisfied, merge the branch to 
+9. Check project in HCP UI to see build details.
+10. Make some changes to the new branch. When satisfied, merge the branch to 
 `main`.
-10. Monitor GHA running the deploy workflow, which deploys the app container
+11. Monitor GHA running the "deploy" workflow, which deploys the app container
 image to the `dev` environment.
 
 <!--- TODO: Demonstrate `waypoint logs`, show DB connectivity --->

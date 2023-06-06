@@ -49,17 +49,17 @@ app "kubernetes-nodejs-web" {
 }
 
 // On-Demand Runner configuration
-runner {
-  enabled = true
+# runner {
+#   enabled = true
 
-  data_source "git" {
-    url  = "https://github.com/hashicorp/waypoint-examples.git"
-    ref = "refs/heads/nodejs-remote"
-    path = "kubernetes/nodejs"
-  }
+#   data_source "git" {
+#     url  = "https://github.com/hashicorp/waypoint-examples.git"
+#     ref = "refs/heads/nodejs-remote"
+#     path = "kubernetes/nodejs"
+#   }
 
-  # profile="kube_vault"
-}
+#   # profile="kube_vault"
+# }
 
 // Variables
 variable "registrycreds_secret" {

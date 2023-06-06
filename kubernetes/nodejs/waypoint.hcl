@@ -1,4 +1,4 @@
-project = "workspace-steps"
+project = "tfdemo"
 
 app "kubernetes-nodejs-web" {
   config {

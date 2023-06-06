@@ -43,17 +43,6 @@ Now that we've created the base shared infrastructure, we can move on to app-spe
 Most applications need some long-lived infrastructure, like a container registry and a load balancer. This module gives platform engineers a space to define this app-specific infrastructure for their specific organization.
 Now that we've created the base shared infrastructure, we can move on to app-specific infrastructure.
 
-Most applications need some long-lived infrastructure, like a container registry and a load balancer. This module gives platform engineers a space to define this app-specific infrastructure for their specific organization.
-Now that we've created the base shared infrastructure, we can move on to app-specific infrastructure.
-
-Most applications need some long-lived infrastructure, like a container registry and a load balancer. This module gives platform engineers a space to define this app-specific infrastructure for their specific organization.
-
-This example extends Waypoint's [ecs module](https://registry.terraform.io/modules/hashicorp/waypoint-ecs/aws/latest) to create a single global container registry, and resources like an ALB, security group, and IAM role in the dev and prod environments.
-
-This module is an opportunity for platform engineers to get creative and define any other app-specific infrastructure, like  monitoring dashboards or tickets in a ticketing system. 
-This example extends Waypoint's [ecs module](https://registry.terraform.io/modules/hashicorp/waypoint-ecs/aws/latest) to create a single global container registry, and resources like an ALB, security group, and IAM role in the dev and prod environments.
-
-This module is an opportunity for platform engineers to get creative and define any other app-specific infrastructure, like  monitoring dashboards or tickets in a ticketing system. 
 This example extends Waypoint's [ecs module](https://registry.terraform.io/modules/hashicorp/waypoint-ecs/aws/latest) to create a single global container registry, and resources like an ALB, security group, and IAM role in the dev and prod environments.
 
 This module is an opportunity for platform engineers to get creative and define any other app-specific infrastructure, like  monitoring dashboards or tickets in a ticketing system. 
@@ -111,12 +100,14 @@ Your project template will be utilized to generate the `waypoint.hcl` for develo
 Terraform details that will be used to spin up resources that will be used for application deployment. Please see the following example project
 template: 
 
+Now that you have the basic shared infrastructure set up and a no-code module published with app-specific infrastructure, you can configure HCP Waypoint to authorize to TFC and create a Waypoint project template.
+
+
 ```shell
 project = "{{ .ProjectName }}"
 
 app "{{ .ProjectName }}" {
-Now that you have the basic shared infrastructure set up and a no-code module published with app-specific infrastructure, you can configure HCP Waypoint to authorize to TFC and create a Waypoint project template.
-  build {
+ build {
     use "pack" {}
 
     registry {
@@ -127,10 +118,8 @@ Now that you have the basic shared infrastructure set up and a no-code module pu
       }
     }
   }
-Now that you have the basic shared infrastructure set up and a no-code module published with app-specific infrastructure, you can configure HCP Waypoint to authorize to TFC and create a Waypoint project template.
-  deploy {
-Now that you have the basic shared infrastructure set up and a no-code module published with app-specific infrastructure, you can configure HCP Waypoint to authorize to TFC and create a Waypoint project template.
-    # Default workspace deploys to dev
+ deploy {
+   # Default workspace deploys to dev
     use "aws-ecs" {
       count = 1
       memory = 512

@@ -58,7 +58,7 @@ runner {
     path = "kubernetes/nodejs"
   }
 
-  profile="kube_vault"
+  # profile="kube_vault"
 }
 
 // Variables

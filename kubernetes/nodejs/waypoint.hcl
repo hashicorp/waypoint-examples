@@ -1,32 +1,5 @@
 project = "workspace-steps"
 
-# pipeline "nodes" {
-#   step "up" {
-#     use "up" {
-#       prune = true
-#     }
-#   }
-
-#   step "echo-this" {
-#     image_url = "alpine:3.16.2"
-#     use "exec" {
-#       command = "echo"
-#       args    = ["this works!"]
-#     }
-#   }
-# }
-
-# pipeline "ups" {
-#   step "up-default" {
-#     use "up" {}
-#   }
-
-#   step "up-prod" {
-#     workspace = "production"
-#     use "up" {}
-#   }
-# }
-
 app "kubernetes-nodejs-web" {
   config {
     env = {
@@ -84,6 +57,8 @@ runner {
     ref = "refs/heads/nodejs-remote"
     path = "kubernetes/nodejs"
   }
+
+  profile="kube_vault"
 }
 
 // Variables

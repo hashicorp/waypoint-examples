@@ -126,6 +126,7 @@ app "{{ .ProjectName }}" {
 
           static_environment = {
             ECS_FARGATE = "true"
+            DD_API_KEY = var.datadog_api_key
           }
         }
       }

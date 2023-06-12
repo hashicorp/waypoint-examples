@@ -74,6 +74,7 @@ app "{{ .ProjectName }}" {
         image          = "public.ecr.aws/datadog/agent:latest"
         memory         = 512
         container_port = 8125
+        host_port      = 8125
 
         static_environment = {
           ECS_FARGATE = "true"

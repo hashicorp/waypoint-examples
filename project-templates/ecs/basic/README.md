@@ -33,9 +33,16 @@ Pre-Requisites:
 
 Create the baseline infrastructure with the following steps in your CLI.
 
-1. Navigate to the `terraform-aws-example-microservice-infra` directory found in this example and run `terraform init` and the  `terraform apply -var=vpc_name=example-cluster` command.
+#### Terraform AWS Example Microservice Infra
+1. Navigate to the `terraform-aws-example-microservice-infra` directory found in this example.  
+2. Update the `main.tf` file with the `{{YOUR_TERRAFORM_ORGANIZATION_NAME}}` field and replace the value with your own Terraform Cloud organization name.
+3. Run `terraform init` and the `terraform apply -var=vpc_name=example-cluster` command in this directory.
 
-2. Navigate to the `terraform-aws-example-network` directory found in this example and run `terraform init` and the `terraform apply -var=vpc_name=example-vpc` command.
+#### Terraform AWS Example Network
+
+1. Navigate to the `terraform-aws-example-network` directory found in this example.
+2. Update the `main.tf` file with the `{{YOUR_TERRAFORM_ORGANIZATION_NAME}}` field and repliace the value with your own Terraform Cloud organization name.
+3.  and run `terraform init` and the `terraform apply -var=vpc_name=example-vpc` command.
 
 ### Terraform Module Creation
 Now that we've created the base shared infrastructure, we can move on to app-specific infrastructure.
@@ -50,7 +57,9 @@ TODO(Teresa): Make this repo public.
 
 1. Fork the `hashicorp/terraform-aws-example-microservice-ecs-all-envs` repository in Github [here](https://github.com/hashicorp/terraform-aws-example-microservice-ecs-allenvs) to your own Github organization.
 
-2. Run the following git commands in the forked repository's working directory.
+2. Navigate to the `remote_state.tf` file and update the field <YOUR_TFC_ORGANIZATION_NAME> with your Terraform Cloud Organization Name.
+
+3. Run the following git commands in the forked repository's working directory.
 
 ```shell
 git tag v.0.0.1

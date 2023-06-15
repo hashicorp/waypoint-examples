@@ -7,7 +7,7 @@ Project Templates in HCP Waypoint allow platform engineers to define templates f
 
 In this example, we will configure a project template for AWS ECS microservices with dev and prod environments, and then use it to create and deploy a basic nodejs webapp.
 
-Pre-Requisites:
+Prerequisites:
 
 - AWS Account with Admin Permissions
 
@@ -184,7 +184,7 @@ that this page will be updated once the Terraform Cloud Run has succeeded.
 
 ## Deploy and Release an Application
 
-Pre-Requisites
+Prerequisites
 
 1. A HCP Waypoint Account
 2. A Waypoint CLI installed and connected to your Waypoint server.
@@ -233,7 +233,7 @@ You are now able to set up a project template for your application developers wh
 
 ## Waypoint Template Steps via CURL commands
 
-Pre-Requisites
+Prerequisites
 1. Your Namespace ID
 2. HCP Waypoint Authentication Token
 3. TFC Authentication Token

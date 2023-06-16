@@ -17,17 +17,16 @@ Pre-Requisites:
 
 ### Terraform Cloud Workspaces
 
-1. (CLI-driven only) Create terraform cloud [workspaces](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/creating) in the TFC User Interface based on the following terraform configurations provided in this example:
+1. Create a [global variable set](https://developer.hashicorp.com/terraform/tutorials/cloud-get-started/cloud-workspace-create#create-the-workspace) for your AWS Credentials.
+
+2. Create terraform cloud [workspaces](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/creating) in the TFC User Interface based on the following terraform configurations provided in this example:
    `terraform-aws-example-microservice-infra`
    `terraform-aws-example-network`
    ![img_9.png](../readme-images/create_tfc_workspace_ss.png)
 
-
-2. Go to Settings for the created TFC workspaces, Under `Remote State Sharing` allow `Share with all workspaces in this organization`.
+3. Go to Settings for the created TFC workspaces, Under `Remote State Sharing` allow `Share with all workspaces in this organization`.
    ![img_10.png](../readme-images/tfc_remote_sharing_ss.png)
 
-
-3. Create a [global variable set](https://developer.hashicorp.com/terraform/tutorials/cloud-get-started/cloud-workspace-create#create-the-workspace) for your AWS Credentials.
 
 ### AWS Steps with Terraform
 

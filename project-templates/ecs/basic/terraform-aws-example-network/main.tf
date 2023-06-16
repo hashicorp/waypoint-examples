@@ -24,7 +24,7 @@ module "vpc" {
   name = var.vpc_name
   cidr = "172.31.0.0/16"
 
-  azs             = ["us-west-1a", "us-west-1b"]
+  azs             = ["us-west-1b", "us-west-1c"]
   private_subnets = ["172.31.0.0/20", "172.31.16.0/20"]
   public_subnets  = ["172.31.80.0/20", "172.31.96.0/20"]
 

@@ -91,9 +91,6 @@ git push --tags
 
 ![img_8.png](../readme-images/tfc_registry_ss.png)
 
-Before you start working with Waypoint and creating a template, you need some foundational infrastructure. This example provides a few basic terraform modules for creating AWS VPCs and ECS clusters in dev and prod environments.
-
-If you already have this infrastructure configured, you can jump ahead to [Terraform Module Creation](### Terraform Module Creation) and modify the module to run on your own base infrastructure.
 ## Waypoint Template Steps 
 
 TODO(Teresa): Replace figma images with proper screenshots once UI is ready.

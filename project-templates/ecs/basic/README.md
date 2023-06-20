@@ -54,7 +54,7 @@ This example extends Waypoint's [ecs module](https://registry.terraform.io/modul
 This module is an opportunity for platform engineers to get creative and define any other app-specific infrastructure, like  monitoring dashboards or tickets in a ticketing system. 
 TODO(Teresa): Make this repo public.
 
-1. Fork the `hashicorp/terraform-aws-example-microservice-ecs-all-envs` repository in Github [here](https://github.com/hashicorp/terraform-aws-example-microservice-ecs-allenvs) to your own Github organization.
+1. Fork the `hashicorp/terraform-aws-example-microservice-ecs-allenvs` repository in Github [here](https://github.com/hashicorp/terraform-aws-example-microservice-ecs-allenvs) to your own Github organization.
 
 2. Navigate to the `remote_state.tf` file and update the field <YOUR_TFC_ORGANIZATION_NAME> with your Terraform Cloud Organization Name.
 

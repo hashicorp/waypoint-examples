@@ -161,11 +161,8 @@ Next, you will test the application developer workflow by creating a new sample 
 1: From the project template list view, in the top right corner, select `Create Project`. From the dropdown menu, select `Create Project with template`:
 ![img_3.png](../readme-images/waypoint_projects_list_ss.png)
 
-   
 4. Select the newly created <name> template
 ![img_4.png](../readme-images/waypoint_select_template_ss.png)
- 
-   
 
 5. Type `project-panda` under `Project Name`. Then click `Create Project`.
 NOTE: Clicking the `Create Project` button will trigger a run on Terraform Cloud. Please note
@@ -203,6 +200,23 @@ waypoint runner install \
   -ecs-region=us-west-1
 ```
 
+### Add a Git Data Source to your Waypoint project
+
+In order to build and deploy the project on a remote runner, installed in the 
+previous section, your project requires a remote data source. To add that, you
+will link the project to a Git repository.
+
+1. In the HCP Waypoint UI, go to the project settings page.
+   - ![project-panda-apps](./readme-images/project-panda-apps.png)
+2. Click "Add Repository".
+   - ![project-panda-settings-page](./readme-images/project-panda-settings-page.png)
+3. Click "Custom source".
+   - ![project-panda-source-select](./readme-images/project-panda-source-select.png)
+4. Enter in the repo URL: `https://github.com/hashicorp/waypoint-examples`
+   - ![project-panda-repo-details](./readme-images/project-panda-repo-details.png)
+5. Enter in the source details. The ref should be set to `project_templating_basic_example`,
+and the source path to `project-templates/ecs/basic/project-panda`.
+   - ![project-panda-git-source-details](./readme-images/project-panda-git-source-details.png)
 
 ### Deploy Your Application
 

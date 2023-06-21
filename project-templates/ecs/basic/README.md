@@ -167,7 +167,7 @@ Next, you will test the application developer workflow by creating a new sample 
  
    
 
-5. Type `project-outstanding-panda` under `Project Name`. Then click `Create Project`.
+5. Type `project-panda` under `Project Name`. Then click `Create Project`.
 NOTE: Clicking the `Create Project` button will trigger a run on Terraform Cloud. Please note
 that this page will be updated once the Terraform Cloud Run has succeeded.
 
@@ -207,12 +207,12 @@ waypoint runner install \
 ### Deploy Your Application
 
 After the above steps have been completed, you are now ready to deploy your application.
-For the purposes of this example, we will be using the nodejs project that is included in this directory: `project-outstanding-panda`.
+For the purposes of this example, we will be using the nodejs project that is included in this directory: `project-panda`.
 
-1. In your CLI, navigate to the location of the `project-outstanding-panda`
+1. In your CLI, navigate to the location of the `project-panda`
 2. Perform the following waypoint command:
 ```shell
-waypoint up -p project-outstanding-panda
+waypoint up -p project-panda
 ```
 3. You can now navigate back to HCP Waypoint in your browser and see that the project has been deployed.
 ![img.png](../readme-images/waypoint_project_deployed_ss.png)
@@ -277,7 +277,7 @@ curl --location 'https:// api.hashicorp.cloud:443/waypoint/2022-02-03/namespace/
 --header 'Authorization: Bearer {{YOUR_HCP_Waypoint_AUTH_TOKEN}}' \
 --header 'Content-Type: application/json' \
 --data '{
-  "project_name": "project-outstanding-panda",
+  "project_name": "project-panda",
   "project_template": {
     "name": "panda-first-template"
   }

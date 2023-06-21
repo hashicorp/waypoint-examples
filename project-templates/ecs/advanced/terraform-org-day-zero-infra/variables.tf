@@ -8,6 +8,7 @@ variable "environments" {
 
 variable "availability_zones" {
   type = list(string)
+  description = "Availability zones for network infrastructure. These AZs must be VPC-compatible."
   default = [
     "us-east-2a",
     "us-east-2b",

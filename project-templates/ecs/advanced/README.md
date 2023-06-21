@@ -177,7 +177,7 @@ template configured, it's time for the app developer to render their project!
 2. Select `Create Project With Template` option.
 3. Select `go_grpc_postgres_micro`.
     - ![template-select.png](readme-images%2Ftemplate-select.png)
-4. Name your app, click create.
+4. Name your app `TheMicroservice`, then click create.
     - ![project-create.png](readme-images%2Fproject-create.png)
     - Monitor the project detail page to check Terraform run status
 5. Update project settings with GitHub repo information
@@ -202,7 +202,7 @@ template configured, it's time for the app developer to render their project!
      ```
     - Note: The Vault token must have permissions to read from the KV secrets
       engine, and create dynamic secrets in the DB secrets engine
-
+    - Note: "admin" is the name of the first namespace in an HCP Vault cluster
     <!--- TODO: Use AWS auth method since the app will run in AWS ECS. 
     Ideally, this is in the No Code module, and not done here at all.
    - ```shell
@@ -243,13 +243,33 @@ template configured, it's time for the app developer to render their project!
 `main`.
 11. Monitor GHA running the "deploy" workflow, which deploys the app container
 image to the `dev` environment.
+12. Promote the deployment to production.
+    - `waypoint deploy -workspace=prod -p=TheMicroservice -a=TheMicroservice -remote-source=ref=<GIT_COMMIT_ID>`
+    - The Git commit ID should be the ID of the commit from the `waypoint build`
+    run by GitHub Actions.
+13. Access the application using `grpcurl`.
+    - `grpcurl -insecure <HOSTNAME>:443 list` will show the available services
+    exposed by the server.
+      - Expected response:
+        ```
+        TheMicroservice.v1.TheMicroserviceService
+        grpc.health.v1.Health
+        grpc.reflection.v1alpha.ServerReflection
+        ```
+    - The hostname to use is output by Waypoint at the conclusion of running
+    `waypoint deploy`, and will resemble (do not include `http`):
+```
+The deploy was successful! This deploy was done in-place so the deployment
+URL may match a previous deployment.
+
+Release URL: http://themicroservice-prod-1234567890.us-east-2.elb.amazonaws.com
+```
 
 <!--- TODO: Demonstrate `waypoint logs`, show DB connectivity --->
 
 <!--- TODO: Add steps to help the developer connect to dev, since dev is 
 inaccessible from the public internet --->
 
-<!--- TODO: Create a new GHA workflow and add steps here for releasing to prod
-with the creation of a git tag --->
+<!--- TODO: Create a new GHA workflow for prod release --->
 
 <!--- TODO: Add UI screenshots --->

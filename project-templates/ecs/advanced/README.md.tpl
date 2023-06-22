@@ -14,7 +14,10 @@ how to access the service with a tool `grpcurl`. The server's hostname and port
 on which it is listening must be substituted in here.
 
 ```shell
-$ grpcurl -d "{ \"message\": \"The first and last name in Vault technology.\"}" <SERVER_HOSTNAME>:<SERVER_PORT> {{ .ProjectName }}.v1.{{ .ProjectName }}Service/HelloWorld
+$ grpcurl \
+  -d "{ \"message\": \"The first and last name in Vault technology.\"}" \
+  <SERVER_HOSTNAME>:<SERVER_PORT> \
+  {{ .ProjectName }}.v1.{{ .ProjectName }}Service/HelloWorld
 ```
 
 ## Database Connection

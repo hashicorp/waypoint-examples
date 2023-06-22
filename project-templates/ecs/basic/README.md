@@ -17,23 +17,27 @@ Prerequisites:
 
 ### Terraform Cloud Workspaces
 
-1. Create a [global variable set](https://developer.hashicorp.com/terraform/tutorials/cloud-get-started/cloud-workspace-create#create-the-workspace) for your AWS Credentials.
+1. Create a [global variable set](https://developer.hashicorp.com/terraform/tutorials/cloud-get-started/cloud-create-variable-set) for your AWS Credentials.
    <br>
    <br>
-2. Create a [global variable set](https://developer.hashicorp.com/terraform/tutorials/cloud-get-started/cloud-workspace-create#create-the-workspace) called TFC Org Name.
-      - Define a global variable named `tfc_org_name` and assign its value to your TFC Organization Name.
-      - ![img.png](img.png)
+2. Create a second global variable set called `TFC Org Name`.
+   <br>
+   <br>
+3. Define a [global variable](https://developer.hashicorp.com/terraform/tutorials/cloud-get-started/cloud-workspace-configure#configure-terraform-variables) in the `TFC Org Name` variable set named `tfc_org` and assign its value as your TFC Organization Name.
+   ![img.png](img.png)
         <br>
         <br>
 
-3. Create terraform cloud [workspaces](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/creating) in the TFC User Interface based on the following terraform configurations provided in this example:
-   `terraform-aws-example-microservice-infra`
-   `terraform-aws-example-network`
+4. Create terraform cloud [workspaces](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/creating) in the TFC User Interface based on the following terraform configurations provided in these directories:
+   <br><br>
+   [terraform-aws-example-microservice-infra](./terraform-aws-example-microservice-infra)
+   <br>
+   [terraform-aws-example-network](./terraform-aws-example-network)
    ![img_9.png](../readme-images/create_tfc_workspace_ss.png)
    <br>
    <br>
 
-4. Go to Settings for the created TFC workspaces, Under `Remote State Sharing` allow `Share with all workspaces in this organization`.
+5. Go to Settings for the created TFC workspaces, Under `Remote State Sharing` allow `Share with all workspaces in this organization`.
    ![img_10.png](../readme-images/tfc_remote_sharing_ss.png)
    <br>
    <br>
@@ -239,10 +243,11 @@ that this page will be updated once the Terraform Cloud Run has succeeded.
 ## Deploy and Release an Application
 
 ### Prerequisites
-   <br>
-1. A HCP Waypoint Account
 <br>
-2. A Waypoint CLI installed and connected to your Waypoint server.
+A [HCP Waypoint Account](https://portal.cloud.hashicorp.com/sign-in)
+
+ 
+[Waypoint CLI](https://developer.hashicorp.com/waypoint/tutorials/get-started-docker/get-started-install) installed and connected to your Waypoint server.
    <br>
    <br>
 

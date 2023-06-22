@@ -18,32 +18,56 @@ Prerequisites:
 ### Terraform Cloud Workspaces
 
 1. Create a [global variable set](https://developer.hashicorp.com/terraform/tutorials/cloud-get-started/cloud-workspace-create#create-the-workspace) for your AWS Credentials.
+   <br>
+   <br>
+2. Create a [global variable set](https://developer.hashicorp.com/terraform/tutorials/cloud-get-started/cloud-workspace-create#create-the-workspace) called TFC Org Name.
+      - Define a global variable named `tfc_org_name` and assign its value to your TFC Organization Name.
+      - ![img.png](img.png)
+        <br>
+        <br>
 
-2. Create terraform cloud [workspaces](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/creating) in the TFC User Interface based on the following terraform configurations provided in this example:
+3. Create terraform cloud [workspaces](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/creating) in the TFC User Interface based on the following terraform configurations provided in this example:
    `terraform-aws-example-microservice-infra`
    `terraform-aws-example-network`
    ![img_9.png](../readme-images/create_tfc_workspace_ss.png)
+   <br>
+   <br>
 
-3. Go to Settings for the created TFC workspaces, Under `Remote State Sharing` allow `Share with all workspaces in this organization`.
+4. Go to Settings for the created TFC workspaces, Under `Remote State Sharing` allow `Share with all workspaces in this organization`.
    ![img_10.png](../readme-images/tfc_remote_sharing_ss.png)
-
+   <br>
+   <br>
 
 ### AWS Steps with Terraform
 
 Create the baseline infrastructure with the following steps in your CLI.
 
 #### Terraform AWS Example Microservice Infra
-1. Navigate to the `terraform-aws-example-microservice-infra` directory found in this example.  
+1. Navigate to the `terraform-aws-example-microservice-infra` directory found in this example.
+   <br>
+   <br>
 2. Update the `main.tf` file with the `{{YOUR_TERRAFORM_ORGANIZATION_NAME}}` field and replace the value with your own Terraform Cloud organization name.
+   <br>
+   <br>
 3. Run `terraform init` and the `terraform apply -var=vpc_name=example-cluster` command in this directory.
-
+   <br>
+   <br>
+   <br>
 #### Terraform AWS Example Network
 
 1. Navigate to the `terraform-aws-example-network` directory found in this example.
+   <br>
+   <br>
 2. Update the `main.tf` file with the `{{YOUR_TERRAFORM_ORGANIZATION_NAME}}` field and repliace the value with your own Terraform Cloud organization name.
+   <br>
+   <br>
 3.  and run `terraform init` and the `terraform apply -var=vpc_name=example-vpc` command.
+    <br>
+    <br>
+
 
 ### Terraform Module Creation
+<br>
 Now that we've created the base shared infrastructure, we can move on to app-specific infrastructure.
 
 Most applications need some long-lived infrastructure, like a container registry and a load balancer. This module gives platform engineers a space to define this app-specific infrastructure for their specific organization.
@@ -53,60 +77,80 @@ This example extends Waypoint's [ecs module](https://registry.terraform.io/modul
 
 This module is an opportunity for platform engineers to get creative and define any other app-specific infrastructure, like  monitoring dashboards or tickets in a ticketing system. 
 TODO(Teresa): Make this repo public.
-
+<br>
+<br>
 1. Fork the `hashicorp/terraform-aws-example-microservice-ecs-allenvs` repository in Github [here](https://github.com/hashicorp/terraform-aws-example-microservice-ecs-allenvs) to your own Github organization.
-
+   <br>
+   <br>
 2. Navigate to the `remote_state.tf` file and update the field <YOUR_TFC_ORGANIZATION_NAME> with your Terraform Cloud Organization Name.
-
+   <br>
+   <br>
 3. Run the following git commands in the forked repository's working directory.
-
+   <br>
 ```shell
-git tag v.0.0.1
+git tag v0.0.1
 git push --tags
 ```
 
+<br>
+<br>
+
 #### Publish The Example Module
+
 1. Inside Terraform Cloud, Click Registry and Select `Publish a Module`
 ![img.png](../readme-images/tfc_publish_module_ss.png)
 
-
+<br>
+<br>
 2. Select Github under `Version Control Provider`
 
 ![img_1.png](../readme-images/publish_module_vcs_ss.png)
 
+
+
+<br>
+<br>
 3. Select your forked repository of the no-code module created in the last step.
 
 ![img_2.png](../readme-images/select_repo_ss.png)
-
+<br>
+<br>
 4. Click `Publish Module`
 
 ![img_3.png](../readme-images/publish_module.png)
-
+<br>
+<br>
 5. Review the published module details
 
 ![img_4.png](../readme-images/review_module_details.png)
 
-
+<br>
 
 ![img_8.png](../readme-images/tfc_registry_ss.png)
-
+<br>
+<br>
 ## Waypoint Template Steps 
 
 TODO(Teresa): Replace figma images with proper screenshots once UI is ready.
-
+<br>
+<br>
 
 1. Set up your TFC Credentials in Waypoint. You will need a TFC team access token found in Terraform Cloud and your TFC Organization Name.
 ![img.png](../readme-images/waypoint_tfc_creds_setup_ss.png)
-
+   <br>
+   <br>
 
 2. Create a Waypoint Project Template by filling in the fields in the Template Creation page:
-
+   <br>
+   <br>
 Your project template will be utilized to generate the `waypoint.hcl` for developers to start off their projects with. This template will contain
 Terraform details that will be used to spin up resources that will be used for application deployment. Please see the following example project
-template: 
-
+template:
+   <br>
+   <br>
 Now that you have the basic shared infrastructure set up and a no-code module published with app-specific infrastructure, you can configure HCP Waypoint to authorize to TFC and create a Waypoint project template.
-
+   <br>
+   <br>
 
 ```shell
 project = "{{ .ProjectName }}"
@@ -147,47 +191,68 @@ variable "tfc_infra" {
   description = "all outputs from this app's tfc workspace"
 }
 ```
+   <br>
 
 ![img_1.png](../readme-images/waypoint_create_template_ss.png)
 
-
+   <br>
+   <br>
 
 3. Return to your Projects List Page, and notice your newly created template. Application developers can now use this template to bootstrap new applications!
+   <br>
+   <br>
+<br>
+
 
 ### Create a Waypoint project from a template
-
+   <br>
 Next, you will test the application developer workflow by creating a new sample project from this template. 
 
-1: From the project template list view, in the top right corner, select `Create Project`. From the dropdown menu, select `Create Project with template`:
+
+   <br>
+   <br>
+
+1. From the project template list view, in the top right corner, select `Create Project`. From the dropdown menu, select `Create Project with template`:
+   <br>
 ![img_3.png](../readme-images/waypoint_projects_list_ss.png)
-
-4. Select the newly created <name> template
+   <br>
+   <br>
+2. Select the newly created <name> template
+   <br>
 ![img_4.png](../readme-images/waypoint_select_template_ss.png)
-
-5. Type `project-panda` under `Project Name`. Then click `Create Project`.
+   <br>
+   <br>
+3. Type `project-panda` under `Project Name`. Then click `Create Project`.
 NOTE: Clicking the `Create Project` button will trigger a run on Terraform Cloud. Please note
 that this page will be updated once the Terraform Cloud Run has succeeded.
-
+   <br>
 ![img_6.png](../readme-images/waypoint_create_project_ss.png)
-
+<br>
+<br>
    
-6. Review the project details of your newly created project! You're Ready to Go!
+4. Review the project details of your newly created project! You're Ready to Go!
+   <br>
 ![img_7.png](../readme-images/waypoint_project_details_ss.png)
-
+   <br>
+   <br>
 
 ## Deploy and Release an Application
 
-Prerequisites
-
+### Prerequisites
+   <br>
 1. A HCP Waypoint Account
+<br>
 2. A Waypoint CLI installed and connected to your Waypoint server.
+   <br>
+   <br>
 
 We are now ready to setup our HCP Waypoint Account for application deployment. We will need an active waypoint runner
 on the AWS ECS Cluster that we created in the above step and then we can deploy applications to this cluster using 
 HCP Waypoint.
 
 ### Setup a New Runner
-Now that you have set up your `example-cluster` it is time to deploy a waypoint runner to the AWS ECS cluster. 
+Now that you have set up your `example-cluster` it is time to deploy a waypoint runner to the AWS ECS cluster.
+
 
 1. In your terminal, run the following command to install a waypoint runner to the `example-cluster`. 
 This will create a waypoint runner service in the `example-cluster` on AWS.
@@ -199,46 +264,73 @@ waypoint runner install \
   -ecs-cluster=example-cluster \
   -ecs-region=us-west-1
 ```
+   <br>
+   <br>
 
 ### Add a Git Data Source to your Waypoint project
 
 In order to build and deploy the project on a remote runner, installed in the 
 previous section, your project requires a remote data source. To add that, you
 will link the project to a Git repository.
+<br>
+<br>
 
 1. In the HCP Waypoint UI, go to the project settings page.
    - ![project-panda-apps](./readme-images/project-panda-apps.png)
+     <br>
+     <br>
 2. Click "Add Repository".
    - ![project-panda-settings-page](./readme-images/project-panda-settings-page.png)
+     <br>
+     <br>
 3. Click "Custom source".
    - ![project-panda-source-select](./readme-images/project-panda-source-select.png)
+     <br>
+     <br>
 4. Enter in the repo URL: `https://github.com/hashicorp/waypoint-examples`
    - ![project-panda-repo-details](./readme-images/project-panda-repo-details.png)
+     <br>
+     <br>
 5. Enter in the source details. The ref should be set to `project_templating_basic_example`,
 and the source path to `project-templates/ecs/basic/project-panda`.
    - ![project-panda-git-source-details](./readme-images/project-panda-git-source-details.png)
-
+     <br>
+     <br>
 ### Deploy Your Application
-
+<br>
 After the above steps have been completed, you are now ready to deploy your application.
 For the purposes of this example, we will be using the nodejs project that is included in this directory: `project-panda`.
+   <br>
+   <br>
+
 
 1. In your CLI, navigate to the location of the `project-panda`
+   <br>
+   <br>
 2. Perform the following waypoint command:
+<br>
 ```shell
 waypoint up -p project-panda
 ```
+   <br>
+   <br>
 3. You can now navigate back to HCP Waypoint in your browser and see that the project has been deployed.
 ![img.png](../readme-images/waypoint_project_deployed_ss.png)
-
+   <br>
+   <br>
 4. You're All Done! Your project is now deployed.
 
+   <br>
+   <br>
 
-## Conclusion
+# Conclusion
 
 You've just completed the Waypoint Project Templating example! Congratulations! 
 You are now able to set up a project template for your application developers which will allow a seamless application deployment process. 
 
+<br>
+
+------------------
 
 
 ## Waypoint Template Steps via CURL commands

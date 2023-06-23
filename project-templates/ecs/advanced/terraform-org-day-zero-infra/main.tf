@@ -231,7 +231,7 @@ resource "datadog_integration_aws" "datadog_integration" {
 resource "hcp_hvn" "hcp_waypoint_testing_hvn" {
   hvn_id         = "hcp-waypoint-testing-hvn"
   cloud_provider = "aws"
-  region         = "us-east-2"
+  region         = var.region
 }
 
 resource "aws_security_group" "hcp_vault_sg" {

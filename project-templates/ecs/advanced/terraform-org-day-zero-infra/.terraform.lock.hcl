@@ -1,14 +1,6 @@
 # This file is maintained automatically by "terraform init".
 # Manual edits may be lost in future updates.
 
-provider "localhost/providers/hcp" {
-  version     = "0.0.1"
-  constraints = "0.0.1"
-  hashes = [
-    "h1:IlrKXFM6dyRfkT2qLU8pH8FsoY7hJKQQV/MHadv0S+E=",
-  ]
-}
-
 provider "registry.terraform.io/datadog/datadog" {
   version = "3.24.0"
   hashes = [

@@ -9,7 +9,6 @@ organization-level infrastructure configuration, and the application-level
 resources provided by the Terraform No Code module in the project template, 
 demonstrate how project templating is used to enable developers to launch their
 new applications in a production-ready state. This includes:
-
 - Version control (code repository)
 - Immediately buildable template application code
 - Continuous Integration
@@ -154,6 +153,11 @@ variable set in TFC:
      configuration to build the app and run tests, build the app in a Docker 
      container, and push the container to ECR. On merges to main, a workflow
      runs to deploy to the dev environment.
+
+     Project name requirements:
+     - Must begin with a capital letter
+     - Must not contain any non-alphanumeric characters
+     - Must not be more than 20 characters long
      ```
    - ![template-2.png](readme-images%2Ftemplate-2.png)
 10. Set TFC configs in the HCP Waypoint UI. This configuration enables HCP 

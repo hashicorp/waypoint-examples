@@ -53,7 +53,7 @@ Create the baseline infrastructure with the following steps in your CLI.
 2. Update the `main.tf` file with the `{{YOUR_TERRAFORM_ORGANIZATION_NAME}}` field and replace the value with your own Terraform Cloud organization name.
    <br>
    <br>
-3. Run `terraform init` and the `terraform apply -var=vpc_name=example-cluster` command in this directory.
+3. Run `terraform init` and the `terraform apply -var=cluster_name=example-cluster` command in this directory.
    <br>
    <br>
    <br>

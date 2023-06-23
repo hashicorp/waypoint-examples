@@ -97,10 +97,6 @@ resource "aws_iam_openid_connect_provider" "github_aws_oidc_auth_provider" {
 ### Telemetry resources ###
 # https://docs.datadoghq.com/integrations/guide/aws-terraform-setup/
 # TODO: Check telegraf and/or prometheus exporter
-resource "datadog_integration_aws" "aws_integration" {
-  account_id = var.aws_account_id
-  role_name  = "DatadogAWSIntegrationRole"
-}
 
 data "aws_iam_policy_document" "datadog_aws_integration_assume_role" {
   statement {

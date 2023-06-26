@@ -83,7 +83,7 @@ This module is an opportunity for platform engineers to get creative and define 
 TODO(Teresa): Make this repo public.
 <br>
 <br>
-1. Fork the `hashicorp/terraform-aws-example-microservice-ecs-allenvs` repository in Github [here](https://github.com/hashicorp/terraform-aws-example-microservice-ecs-allenvs) to your own Github organization.
+1. Fork the `hashicorp/terraform-aws-example-microservice-ecs-allenvs` repository in GitHub [here](https://github.com/hashicorp/terraform-aws-example-microservice-ecs-allenvs) to your own GitHub organization.
    <br>
    <br>
 2. Navigate to the `remote_state.tf` file and update the field <YOUR_TFC_ORGANIZATION_NAME> with your Terraform Cloud Organization Name.
@@ -106,7 +106,7 @@ git push --tags
 
 <br>
 <br>
-2. Select Github under `Version Control Provider`
+2. Select GitHub under `Version Control Provider`
 
 ![img_1.png](../readme-images/publish_module_vcs_ss.png)
 

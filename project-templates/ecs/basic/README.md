@@ -313,12 +313,11 @@ For the purposes of this example, we will be using the nodejs project that is in
    <br>
    <br>
 2. Perform the following waypoint command:
-<br>
+
 ```shell
-waypoint up -p project-panda
+$ waypoint up -p project-panda
 ```
-   <br>
-   <br>
+
 3. You can now navigate back to HCP Waypoint in your browser and see that the project has been deployed.
 ![img.png](../readme-images/waypoint_project_deployed_ss.png)
    <br>

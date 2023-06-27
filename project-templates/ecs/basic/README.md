@@ -41,32 +41,25 @@ Prerequisites:
    <br>
    <br>
 
-### AWS Steps with Terraform
+### AWS Steps with Terraform CLI
 
 Create the baseline infrastructure with the following steps in your CLI.
 
 #### Terraform AWS Example Microservice Infra
-1. Navigate to the `terraform-aws-example-microservice-infra` directory found in this example.
-   <br>
-   <br>
-2. Update the `main.tf` file with the `{{YOUR_TERRAFORM_ORGANIZATION_NAME}}` field and replace the value with your own Terraform Cloud organization name.
-   <br>
-   <br>
-3. Run `terraform init` and the `terraform apply -var=vpc_name=example-cluster` command in this directory.
-   <br>
-   <br>
-   <br>
+1. Clone the [hashicorp/waypoint-examples](https://github.com/hashicorp/waypoint-examples) repositroy to your local machine and navigate to this example project under `/project-templates/ecs/basic` (you may need to first checkout the `project_templating_basic_example` branch)
+1. Navigate to the `terraform-aws-example-microservice-infra` directory found in this example
+  - `$ cd terraform-aws-example-microservice-infra`
+1. Update the `main.tf` file to replace the `{{YOUR_TERRAFORM_ORGANIZATION_NAME}}` placeholder with the value of your Terraform Cloud organization name and save the file.
+1. Run `terraform login` and follow the steps to generate and save a TFC credential file. 
+1. Run `terraform init` and then run `terraform apply -var=cluster_name=example-cluster` command in this directory.
+1. Terraform Cloud will now create the needed infrastructure based on your TFC Organization name. You can monitor the progress in Terraform Cloud by clicking on the `aws-example-microservice-infra` workspace.
+
 #### Terraform AWS Example Network
 
-1. Navigate to the `terraform-aws-example-network` directory found in this example.
-   <br>
-   <br>
-2. Update the `main.tf` file with the `{{YOUR_TERRAFORM_ORGANIZATION_NAME}}` field and repliace the value with your own Terraform Cloud organization name.
-   <br>
-   <br>
-3.  and run `terraform init` and the `terraform apply -var=vpc_name=example-vpc` command.
-    <br>
-    <br>
+1. Navigate to the `terraform-aws-example-network` directory found in this example. 
+1. Update the `main.tf` file to replace the `{{YOUR_TERRAFORM_ORGANIZATION_NAME}}` placeholder with the value of your Terraform Cloud organization name and save the file.
+1. Run `terraform init` and then run `terraform apply -var=vpc_name=example-vpc` command in this directory.
+1. Terraform Cloud will now create the needed network infrastructure based on your TFC Organization name. You can monitor the progress in Terraform Cloud by clicking on the `aws-example-network` workspace.
 
 
 ### Terraform Module Creation

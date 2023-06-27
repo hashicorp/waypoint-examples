@@ -17,27 +17,26 @@ Prerequisites:
 
 ### Terraform Cloud Workspaces
 
-1. Create a [global variable set](https://developer.hashicorp.com/terraform/tutorials/cloud-get-started/cloud-create-variable-set) for your AWS Credentials.
-   <br>
-   <br>
-2. Create a second global variable set called `TFC Org Name`.
-   <br>
-   <br>
-3. Define a [global variable](https://developer.hashicorp.com/terraform/tutorials/cloud-get-started/cloud-workspace-configure#configure-terraform-variables) in the `TFC Org Name` variable set named `tfc_org` and assign its value as your TFC Organization Name.
+1. From [Terraform Cloud](https://app.terraform.io/), select an Organization you can use for testing, or optionally create a new one. We'll reference the Organization name later on in the example. 
+
+1. Create a new [global variable set](https://developer.hashicorp.com/terraform/tutorials/cloud-get-started/cloud-create-variable-set) for your AWS Credentials by going to `Settings > Variable Sets` and enter in the applicable key/value pairs  (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, et. al.) using the `Environment variable` category. Ensure `Apply globally` is selected. 
+
+1. Create a second global variable set called `TFC Org Name` and define a [global variable](https://developer.hashicorp.com/terraform/tutorials/cloud-get-started/cloud-workspace-configure#configure-terraform-variables) named `tfc_org` and assign its value as your TFC Organization Name, and its category as `Terraform variable`. 
+
    ![img.png](img.png)
-        <br>
-        <br>
 
-4. Create terraform cloud [workspaces](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/creating) in the TFC User Interface based on the following terraform configurations provided in these directories:
-   <br><br>
-   [terraform-aws-example-microservice-infra](./terraform-aws-example-microservice-infra)
-   <br>
-   [terraform-aws-example-network](./terraform-aws-example-network)
+
+1. Return to Workspaces by clicking `Workspaces` on the left hand side navigation. From here create two new Terraform Cloud [Workspaces](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/creating), which we'll initialize later.
+    - Click `New > Workspace` in the top right
+    - Select `CLI-driven workflow`
+    - For workspace name use `aws-example-microservice-infra`. Leave the `Project` as "Default Project"
+    - Click "Create workspace"
+  
+   Repeat those steps to create a 2nd workspace `aws-example-network`
+
    ![img_9.png](../readme-images/create_tfc_workspace_ss.png)
-   <br>
-   <br>
 
-5. Go to Settings for the created TFC workspaces, Under `Remote State Sharing` allow `Share with all workspaces in this organization`.
+1. Go to Settings for the created TFC workspaces, Under `Remote State Sharing` allow `Share with all workspaces in this organization`.
    ![img_10.png](../readme-images/tfc_remote_sharing_ss.png)
    <br>
    <br>

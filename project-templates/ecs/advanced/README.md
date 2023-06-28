@@ -165,14 +165,6 @@ variable set in TFC:
 Waypoint to provision a No Code workspace when a project is created from a
 template.
      - ![tfc-config.png](readme-images%2Ftfc-config.png)
-11. Create a [TFC config source](https://developer.hashicorp.com/waypoint/integrations/hashicorp/terraform-cloud/latest/components/config-sourcer/terraform-cloud-config-sourcer).
-     - The token must have permissions to READ outputs from the No Code workspaces
-     in your default TFC project
-     - ```shell
-       waypoint config source-set -type=terraform-cloud \
-       -config=token=<TFC_TOKEN> \
-       -scope=global
-       ```
 12. Create a [Vault config source](
    https://developer.hashicorp.com/waypoint/integrations/hashicorp/vault/latest/components/config-sourcer/vault-config-sourcer) 
    for the dev and prod workspaces:

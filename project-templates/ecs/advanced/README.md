@@ -176,14 +176,14 @@ template.
    https://developer.hashicorp.com/waypoint/integrations/hashicorp/vault/latest/components/config-sourcer/vault-config-sourcer) 
    for the dev and prod workspaces:
    - ```shell
-     waypoint config source-set -type=vault
+     waypoint config source-set -type=vault \
      -workspace=dev \ 
      -config=addr=<DEV_VAULT_URL> \
      -config=token=<VAULT_TOKEN> \
      -config=namespace=admin
      ```
    - ```shell
-     waypoint config source-set -type=vault
+     waypoint config source-set -type=vault \
      -workspace=prod \ 
      -config=addr=<PROD_VAULT_URL> \
      -config=token=<VAULT_TOKEN> \

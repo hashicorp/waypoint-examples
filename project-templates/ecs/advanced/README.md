@@ -79,10 +79,11 @@ Waypoint, and then starts developing!
 2. HCP account
 3. A Waypoint context configured to use HCP Waypoint
 4. GitHub account
-5. A template GitHub repository 
-6. DataDog account
-7. AWS Account
-8. `grpcurl` tool
+   - The default github action workflow permissions must be set to "Read and write permissions" ([docs]([url](https://docs.github.com/en/organizations/managing-organization-settings/disabling-or-limiting-github-actions-for-your-organization#setting-the-permissions-of-the-github_token-for-your-organization)))
+6. A template GitHub repository 
+7. DataDog account
+8. AWS Account
+9. `grpcurl` tool
 
 <!--- TODO: Add location of the Go protobuf template to use --->
 

@@ -305,17 +305,24 @@ For the purposes of this example, we will be using the nodejs project that is in
 1. In your CLI, navigate to the location of the `project-panda`
    <br>
    <br>
-2. Perform the following waypoint command:
+
+2. Perform the following waypoint command. Replace <TOKEN> with your TFC Team Token:
+```shell
+$ waypoint config source-set -scope global -type terraform-cloud -config token=<TOKEN>
+```
+
+
+3. Perform the following waypoint command:
 
 ```shell
 $ waypoint up -p project-panda
 ```
 
-3. You can now navigate back to HCP Waypoint in your browser and see that the project has been deployed.
+4. You can now navigate back to HCP Waypoint in your browser and see that the project has been deployed.
 ![img.png](../readme-images/waypoint_project_deployed_ss.png)
    <br>
    <br>
-4. You're All Done! Your project is now deployed.
+5. You're All Done! Your project is now deployed! HOORAY!
 
    <br>
    <br>

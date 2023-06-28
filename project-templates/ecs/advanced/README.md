@@ -172,22 +172,7 @@ template.
        -config=token=<TFC_TOKEN> \
        -scope=global
        ```
-
-With all the base organization infrastructure created and the project 
-template configured, it's time for the app developer to render their project!
-
-### App Developer
-1. In the HCP Waypoint UI, click New Project.
-2. Select `Create Project With Template` option.
-3. Select `go_grpc_postgres_micro`.
-    - ![template-select.png](readme-images%2Ftemplate-select.png)
-4. Name your app `TheMicroservice`, then click create.
-    - ![project-create.png](readme-images%2Fproject-create.png)
-    - Monitor the project detail page to check Terraform run status
-5. Update project settings with GitHub repo information
-    - This informs Waypoint about from where to get the app source code at 
-    build/deploy time
-6. Create a [Vault config source](
+12. Create a [Vault config source](
    https://developer.hashicorp.com/waypoint/integrations/hashicorp/vault/latest/components/config-sourcer/vault-config-sourcer) 
    for the dev and prod workspaces:
    - ```shell
@@ -204,37 +189,54 @@ template configured, it's time for the app developer to render their project!
      -config=token=<VAULT_TOKEN> \
      -config=namespace=admin
      ```
-    - Note: The Vault token must have permissions to read from the KV secrets
-      engine, and create dynamic secrets in the DB secrets engine
-    - Note: "admin" is the name of the first namespace in an HCP Vault cluster
-    <!--- TODO: Use AWS auth method since the app will run in AWS ECS. 
-    Ideally, this is in the No Code module, and not done here at all.
-   - ```shell
-     waypoint config source-set -type=vault \
-     -workspace=dev \
-     -config=addr=<DEV_VAULT_URL> \
-     -config=auth_method=aws \
-     -config=aws_type=iam \
-     -config=aws_role=app \
-     -config=namespace=admin
-     ```
-   - ```shell
-     waypoint config source-set -type=vault
-     -workspace=prod \ 
-     -config=addr=<PROD_VAULT_URL> \
-     -config=auth_method=aws \
-     -config=aws_type=iam \
-     -config=aws_role=app \
-     -config=namespace=admin
-     ```
-    --->
+ - Note: The Vault token must have permissions to read from the KV secrets
+   engine, and create dynamic secrets in the DB secrets engine
+ - Note: "admin" is the name of the first namespace in an HCP Vault cluster
+    
+ <!--- TODO: Use AWS auth method since the app will run in AWS ECS. 
+ Ideally, this is in the No Code module, and not done here at all.
+- ```shell
+  waypoint config source-set -type=vault \
+  -workspace=dev \
+  -config=addr=<DEV_VAULT_URL> \
+  -config=auth_method=aws \
+  -config=aws_type=iam \
+  -config=aws_role=app \
+  -config=namespace=admin
+  ```
+- ```shell
+  waypoint config source-set -type=vault
+  -workspace=prod \ 
+  -config=addr=<PROD_VAULT_URL> \
+  -config=auth_method=aws \
+  -config=aws_type=iam \
+  -config=aws_role=app \
+  -config=namespace=admin
+  ```
+ --->
 
-   <!--- TODO: Problem here - Vault config source setup should be done via the 
-   Waypoint Terraform provider - it's easy to miss, but these config sources
-   actually rely on app-scoped resources; we don't want the dev to have to set
-   this up after their project is rendered, and the platform engineer doesn't 
-   actually know the aws_role name til the project is rendered, so we're making
-   an assumption here --->
+<!--- TODO: Problem here - Vault config source setup should be done via the 
+Waypoint Terraform provider - it's easy to miss, but these config sources
+actually rely on app-scoped resources; we don't want the dev to have to set
+this up after their project is rendered, and the platform engineer doesn't 
+actually know the aws_role name til the project is rendered, so we're making
+an assumption here --->
+
+With all the base organization infrastructure created and the project 
+template configured, it's time for the app developer to render their project!
+
+### App Developer
+1. In the HCP Waypoint UI, click New Project.
+2. Select `Create Project With Template` option.
+3. Select `go_grpc_postgres_micro`.
+    - ![template-select.png](readme-images%2Ftemplate-select.png)
+4. Name your app `TheMicroservice`, then click create.
+    - ![project-create.png](readme-images%2Fproject-create.png)
+    - Monitor the project detail page to check Terraform run status
+5. Update project settings with GitHub repo information
+    - This informs Waypoint about from where to get the app source code at 
+    build/deploy time
+
 7. Go to the newly created GitHub repository, and create a new branch.
 8. Monitor the GHA workflow that ran to see:
     - `go build` and `go test` running against the new app

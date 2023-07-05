@@ -27,10 +27,11 @@ Terraform Cloud
 HCP Waypoint
 - Create a new HCP project
 - Activate waypoint
-- Configure a new local waypoint context
-- Start a local runner agent
-- Configure Terraform settings
+- [Install waypoint locally]([url](https://developer.hashicorp.com/waypoint/tutorials/get-started-docker/get-started-install)) 
+- Configure a new local waypoint context by clicking Manage -> Connect to Waypoint in the CLI
+- Start a local runner agent by running `waypoint runner agent`
 - Create a new project template using the below inputs:
+- Click "Settings" and add your TFC organization name and token
 
 waypoint.hcl
 ```hcl

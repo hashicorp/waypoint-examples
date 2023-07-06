@@ -12,7 +12,7 @@ project template.
 Create a Terraform Cloud no-code module that defines any and all infrastructure that an app will need in your org. In this case, a null resource.
 
 - Create a new git repo called `terraform-null-waypoint-template-starter`
-- Copy everything from `[./terraform-null-waypoint-template-starter](./terraform-null-waypoint-template-starter) to your new repo
+- Copy everything from [./terraform-null-waypoint-template-starter](./terraform-null-waypoint-template-starter) to your new repo
 - Commit and push your changes
 - Create and push a tag (e.g. `git tag v0.0.1; git push --tags`)
 

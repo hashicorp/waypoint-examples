@@ -5,10 +5,6 @@ This isn't intended to simulate real production use. Rather, it should be
 used as a jumping-off point to craft a more fully-featured
 project template.
 
-**For setup instructions, see this walkthrough video: https://drive.google.com/file/d/1cyQYae7LFyRnDINFZiWad6sOacJU1saw/view?usp=sharing
-
-## Video outline with code snippets:
-
 ### Platform Engineer Workflow
 
 #### Terraform Module

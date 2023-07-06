@@ -36,8 +36,26 @@ Create a Terraform Cloud no-code module that defines any and all infrastructure 
 
 - Click "Settings" and add your TFC organization name and token
 - Create a new project template using the below inputs:
+- Choose any name, short summary, and expanded summary
 
-waypoint.hcl
+Developer Instructions:
+```markdown
+App developer: congratulations on bootstrapping "{{.ProjectName}}"!
+
+Your next steps:
+- Write some computer code! Make sure it responds on port 3000, and push it to github
+- Connect that github repo to waypoint by visiting the `Settings` page
+- Create a new CLI context by clicking `Manage` -> Connect to Waypoint in the CLI`
+- Run `waypoint up -p {{.ProjectName}}`, and your changes will be deployed to production!
+
+From here on, you can continue to make and push changes, and run `waypoint up -p {{.ProjectName}}` to deploy them.
+
+Your friend,
+The Platform Engineer
+```
+
+
+waypoint.hcl template contents:
 ```hcl
 project = "{{.ProjectName}}"
 
@@ -52,22 +70,6 @@ app "{{.ProjectName}}" {
     }
   }
 }
-```
-
-readme markdown
-```markdown
-App developer: congratulations on bootstrapping "{{.ProjectName}}"!
-
-Your next steps:
-- Write some computer code! Make sure it responds on port 3000, and push it to github
-- Connect that github repo to waypoint by visiting the `Settings` page
-- Create a new CLI context by clicking `Manage` -> Connect to Waypoint in the CLI`
-- Run `waypoint up -p {{.ProjectName}}`, and your changes will be deployed to production!
-
-From here on, you can continue to make and push changes, and run `waypoint up -p {{.ProjectName}}` to deploy them.
-
-Your friend,
-The Platform Engineer
 ```
 
 ### App Developer Workflow

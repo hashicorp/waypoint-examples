@@ -34,6 +34,7 @@ app "ecs-nodejs-web" {
     use "aws-ecs" {
       region = "us-east-1"
       memory = "512"
+      cluster = "ctsdevcluster"
     }
   }
 }

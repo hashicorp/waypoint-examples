@@ -23,7 +23,7 @@ app "ecs-nodejs-web" {
     use "pack" {}
     registry {
       use "aws-ecr" {
-        region     = "us-east-1"
+        region     = "us-west-2"
         repository = "waypoint-example"
         tag        = "latest"
       }
@@ -32,7 +32,7 @@ app "ecs-nodejs-web" {
 
   deploy {
     use "aws-ecs" {
-      region = "us-east-1"
+      region = "us-west-2"
       memory = "512"
       cluster = "ctsdevcluster"
     }

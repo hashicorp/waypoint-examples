@@ -3,6 +3,16 @@
 
 project = "aws-ecs-nodejs"
 
+runner {
+  enabled = true
+
+  data_source "git" {
+    url  = "https://github.com/hashicorp/waypoint-examples"
+    path = "aws/aws-ecs/nodejs"
+    ref = "ecsnodejsrunner"
+  }
+}
+
 app "ecs-nodejs-web" {
   labels = {
     "service" = "ecs-nodejs-web",

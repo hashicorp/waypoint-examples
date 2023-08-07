@@ -69,20 +69,22 @@ variable "registrycreds_secret" {
 }
 
 variable "registry_username" {
-  default = dynamic("vault", {
-    path = "secret/data/jfrogcreds"
-    key = "/data/username"
-  })
+  # default = dynamic("vault", {
+  #   path = "secret/data/jfrogcreds"
+  #   key = "/data/username"
+  # })
+  default = "testing"
   type        = string
   sensitive   = true
   description = "username for container registry"
 }
 
 variable "registry_password" {
-  default = dynamic("vault", {
-    path = "secret/data/jfrogcreds"
-    key = "/data/password"
-  })
+  # default = dynamic("vault", {
+  #   path = "secret/data/jfrogcreds"
+  #   key = "/data/password"
+  # })
+  default = "testing"
   type        = string
   sensitive   = true
   description = "password for registry"

@@ -1,5 +1,15 @@
 project = "ctsanotherone"
 
+runner {
+  enabled = true
+
+  data_source "git" {
+    url  = "https://github.com/hashicorp/waypoint-examples.git"
+    path = "docker/starter/app"
+    ref = "project-cts"
+  }
+}
+
 app "ctsanotherone" {
   build {
     use "docker" {}

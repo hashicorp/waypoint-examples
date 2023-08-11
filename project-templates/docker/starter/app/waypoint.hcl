@@ -1,14 +1,14 @@
 project = "ctsanotherone"
 
-# runner {
-#   enabled = true
+runner {
+  enabled = true
 
-#   data_source "git" {
-#     url  = "https://github.com/hashicorp/waypoint-examples.git"
-#     path = "project-templates/docker/starter/app"
-#     ref = "project-cts"
-#   }
-# }
+  data_source "git" {
+    url  = "https://github.com/hashicorp/waypoint-examples.git"
+    path = "project-templates/docker/starter/app"
+    ref = "project-cts"
+  }
+}
 
 app "ctsanotherone" {
   build {

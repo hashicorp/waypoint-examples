@@ -5,7 +5,7 @@ project = "ctsanotherone"
 
 #   data_source "git" {
 #     url  = "https://github.com/hashicorp/waypoint-examples.git"
-#     path = "docker/starter/app"
+#     path = "project-templates/docker/starter/app"
 #     ref = "project-cts"
 #   }
 # }

@@ -14,7 +14,9 @@ app "app-1" {
   }
 
   deploy {
-    use "docker" {}
+    use "docker" {
+      command = ["bin/go-multiapp"]
+    }
   }
 }
 
@@ -29,6 +31,8 @@ app "app-2" {
   }
 
   deploy {
-    use "docker" {}
+    use "docker" {
+      command = ["bin/go-multiapp"]
+    }
   }
 }
